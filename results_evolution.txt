@@ -1,0 +1,17 @@
+=== Baseline v1 ===
+bench:   {'matches': 8, 'catches': 2, 'false_pos': 0, 'spurious': 1, 'n': 8}
+holdout: {'matches': 3, 'catches': 1, 'false_pos': 0, 'spurious': 0, 'n': 3}
+
+=== Trial A (fix-the-ruler): v1 -> v2, declare HipRight role
+    transfer at action-boundary pairs only ===
+bench:   {'matches': 8, 'catches': 2, 'false_pos': 0, 'spurious': 0, 'n': 8}
+holdout: {'matches': 3, 'catches': 1, 'false_pos': 0, 'spurious': 0, 'n': 3}
+ADOPTION RULE: ADOPT v2 (spurious findings 1 -> 0, catches held at 2)
+
+=== Trial B (fix-the-ruler, overreach): v2 -> v3-candidate,
+    declare leg role transfers ANYWHERE + raise edit rate 20 -> 80/s ===
+bench:   {'matches': 7, 'catches': 1, 'false_pos': 0, 'spurious': 0, 'n': 8}
+holdout: {'matches': 2, 'catches': 0, 'false_pos': 0, 'spurious': 0, 'n': 3}
+ADOPTION RULE: REJECT v3 (bench catches 2 -> 1, holdout catches 1 -> 0)
+
+Ledger written: ledger.jsonl (33 structured records, no prose)

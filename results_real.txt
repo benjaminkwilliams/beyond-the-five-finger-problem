@@ -1,0 +1,24 @@
+SadPocky v2 9->10 (same strapped leg chambers) (expect PASS) -> OK: PASS (DL cost 0.0 vs budget 2.00)
+
+SadPocky v2 10->11 (LEG SWAP: decal leg extends, strapped leg planted) (expect FAIL) -> OK: FAIL (DL cost 6.0 vs budget 2.00)
+  gate2: LeftLeg: assignment changed (('decal',), 'support') -> (('decal',), 'kick') with no declared transfer
+  gate2: RightLeg: assignment changed (('strap',), 'kick') -> (('strap',), 'support') with no declared transfer
+  gate3 op: substitution: RightLeg[strap]@kick -> LeftLeg[decal]@kick
+  gate3 op: substitution: LeftLeg[decal]@support -> RightLeg[strap]@support
+
+SadPocky v2 11->12 (swap persists, no new break) (expect PASS) -> OK: PASS (DL cost 0.0 vs budget 2.00)
+
+Lila v10 9->10 (same hip, near leg front) (expect PASS) -> OK: PASS (DL cost 0.0 vs budget 2.00)
+
+Lila v10 10->11 (same hip, near leg front) (expect PASS) -> OK: PASS (DL cost 0.0 vs budget 2.00)
+
+Lila v10 11->12 (same hip, near leg front) (expect PASS) -> OK: PASS (DL cost 0.0 vs budget 2.00)
+
+Lila v10 12->13 (same hip, near leg front) (expect PASS) -> OK: PASS (DL cost 0.0 vs budget 2.00)
+
+Lila v5 guard->action (MIRRORED GUARD) (expect FAIL) -> OK: FAIL (DL cost 6.0 vs budget 2.00)
+  gate2: Facing: assignment changed (('left',), '') -> (('right',), '') with no declared transfer
+  gate3 op: substitution: HipRight[]@support -> HipRight[]@kick
+  gate3 op: substitution: Facing[left] -> Facing[right]
+
+8/8 real-assignment cases match documented ground truth

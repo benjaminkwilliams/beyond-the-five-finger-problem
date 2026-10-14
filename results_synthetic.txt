@@ -1,0 +1,28 @@
+synthetic pass (move+morph, proportionate strap) (expect PASS) -> OK: PASS (DL cost 0.0 vs budget 2.00)
+
+synthetic strap migration A->B (expect FAIL) -> OK: FAIL (DL cost 6.0 vs budget 2.00)
+  gate1: RightLeg.strap: required marker missing
+  gate2: LeftLeg: assignment changed (('decal',), 'kick') -> (('decal', 'strap'), 'kick') with no declared transfer
+  gate2: RightLeg: assignment changed (('strap',), 'support') -> ((), 'support') with no declared transfer
+  gate3 op: substitution: RightLeg[strap]@support -> RightLeg[]@support
+  gate3 op: substitution: LeftLeg[decal]@kick -> LeftLeg[decal,strap]@kick
+
+synthetic proportion break (leg grows, strap does not) (expect FAIL) -> OK: FAIL (DL cost 0.0 vs budget 2.00)
+  gate1: RightLeg.strap: proportion 0.068 vs reference 0.131 (no proportionate adjustment)
+  gate1: LeftLeg.decal: proportion 0.024 vs reference 0.039 (no proportionate adjustment)
+
+synthetic containment break (strap outside leg) (expect FAIL) -> OK: FAIL (DL cost 0.0 vs budget 2.00)
+  gate1: RightLeg.strap: 64px lie outside parent RightLeg (containment)
+  gate1: RightLeg.strap: relative position drift 0.67 inside parent
+
+synthetic transposition @25fps (expect FAIL) -> OK: FAIL (DL cost 3.0 vs budget 0.80)
+  gate3 op: transposition: RightLeg[strap]@support and LeftLeg[decal]@kick swap order
+
+synthetic transposition @4fps (expect PASS) -> OK: PASS (DL cost 3.0 vs budget 5.00)
+  gate3 op: transposition: RightLeg[strap]@support and LeftLeg[decal]@kick swap order
+
+synthetic undeclared entity appears @10fps (expect FAIL) -> OK: FAIL (DL cost 2.0 vs budget 2.00)
+  gate2: Candle: entity appears/disappears with no declared transfer
+  gate3 op: insertion: Candle[]@background appears
+
+7/7 synthetic cases match expected verdicts
