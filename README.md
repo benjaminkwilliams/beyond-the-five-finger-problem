@@ -95,5 +95,6 @@ spurious findings strictly decrease.
 - Weights/budget rate (edit_rate_per_s = 20) are spike constants,
   not calibrated values. Calibration against the labelled bench
   is hackathon work.
-- Nothing here is in GitHub. The pushed sprite-gif repo is a slicer
-  plus documented human QA gates — different work, by design.
+- This spike is the code published in this repo. The separate
+  sprite-gif repo is a slicer plus documented human QA gates —
+  different work, by design; it does not implement this checker.
