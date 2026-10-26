@@ -69,6 +69,8 @@
       "coronal": "Vertical plane dividing bow from stern, containing the port-starboard axis. Movement in the coronal plane is sideways, port-to-starboard: a side kick extending sideways, a frontal view with a leg moving laterally. A coronal-plane leg change is not the same defect as a sagittal-plane leg change.",
       "axial": "Horizontal plane dividing top from bottom, viewed from above/below. Movement in the axial plane is rotation around the vertical axis: turning, spinning, a top-down view. Axial movement changes bow direction without changing port/starboard identity."
     },
-    "depth_note": "Near/far (depth_rank) is a camera-relative signal, not a port/starboard signal. The near leg is the one drawn over the other at a crossing, whichever side (port or starboard) it happens to be in that view."
+    "depth_note": "Near/far (depth_rank) is a camera-relative signal, not a port/starboard signal. The near leg is the one drawn over the other at a crossing, whichever side (port or starboard) it happens to be in that view.",
+    "bounded_context_foot": "Foot, Shoe, and Sock are the same bounded context for movement: one foot area at the end of a leg, not three entities. Shoe/sock/boot masks merge into that foot area before linking to a leg.",
+    "out_of_scope_fall": "NOT tracked in this phase: a walking character slips, falls, the starboard leg moves superior to the torso, the starboard shoe detaches and continues upward while the character lies on the ground. Detached-shoe and leg-superior-to-torso movement are out of scope; they would need a detached-object entity and their own bench case."
   }
 }

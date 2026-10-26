@@ -70,6 +70,39 @@ hide, depending on perspective. Rules:
   Both cases are reported, neither is silently dropped or
   silently assigned.
 
+## Bounded contexts
+
+Foot, Shoe, and Sock are the SAME bounded context for
+movement tracking: one foot area, not three entities.
+placement.py already implements this by merging
+overlapping shoe/sock/boot masks into one foot area
+before linking to a leg. A sock changing colour, a shoe
+changing style, or a boot vs shoe prompt difference does
+not create a new entity; it is still the foot area at
+the end of that leg.
+
+## Out of scope for this phase
+
+The following movement is explicitly NOT tracked in this
+phase (user-stated 2026-10-26):
+
+- A character walking, slipping on the floor, and
+  falling, where the starboard leg moves superior to
+  the torso (above torso level) causing the starboard
+  shoe to come off and continue upward while the
+  character lies on the ground.
+
+Why it is out: it breaks the bounded context above
+(the shoe becomes a detached, independently moving
+object, not a foot area), it inverts the leg-torso
+hierarchy (leg superior to torso), and it requires
+tracking a detached object through a fall. None of
+that is in the bench, the glossary, or the checker
+for M1. If it ever enters scope, it needs its own
+case, its own detached-object entity, and its own
+bench pair — it must not be folded into the foot
+area by accident.
+
 ## What is still hand-done
 
 All dot coordinates in sidecar-test/ are hand-placed from
