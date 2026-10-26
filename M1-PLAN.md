@@ -106,7 +106,7 @@ hand tuning on holdout.
   M1.1d does not change M1.1e: e verified leg masks,
   not head, so the head-ground-truth correction in d
   leaves e's leg-mask verification intact.
-- [ ] M1.1f Automated extraction code: SAM boxes ->
+- [x] M1.1f Automated extraction code: SAM boxes ->
   joints (foot, hip, head, shoulders, hands) -> sidecar
   map + joint JSON, with the 30px unique-nearest alignment
   rule from placement-architecture.md, ambiguous cases
@@ -146,9 +146,14 @@ hand tuning on holdout.
   returns 0 on every bench frame, and arm-box top
   is ~55px from the hand shoulder joint, so no
   shoulder centre is derived — shoulders stay
-  marker_seen=false. Whether f closes with
-  shoulders deferred is a user decision, not taken
-  here.
+  marker_seen=false. CLOSED 2026-10-26 by user
+  decision: f closes with shoulders DEFERRED to
+  M1.5e, and hands deferred the same way for Lila
+  (all frames) and SadPocky 9. Deferred means
+  marker_seen=false, never guessed, and M1.5e is
+  where shoulder/hand swap signals are revisited;
+  closing f does not claim shoulders or those
+  hands are extracted.
   Limb limits, added 2026-10-26 in limb_limits.py
   and tested on bench: hip-foot and shoulder-hand
   length cannot exceed anatomical length + 10% +
@@ -247,6 +252,10 @@ hand tuning on holdout.
 - [ ] M1.5e Arm/shoulder/hip swap signal tested:
   schema includes them, but only leg roles and head
   facing have been tested as swap signals.
+  Deferred here from M1.1f (user decision
+  2026-10-26): shoulders all bench frames, hands
+  Lila all frames and SadPocky 9 — these are the
+  residuals f closed without, to be revisited here.
 
 ## M1 exit checklist (rolls up the above)
 
