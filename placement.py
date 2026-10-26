@@ -181,7 +181,20 @@ def derive_legs(leg_masks, shoe_masks, facing="right"):
                 reason = "no shoe area linked to leg mask; leg mask may be partial"
             else:
                 reason = "shoe link ambiguous (one leg, multiple shoes)"
-        foot, hip = _extremes(fg, leg["fg"], facing=facing)
+        # Per-leg facing for horizontal legs: the leg
+        # extends toward its linked shoe area, not
+        # necessarily toward the global kick direction.
+        # A chambered leg extends left while the kick
+        # extends right; using the global facing would
+        # put its foot at the hip end. If no shoe is
+        # linked, fall back to the passed facing.
+        leg_facing = facing
+        if shoe_linked:
+            shoe_fg = shoe_masks[linked[0]]["fg"]
+            shoe_cx = sum(p[0] for p in shoe_fg) // len(shoe_fg)
+            leg_cx = sum(p[0] for p in leg["fg"]) // len(leg["fg"])
+            leg_facing = "left" if shoe_cx < leg_cx else "right"
+        foot, hip = _extremes(fg, leg["fg"], facing=leg_facing)
         out.append({
             "foot": foot if shoe_linked else None,
             "foot_confidence": confidence,

@@ -15,12 +15,15 @@ SAM cannot supply:
   x-position alone, because a port leg can appear on
   either image side depending on view.
 - Foot/hip come from placement.py derive_legs (M1.1c,
-  provisional pending M1.1f — see M1-PLAN.md). After
-  derivation, a horizontal leg's foot/hip are swapped
-  if the derived foot is nearer the head than the hip
-  is: the foot is the leg end far from the torso, not
-  the end nearest it. That uses the SAM face head centre,
-  not a facing guess.
+  provisional pending M1.1f — see M1-PLAN.md). For
+  horizontal legs, placement.py now determines facing
+  per leg from the linked shoe area (the leg extends
+  toward its shoe), so a chambered leg extending left
+  is not forced to a right-facing foot. The earlier
+  head-distance swap rule was REMOVED: for a bent
+  chambered leg, hip and foot are almost equidistant
+  from the head (3px apart on SadPocky 9), so it flipped
+  hip and foot on a rounding error.
 - Head centre comes from the SAM "face" box (M1.1d).
   HeadFacing comes from Spark yaw/pitch via the angle
   chart: profile-left [-30,0], 3/4-left [-20,0], front
@@ -121,9 +124,6 @@ def extract(frame_size, frame_number, character, leg_masks, shoe_masks,
     for i, leg in enumerate(legs):
         role = roles[i] if i < len(roles) else None
         foot, hip = leg["foot"], leg["hip"]
-        # Foot is the leg end far from the torso (head).
-        if head_pt and foot and hip and _dist(foot, head_pt) < _dist(hip, head_pt):
-            foot, hip = hip, foot
         side = {"starboard": "Right", "port": "Left"}.get(role)
         if side:
             hip_name, foot_name = f"{side}Hip", f"{side}Foot"

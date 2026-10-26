@@ -128,15 +128,27 @@ hand tuning on holdout.
   30px with 10px margin) — this fixed Lila 10, which
   box linking marked ambiguous, with no regression on
   SadPocky 11 / Raincoat 10. What does NOT yet
-  integrate, so f stays open: SadPocky 9 starboard
-  (chambered) foot missing, SadPocky 10 both feet
-  missing — SAM foot-area prompts return 0-1 masks on
-  chambered frames, so those feet are honestly
-  marker_seen=false, not guessed; shoulders/hands are
-  marker_seen=false throughout. Spark yaw for Lila
-  varies across runs (3/4-right vs front on Lila 11),
-  so HeadFacing from yaw is less stable than head
-  centre from SAM face.
+  integrate, so f stays open: shoulders only, plus
+  hands on Lila (all frames) and SadPocky 9.
+  FIXED in run6: chambered feet via "pink shoe"/
+  "footwear" prompts (shoe/foot/sock return 0 on
+  chambered frames, pink shoe/footwear return both
+  feet on SadPocky 9/10); per-leg facing from the
+  linked shoe area (a chambered leg extends left
+  while the kick extends right — global facing put
+  its foot at the hip end, and the head-distance
+  swap rule flipped it on a 3px difference, so that
+  rule was removed); hands via "fist" prompt on
+  SadPocky 10-12 (exactly 2 boxes, front-view x
+  assignment). All 8 bench frames now give head,
+  hips, and both feet with correct roles, shown in
+  extraction_filmstrip_v3.png. Shoulders: "shoulder"
+  returns 0 on every bench frame, and arm-box top
+  is ~55px from the hand shoulder joint, so no
+  shoulder centre is derived — shoulders stay
+  marker_seen=false. Whether f closes with
+  shoulders deferred is a user decision, not taken
+  here.
 - [ ] M1.1g Automated placement verified on bench: run
   M1.1f on bench frames only, compare extracted joints to
   hand joints, report errors per joint, fix on bench only.

@@ -103,12 +103,14 @@ def main():
                        for leg in legs):
                     legs.append(thigh)
         shoes = []
-        # Foot area = shoe/boot/sock OR bare foot. Lila is
-        # barefoot, so shoe prompts return 0 and "foot" is
-        # the only foot-area prompt that works for her;
-        # SadPocky 12's planted foot is found by "foot"
-        # when "shoe" finds only the extended shoe.
-        for pr in ("shoe", "boot", "sock", "foot"):
+        # Foot area = shoe/boot/sock/foot/footwear/pink
+        # shoe. Lila is barefoot, so shoe prompts return 0
+        # and "foot" is the only foot-area prompt that
+        # works for her; SadPocky chambered feet (9/10)
+        # are found by "pink shoe"/"footwear" when
+        # shoe/foot/sock return 0. Merging in placement.py
+        # deduplicates overlapping foot areas.
+        for pr in ("shoe", "boot", "sock", "foot", "footwear", "pink shoe"):
             shoes.extend(sam_fg(path, pr))
         faces = sam_fg(path, "face")
         face_box = faces[0]["box"] if faces else None
@@ -164,8 +166,25 @@ def main():
                 mm_ = re.match(r"leg(\d+):\s*(starboard|port)", line.strip())
                 if mm_:
                     roles[int(mm_.group(1))] = mm_.group(2)
+        # Hands via "fist" prompt: SadPocky hands are
+        # fists and "fist" returns exactly 2 boxes on
+        # bench frames; "shoulder" returns 0 everywhere,
+        # so shoulders stay marker_seen=false (arm box
+        # top is ~55px from the hand shoulder joint, not
+        # a shoulder centre). Hand sidedness is assigned
+        # by image x only when yaw is front: starboard
+        # (her right) hand is image-left, port hand is
+        # image-right. Otherwise hands stay unlabeled.
+        extra = {}
+        fists = sam_fg(path, "fist")
+        if len(fists) == 2 and orient.get("yaw") == "front":
+            centres = sorted(
+                [((b["box"][0] + b["box"][2]) // 2, (b["box"][1] + b["box"][3]) // 2)
+                 for b in fists], key=lambda p: p[0])
+            extra = {"RightHand": centres[0], "LeftHand": centres[1]}
         joints, sidecar = extract((w, h), num, character, legs, shoes,
-                                  face_box=face_box, orientation=orient, leg_roles=roles)
+                                  face_box=face_box, orientation=orient, leg_roles=roles,
+                                  extra_joints=extra)
         all_results[f"{character}-{num}"] = joints
         # Sidecar map
         smap = Image.new("RGB", (w, h), (0, 0, 0))
