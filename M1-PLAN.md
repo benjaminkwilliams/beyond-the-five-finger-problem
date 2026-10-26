@@ -98,6 +98,11 @@ hand tuning on holdout.
   Do NOT use sam_mask.py's foot estimator for joints;
   use placement.py derive_legs. M1.1f must import foot
   derivation from placement.py, not from sam_mask.py.
+  This supersession is PROVISIONAL pending M1.1f: if
+  automated extraction shows placement.py failing on a
+  case, or a case where the y-only estimator is the
+  correct one, revisit this decision in M1.1f, do not
+  treat it as settled.
   M1.1d does not change M1.1e: e verified leg masks,
   not head, so the head-ground-truth correction in d
   leaves e's leg-mask verification intact.

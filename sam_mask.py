@@ -21,6 +21,7 @@ Joint derivation from a mask (box-level is not enough):
   the foot) and have no shoe-link or uncertainty rule.
   They are kept here only as the M1.1e record; for
   joints, use placement.py derive_legs, not these.
+  This supersession is provisional pending M1.1f.
   foot = centre x of the foreground pixels in the bottom
          5 rows of the mask, at the mask's maximum y.
          NOT the single lowest pixel, which is a corner
