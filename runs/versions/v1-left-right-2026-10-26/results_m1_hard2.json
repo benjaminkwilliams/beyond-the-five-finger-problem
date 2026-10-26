@@ -1,0 +1,65 @@
+[
+  {
+    "case": "SadPocky v2 10->11 LEG SWAP",
+    "split": "bench",
+    "expected_pass": false,
+    "passed": false,
+    "match": true,
+    "assignments_a": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [
+      "RightLeg: assignment changed ((), 'support') -> (('strap',), 'support') with no declared transfer"
+    ],
+    "dl_cost": 3.0,
+    "dl_budget": 2.0,
+    "dl_ops": [
+      "substitution: RightLeg[]@support -> RightLeg[strap]@support"
+    ],
+    "reply": "{\"description\": \"Frame A shows the left leg bent and chambered with knee raised while the right leg is planted vertically and neither the strap nor the decal can be clearly separated at this resolution. Frame B shows the same left leg extended straight out to the side while the right leg stays planted and the black thigh strap is visible as a separate band below the skirt while the carrot decal is not visible.\", \"frame_a\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  }
+]

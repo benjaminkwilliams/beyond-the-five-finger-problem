@@ -1,0 +1,176 @@
+{
+  "Raincoat-9": {
+    "frame_size": [
+      400,
+      400
+    ],
+    "origin": "top-left",
+    "frame_number": 9,
+    "character": "Raincoat",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          200,
+          101
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          200,
+          101
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset"
+      },
+      "LeftHip": {
+        "point": [
+          256,
+          221
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          242,
+          339
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          189,
+          263
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          169,
+          383
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": [
+          182,
+          168
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHand": {
+        "point": [
+          280,
+          153
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    }
+  },
+  "Raincoat-10": {
+    "frame_size": [
+      400,
+      400
+    ],
+    "origin": "top-left",
+    "frame_number": 10,
+    "character": "Raincoat",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "3/4-right",
+    "pitch": "level",
+    "bow": "image-right",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          120,
+          104
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          140,
+          104
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          185,
+          257
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          155,
+          383
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHip": {
+        "point": [
+          223,
+          221
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          386,
+          195
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      }
+    }
+  }
+}

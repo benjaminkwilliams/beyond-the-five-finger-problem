@@ -1,0 +1,65 @@
+[
+  {
+    "case": "SadPocky v2 10->11 LEG SWAP",
+    "split": "bench",
+    "expected_pass": false,
+    "passed": false,
+    "match": true,
+    "assignments_a": [
+      [
+        "RightLeg",
+        [],
+        "support",
+        0
+      ],
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        0
+      ],
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [
+      "RightLeg: assignment changed ((), 'support') -> (('strap',), 'support') with no declared transfer"
+    ],
+    "dl_cost": 3.0,
+    "dl_budget": 2.0,
+    "dl_ops": [
+      "substitution: RightLeg[]@support -> RightLeg[strap]@support"
+    ],
+    "reply": "{\"frame_a\": [{\"entity\": \"RightLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 0}, {\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 0}, {\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  }
+]

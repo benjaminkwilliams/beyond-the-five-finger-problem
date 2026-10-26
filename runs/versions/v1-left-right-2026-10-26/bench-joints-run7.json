@@ -1,0 +1,698 @@
+{
+  "SadPocky-9": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 9,
+    "character": "SadPocky",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          219,
+          126
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          219,
+          126
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset"
+      },
+      "LeftHip": {
+        "point": [
+          231,
+          263
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          208,
+          384
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          221,
+          257
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          134,
+          284
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      }
+    }
+  },
+  "SadPocky-10": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 10,
+    "character": "SadPocky",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          217,
+          126
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          217,
+          126
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset"
+      },
+      "RightHip": {
+        "point": [
+          220,
+          258
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          132,
+          284
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHip": {
+        "point": [
+          230,
+          262
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          208,
+          382
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": [
+          186,
+          148
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHand": {
+        "point": [
+          257,
+          150
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    }
+  },
+  "SadPocky-11": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 11,
+    "character": "SadPocky",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "slight-down",
+    "bow": "camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          118,
+          134
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          118,
+          139
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          184,
+          260
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          146,
+          382
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHip": {
+        "point": [
+          216,
+          235
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          380,
+          184
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": [
+          94,
+          160
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHand": {
+        "point": [
+          236,
+          155
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    }
+  },
+  "SadPocky-12": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 12,
+    "character": "SadPocky",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward-camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          123,
+          139
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          123,
+          139
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset"
+      },
+      "RightHip": {
+        "point": [
+          171,
+          269
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          118,
+          382
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHip": {
+        "point": [
+          219,
+          243
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          384,
+          214
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": [
+          101,
+          170
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHand": {
+        "point": [
+          259,
+          161
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    }
+  },
+  "Lila-9": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 9,
+    "character": "Lila",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          183,
+          135
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          183,
+          135
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset"
+      },
+      "LeftHip": {
+        "point": [
+          278,
+          196
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          299,
+          283
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          182,
+          265
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          193,
+          381
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": [
+          159,
+          168
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHand": {
+        "point": [
+          245,
+          167
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    }
+  },
+  "Lila-10": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 10,
+    "character": "Lila",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "3/4-right",
+    "pitch": "level",
+    "bow": "image-right",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          208,
+          141
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          228,
+          141
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHip": {
+        "point": [
+          216,
+          248
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          233,
+          341
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          204,
+          291
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          189,
+          380
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      }
+    }
+  },
+  "Lila-11": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 11,
+    "character": "Lila",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          148,
+          147
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          148,
+          147
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset"
+      },
+      "LeftHip": {
+        "point": [
+          220,
+          255
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          357,
+          261
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          151,
+          276
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          135,
+          381
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      }
+    }
+  },
+  "Lila-12": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 12,
+    "character": "Lila",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "3/4-right",
+    "pitch": "level",
+    "bow": "image-right",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          148,
+          149
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          168,
+          149
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftHip": {
+        "point": [
+          227,
+          249
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "LeftFoot": {
+        "point": [
+          365,
+          233
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightHip": {
+        "point": [
+          162,
+          276
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightFoot": {
+        "point": [
+          149,
+          381
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "RightShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "RightHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "LeftHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      }
+    }
+  }
+}
