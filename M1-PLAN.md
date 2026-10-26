@@ -203,9 +203,29 @@ hand tuning on holdout.
   alone. Run7 (full re-run): 40/40 within 30px, max
   error 18px (Lila 12 head), no regressions; the two
   failing feet now 9px and 7px.
-- [ ] M1.1h Holdout run (once, as part of full M1 exit):
+- [x] M1.1h Holdout run (once, as part of full M1 exit):
   run M1.1f on Raincoat holdout with no hand tuning.
   Hand-tuning holdout joints invalidates the holdout.
+  CLOSED 2026-10-26, driver run_holdout.py, output
+  extraction-test/holdout_joints.json (bench joints.json
+  untouched). Raincoat 9: Head [200,101], RightFoot
+  planted [169,383], LeftFoot chambered [242,339];
+  Raincoat 10: Head [120,104], RightFoot planted
+  [155,383], LeftFoot extended [386,195] (on red boot
+  pixels, far-x mean y 195, verified by pixel scan).
+  Roles, from the generic Lila-template anatomy
+  prompt only: port leg chambers in 9 and extends
+  in 10, starboard leg planted both frames — role
+  continuity PASSES. Honest scope note: the
+  expected Raincoat FAIL is a DEPTH-plane fail
+  (near leg chambers, far leg extends), which is
+  M1.3b's depth gate, not yet built — extraction
+  alone does not fail this pair, and M1.1h does
+  not claim it does. What M1.1h proves is that
+  automated extraction, with no hand tuning, gives
+  correct joints and roles on an unseen character
+  pair. Spark head_centre nonsense ([328,285] on
+  frame 10) was again ignored in favour of SAM face.
 
 ## M1.2 — Sidecar method, full set
 
