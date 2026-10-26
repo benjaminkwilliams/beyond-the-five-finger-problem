@@ -111,6 +111,25 @@ hand tuning on holdout.
   map + joint JSON, with the 30px unique-nearest alignment
   rule from placement-architecture.md, ambiguous cases
   reported as marker_seen=false, never guessed.
+  PARTIAL 2026-10-26, NOT DONE: extraction.py +
+  run_extraction.py run on bench (SadPocky v2 9-12,
+  Lila v10 9-12), artifacts in extraction-test/
+  (annotated + sidecar + extraction_filmstrip.png).
+  What integrates: head (SAM face) correct on all 8;
+  SadPocky 11 both feet correct ([146,381] starboard,
+  [380,184] port) with roles from Spark leg-overlay.
+  What does NOT yet integrate, so f stays open:
+  SadPocky 9 gives only 1 leg mask; SadPocky 10 gives
+  hips but no feet; SadPocky 12 gives port foot only,
+  starboard foot missing; Lila gives NO feet at all
+  (shoe/boot/sock prompts return 0 — Lila is barefoot,
+  so foot area must include bare-foot masks, not just
+  shoe areas); Lila legs stay unlabeled Leg0/Leg1 (no
+  role method for bare legs yet); shoulders/hands are
+  marker_seen=false throughout (no unambiguous SAM box
+  supplied). Spark's own head_centre is unreliable
+  (out-of-frame values on SadPocky 10, Lila 11/12) —
+  extraction correctly ignores it and uses SAM face.
 - [ ] M1.1g Automated placement verified on bench: run
   M1.1f on bench frames only, compare extracted joints to
   hand joints, report errors per joint, fix on bench only.
