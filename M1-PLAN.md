@@ -40,10 +40,19 @@ hand tuning on holdout.
   the left half, centre ~80px left of true head). Next
   candidates: "face" prompt, head from a person box, or
   Spark for head/facing only while SAM supplies legs.
-- [ ] M1.1e Mask decoding: SAM mask strings returned but
-  not decoded (format is not COCO RLE). Until decoded and
-  verified against a box, all placement claims are
-  box-level only, never pixel-mask claims.
+- [x] M1.1e Mask decoding: CLOSED 2026-10-26 with the
+  cookbook basic recipe (07_sam/01_api_basics). Mask
+  token is <|mask;x=..;y=..;data=H,W,<payload>|>, payload
+  decoded by the official meta-sam parser (pip
+  meta-sam-parser, NOT COCO RLE). Raster is box-sized
+  (box w/h +1), placed at box top-left, verified visually
+  on 4 bench frames: mask overlays align with legs
+  (sam-mask-test/mask_filmstrip.png, masks.json).
+  Client in sam_mask.py. Foot estimator from masks:
+  centre x of bottom-5-row foreground pixels at max y,
+  NOT the single lowest pixel (a corner). SadPocky A
+  masks are partial segments (thigh/shin only), so mask
+  decoding alone does not fix partial-leg coverage.
 - [ ] M1.1f Automated extraction code: SAM boxes ->
   joints (foot, hip, head, shoulders, hands) -> sidecar
   map + joint JSON, with the 30px unique-nearest alignment
