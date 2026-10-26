@@ -15,6 +15,12 @@ coordinates; that placement was verified visually on bench
 frames 2026-10-26 (mask overlays align with the legs).
 
 Joint derivation from a mask (box-level is not enough):
+  NOTE, superseded 2026-10-26 by placement.py (M1.1c):
+  the foot/hip estimators below are y-only, so they
+  fail on horizontal legs (max y is the hip end, not
+  the foot) and have no shoe-link or uncertainty rule.
+  They are kept here only as the M1.1e record; for
+  joints, use placement.py derive_legs, not these.
   foot = centre x of the foreground pixels in the bottom
          5 rows of the mask, at the mask's maximum y.
          NOT the single lowest pixel, which is a corner

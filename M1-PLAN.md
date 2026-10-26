@@ -86,6 +86,21 @@ hand tuning on holdout.
   NOT the single lowest pixel (a corner). SadPocky A
   masks are partial segments (thigh/shin only), so mask
   decoding alone does not fix partial-leg coverage.
+  UPDATE 2026-10-26 (out-of-order work): M1.1e was closed
+  before M1.1c/M1.1d, and its foot estimator is now
+  SUPERSEDED by M1.1c in placement.py. The mask decoding
+  itself (parser, raster placement, leg-mask alignment)
+  is unchanged and still stands. The foot estimator does
+  not: it is y-only, so it fails on horizontal legs
+  (max y is the hip end, not the foot — SadPocky B gave
+  [229,239]), and it has no shoe-link or uncertainty
+  rule, so it would call a partial mask bottom a foot.
+  Do NOT use sam_mask.py's foot estimator for joints;
+  use placement.py derive_legs. M1.1f must import foot
+  derivation from placement.py, not from sam_mask.py.
+  M1.1d does not change M1.1e: e verified leg masks,
+  not head, so the head-ground-truth correction in d
+  leaves e's leg-mask verification intact.
 - [ ] M1.1f Automated extraction code: SAM boxes ->
   joints (foot, hip, head, shoulders, hands) -> sidecar
   map + joint JSON, with the 30px unique-nearest alignment
