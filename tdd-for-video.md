@@ -108,6 +108,46 @@ candidates and is run once, with no hand tuning,
 as part of exit. A spec amendment that fixes one
 bench case and breaks another is rejected.
 
+## Bookends, not post-process
+
+Added 2026-10-26, user-stated: TDD for video
+bookends the code work instead of a huge expensive
+post-process.
+
+- Front bookend, before generation: the spec and
+  its tests (glossary, named sets, anatomical
+  limits, role rules, phase boundaries). This is
+  cheap — text, numbers, and prompts — and it
+  constrains generation up front: anatomy prompts,
+  leg-overlay labelling, and sidecar maps all carry
+  the spec into the generator/proposer instead of
+  hoping the output happens to match it.
+- Back bookend, as frames come back: the checker
+  runs per pair, immediately, on the cheapest
+  representation that can fail a test (joint
+  assignments, masks, lengths, arcs). A failing
+  pair is caught before the rest of the sequence,
+  the stage, the effects, or the music sync are
+  built on top of it.
+- What this replaces: generating a full video,
+  discovering a leg swap or a length violation
+  late, and then paying for it in the most
+  expensive place — a full re-roll (which redraws
+  every frame and can introduce new defects),
+  frame-by-frame manual repair, or inpainting
+  over a finished sequence. Post-process repair
+  is also where context/memory/cache can return
+  a bad form, the exact risk the margin-only
+  marker rule was written to avoid.
+- The bookends do not eliminate the middle.
+  Generation itself is still model work, and a
+  failed back bookend still costs an amendment
+  or a scoped regeneration. What bookending
+  buys is that the cost stays scoped to the
+  failing named set and the failing pair, and it
+  is paid early, before expensive downstream
+  work depends on a broken frame.
+
 ## What TDD for video is not
 
 - It is not "look at the video and say if it is
