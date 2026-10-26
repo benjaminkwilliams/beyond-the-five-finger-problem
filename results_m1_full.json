@@ -1,0 +1,590 @@
+[
+  {
+    "case": "SadPocky v2 9->10",
+    "split": "bench",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "RightLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "LeftLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "RightLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "LeftLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"Frame A shows the right leg bent and chambered with the knee raised in front and the foot tucked to the side while the left leg is planted vertically bearing weight and no distinct carrot decal or separate thigh strap shape can be clearly seen. Frame B shows the same chamber pose with the right leg still bent in front and the left leg still planted and again neither the left decal nor the right strap is visibly separable at this resolution.\", \"frame_a\": [{\"entity\": \"RightLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"RightLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "SadPocky v2 10->11 LEG SWAP",
+    "split": "bench",
+    "expected_pass": false,
+    "passed": false,
+    "match": true,
+    "assignments_a": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [
+      "RightLeg: assignment changed ((), 'support') -> (('strap',), 'support') with no declared transfer"
+    ],
+    "dl_cost": 3.0,
+    "dl_budget": 2.0,
+    "dl_ops": [
+      "substitution: RightLeg[]@support -> RightLeg[strap]@support"
+    ],
+    "reply": "{\"description\": \"Frame A shows the left leg chambered bent with knee raised in front while the right leg is planted vertical, with neither the thigh strap nor the thigh decal clearly separable at this resolution. Frame B shows the same left leg extended straight out to the side for the kick while the right leg stays planted vertical, with the black thigh strap clearly visible on the support thigh but the left thigh decal and knee band-aid not clearly visible.\", \"frame_a\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "SadPocky v2 11->12",
+    "split": "bench",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"Frame A shows the left leg extended straight out to the side as the active kick while the right leg is planted vertically as support, with the black thigh strap visible as a separate band on the planted right thigh below the skirt and no carrot decal discernible on the extended left thigh. Frame B shows the same pose with the left leg extended and the right leg planted, again with the thigh strap visible on the support leg and no distinct decal visible on the kick leg at this resolution.\", \"frame_a\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "Lila v10 9->10",
+    "split": "bench",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"Frame A shows the near leg lifted to the side bent at the knee in chamber while the far leg is planted vertically, with no hip markers visible. Frame B shows the same near leg bent and chambered in front with knee raised while the far leg stays planted, again with no hip markers visible.\", \"frame_a\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "Lila v10 10->11",
+    "split": "bench",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"Frame A shows the near leg bent and chambered with knee raised while the far leg is planted vertically. Frame B shows the same near leg extended straight out to the side while the far leg remains planted, and no glossary markers are visible in either frame.\", \"frame_a\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "Lila v10 11->12",
+    "split": "bench",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"In frame A the near leg is extended straight out to the side while the far leg is planted vertically with its foot on the ground and no hip markers are visible. In frame B the near leg is extended straight out to the side while the far leg is planted vertically with its foot on the ground and no hip markers are visible and both frames face right.\", \"frame_a\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "Lila v10 12->13",
+    "split": "bench",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "HipRight",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "HipLeft",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"Frame A shows the near leg extended straight out to the side while the far leg is planted vertically on the ground with no hip markers visible. Frame B shows the same near leg bent and chambered with knee raised while the far leg remains planted with no hip markers visible.\", \"frame_a\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"HipRight\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"HipLeft\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "Raincoat v2 9->10 DEPTH SWAP",
+    "split": "holdout",
+    "expected_pass": false,
+    "passed": true,
+    "match": false,
+    "assignments_a": [
+      [
+        "RightLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "LeftLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "RightLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "LeftLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"In frame A the near leg is bent and chambered with knee raised while the far leg is planted vertically and she faces right with no leg markers visible. In frame B the same near leg is extended straight out to the side while the far leg remains planted vertically and she faces right with no leg markers visible.\", \"frame_a\": [{\"entity\": \"RightLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"RightLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "SadPocky v6 10->11",
+    "split": "holdout",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"Frame A shows the left leg chambered bent with knee raised and foot tucked while the right leg is planted vertical, with the black thigh strap visible as a separate band on the planted thigh and the left-thigh decal not clearly visible. Frame B shows the same left leg extended straight out to the side while the same right leg stays planted, with the strap still visible on the planted thigh and the decal still too small to confirm.\", \"frame_a\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  },
+  {
+    "case": "SadPocky v6 11->12",
+    "split": "holdout",
+    "expected_pass": true,
+    "passed": true,
+    "match": true,
+    "assignments_a": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "LeftLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "RightLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "gate1": [],
+    "gate2": [],
+    "dl_cost": 0.0,
+    "dl_budget": 2.0,
+    "dl_ops": [],
+    "reply": "{\"description\": \"Frame A shows the left leg extended straight out to the side while the right leg is planted vertically, with the black thigh strap clearly visible as a separate band on the planted thigh and no carrot decal discernible on the extended thigh. Frame B shows the same extended left leg and planted right leg pose, with the strap still visible on the planted thigh and no clearly identifiable decal on the extended thigh.\", \"frame_a\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"frame_b\": [{\"entity\": \"LeftLeg\", \"markers\": [], \"marker_seen\": false, \"role\": \"kick\", \"depth_rank\": 0}, {\"entity\": \"RightLeg\", \"markers\": [\"strap\"], \"marker_seen\": true, \"role\": \"support\", \"depth_rank\": 1}, {\"entity\": \"Facing\", \"markers\": [\"right\"], \"marker_seen\": true, \"role\": \"\", \"depth_rank\": 2}], \"facing_a\": \"right\", \"facing_b\": \"right\"}"
+  }
+]
