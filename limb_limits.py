@@ -140,11 +140,90 @@ def check_velocity(prev_joints, curr_joints, anatomical, dt_seconds=0.1,
     return flags
 
 
-def check_pair(prev_joints, curr_joints, anatomical, dt_seconds=0.1, fisheye=False):
-    """Length check on the current frame + velocity check
-    between frames. Returns {"length": [...], "velocity": [...]}.
+def check_arc(joints, anatomical, forward_sign=+1, head_point=None):
+    """Arc / reachable-sector limits, added 2026-10-26.
+
+    Legs and arms have arc limits, not just length
+    limits: a foot at a plausible distance can still
+    be in a position no joint can reach — e.g. a leg
+    drawn behind the head.
+
+    Two checks, both in the image plane, with
+    forward_sign = +1 if the character faces
+    image-right, -1 if image-left (bench sprites
+    face image-right; if facing the camera,
+    forward_sign=0 skips the sector check, because
+    bow/stern then lies in depth, not in x):
+
+    1. Straight-limb sector. Only enforced when
+       the limb is mostly straight, distance >
+       0.7 * anatomical length. This is load-bearing:
+       a BENT leg's hip-foot chord can sit at 79
+       degrees sternward (SadPocky chambered foot,
+       distance 49px = 0.28 * L), which is a tucked
+       knee, not a broken hip. Enforcing a sector
+       on a bent chord would falsely flag every
+       chambered leg. When mostly straight, chord
+       angle approximates joint angle, so: bowward
+       angle from straight-down <= 120 degrees
+       (a high kick can rise above hip height
+       forward), sternward angle <= 30 degrees
+       (hip extension is small). Arms use the same
+       form with bow <= 180 (arm can rise fully
+       overhead forward) and stern <= 60.
+    2. Head zone, feet only. A foot above the head
+       centre and on the stern side of its hip is
+       a leg behind the head, regardless of
+       distance — flagged even for a bent leg.
+       (Hands are exempt: a hand can legitimately
+       go behind/over the head.)
+    Returns a list of flag strings (empty = pass).
+    """
+    flags = []
+    pairs = [("RightHip", "RightFoot", "leg", 120, 30),
+             ("LeftHip", "LeftFoot", "leg", 120, 30),
+             ("RightShoulder", "RightHand", "arm", 180, 60),
+             ("LeftShoulder", "LeftHand", "arm", 180, 60)]
+    for a_name, b_name, kind, bow_max, stern_max in pairs:
+        if kind not in anatomical:
+            continue
+        a = joints.get(a_name, {})
+        b = joints.get(b_name, {})
+        if not a.get("marker_seen") or not b.get("marker_seen"):
+            continue
+        ax, ay = a["point"]
+        bx, by = b["point"]
+        vx, vy = bx - ax, by - ay
+        d = math.hypot(vx, vy)
+        if d == 0:
+            continue
+        # Head zone, feet only.
+        if kind == "leg" and head_point is not None:
+            sternward = (forward_sign == 0 or (vx * forward_sign) < 0)
+            if by < head_point[1] and sternward:
+                flags.append(f"{a_name}-{b_name} foot above head centre "
+                             f"and sternward: leg behind head")
+        # Straight-limb sector.
+        if d > 0.7 * anatomical[kind] and forward_sign != 0:
+            angle = math.degrees(math.acos(max(-1, min(1, vy / d))))
+            bowward = (vx * forward_sign) > 0
+            limit = bow_max if bowward else stern_max
+            if angle > limit:
+                flags.append(f"{a_name}-{b_name} angle {angle:.0f} deg "
+                             f"{'bowward' if bowward else 'sternward'} "
+                             f"exceeds {'bow' if bowward else 'stern'} "
+                             f"arc {limit} deg (limb {d:.0f}px, mostly straight)")
+    return flags
+
+
+def check_pair(prev_joints, curr_joints, anatomical, dt_seconds=0.1, fisheye=False,
+               forward_sign=+1, head_point=None):
+    """Length + arc checks on the current frame +
+    velocity check between frames. Returns
+    {"length": [...], "arc": [...], "velocity": [...]}.
     """
     return {
         "length": check_length(curr_joints, anatomical, fisheye=fisheye),
+        "arc": check_arc(curr_joints, anatomical, forward_sign, head_point),
         "velocity": check_velocity(prev_joints, curr_joints, anatomical, dt_seconds),
     }

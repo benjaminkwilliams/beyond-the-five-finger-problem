@@ -166,6 +166,21 @@ hand tuning on holdout.
   correctly. Velocity alone does NOT catch a role
   swap, where positions move plausibly but
   identities swap.
+  Arc limits, added 2026-10-26 in limb_limits.py
+  check_arc: straight-limb sector (bow 120 deg /
+  stern 30 deg from straight down for legs, bow
+  180 / stern 60 for arms) enforced only when
+  limb distance > 0.7 * anatomical — a bent
+  chambered leg's chord sits at 79 deg sternward
+  (49px = 0.28 * L) and must not be flagged —
+  plus a head zone: a foot above head centre and
+  sternward of its hip is a leg behind the head.
+  All 8 bench frames pass arc; an arc-only
+  corrupt foot at [100,150] (144px, length PASS)
+  flags sector 126 deg sternward; velocity
+  corrupt [0,0] flags head zone + sector 137 deg.
+  Length corrupt [380,381] passes arc, proving
+  length and arc are complementary checks.
 - [ ] M1.1g Automated placement verified on bench: run
   M1.1f on bench frames only, compare extracted joints to
   hand joints, report errors per joint, fix on bench only.
