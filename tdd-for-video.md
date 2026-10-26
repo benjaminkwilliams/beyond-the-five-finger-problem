@@ -30,7 +30,7 @@ right?" to "which named test does this frame fail?"
    amendment is recorded as a spec change, not a
    quiet edit to the checker.
 2. Every test names its subject in spec language.
-   Not "the leg looks wrong" but "LeftLeg (port)
+   Not "the leg looks wrong" but "PortLeg (port)
    role transferred without a declared boundary
    transfer", "hip-foot length 220px exceeds
    anatomical 172px + tolerance", "foot above head

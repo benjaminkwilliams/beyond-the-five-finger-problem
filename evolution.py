@@ -45,7 +45,7 @@ def placeholder_frame(tokens):
     return FrameSets(entities, subsets)
 
 
-REF = placeholder_frame((Token("RightLeg", ("strap",), "kick"), Token("LeftLeg", ("decal",), "support")))
+REF = placeholder_frame((Token("StarboardLeg", ("strap",), "kick"), Token("PortLeg", ("decal",), "support")))
 
 
 @dataclass
@@ -64,11 +64,11 @@ def T(entity, markers=(), role=""):
 
 
 # ---------------- bench cases ----------------
-sp9 = (T("RightLeg", ("strap",), "kick"), T("LeftLeg", ("decal",), "support"), T("Facing", ("right",)))
-sp11 = (T("LeftLeg", ("decal",), "kick"), T("RightLeg", ("strap",), "support"), T("Facing", ("right",)))
-lila = (T("HipRight", (), "kick"), T("HipLeft", (), "support"), T("Facing", ("right",)))
-guard_l = (T("HipRight", (), "support"), T("HipLeft", (), "support"), T("Facing", ("left",)))
-kick_r = (T("HipRight", (), "kick"), T("HipLeft", (), "support"), T("Facing", ("right",)))
+sp9 = (T("StarboardLeg", ("strap",), "kick"), T("PortLeg", ("decal",), "support"), T("Facing", ("right",)))
+sp11 = (T("PortLeg", ("decal",), "kick"), T("StarboardLeg", ("strap",), "support"), T("Facing", ("right",)))
+lila = (T("StarboardHip", (), "kick"), T("PortHip", (), "support"), T("Facing", ("right",)))
+guard_l = (T("StarboardHip", (), "support"), T("PortHip", (), "support"), T("Facing", ("left",)))
+kick_r = (T("StarboardHip", (), "kick"), T("PortHip", (), "support"), T("Facing", ("right",)))
 
 BENCH = [
     Case("SadPocky v2 9->10", sp9, sp9, True),
@@ -79,13 +79,13 @@ BENCH = [
     Case("Lila v10 11->12", lila, lila, True),
     Case("Lila v10 12->13", lila, lila, True),
     Case("Lila v5 guard->action MIRRORED GUARD", guard_l, kick_r, False,
-         boundary=True, legit_entities=frozenset({"HipRight"})),
+         boundary=True, legit_entities=frozenset({"StarboardHip"})),
 ]
 
 # ---------------- holdout cases ----------------
-rc9 = (T("RightLeg", (), "kick"), T("LeftLeg", (), "support"), T("Facing", ("right",)))
-rc10 = (T("LeftLeg", (), "kick"), T("RightLeg", (), "support"), T("Facing", ("right",)))
-sp6 = (T("LeftLeg", ("decal",), "kick"), T("RightLeg", ("strap",), "support"), T("Facing", ("right",)))
+rc9 = (T("StarboardLeg", (), "kick"), T("PortLeg", (), "support"), T("Facing", ("right",)))
+rc10 = (T("PortLeg", (), "kick"), T("StarboardLeg", (), "support"), T("Facing", ("right",)))
+sp6 = (T("PortLeg", ("decal",), "kick"), T("StarboardLeg", ("strap",), "support"), T("Facing", ("right",)))
 HOLDOUT = [
     Case("Raincoat v2 9->10 DEPTH SWAP (holdout)", rc9, rc10, False, split="holdout"),
     Case("SadPocky v6 10->11 (holdout)", sp6, sp6, True, split="holdout"),
@@ -138,10 +138,10 @@ def metrics(rows):
 def main():
     ledger: list[dict] = []
     v1 = SpecVersion("v1")
-    v2 = SpecVersion("v2", transfers_boundary=frozenset({"HipRight"}))
+    v2 = SpecVersion("v2", transfers_boundary=frozenset({"StarboardHip"}))
     v3 = SpecVersion("v3-candidate",
-                     transfers_boundary=frozenset({"HipRight"}),
-                     transfers_anywhere=frozenset({"RightLeg", "LeftLeg"}),
+                     transfers_boundary=frozenset({"StarboardHip"}),
+                     transfers_anywhere=frozenset({"StarboardLeg", "PortLeg"}),
                      edit_rate_per_s=80.0)
 
     print("=== Baseline v1 ===")
@@ -150,7 +150,7 @@ def main():
     print(f"bench:   {b1}")
     print(f"holdout: {h1}")
 
-    print("\n=== Trial A (fix-the-ruler): v1 -> v2, declare HipRight role")
+    print("\n=== Trial A (fix-the-ruler): v1 -> v2, declare StarboardHip role")
     print("    transfer at action-boundary pairs only ===")
     b2 = metrics(evaluate(v2, BENCH, ledger))
     h2 = metrics(evaluate(v2, HOLDOUT, ledger))

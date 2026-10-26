@@ -2,56 +2,56 @@
   "characters": {
     "Lila": {
       "entities": [
-        "HipRight",
-        "HipLeft",
+        "StarboardHip",
+        "PortHip",
         "Facing"
       ],
-      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Legacy Facing[right]/[left] tokens in bench files mean bow to image-right/left respectively.",
+      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Bench files written before this rename used legacy Right/Left tokens; they mean Starboard/Port respectively and are retired.",
       "markers": {},
       "notes": {
-        "HipLeft": "The other hip, the supporting leg in Lila v10.",
-        "HipRight": "The hip that roots the kick in Lila v10, the near (front) leg in the facing-right kick frames. Track the same hip across the pair: a kick that changes hip mid-action with no declared transfer is a continuity break.",
-        "armbands": "ADOPTED 2026-10-26 (user-confirmed): two thin black buckled bands on HER LEFT upper arm, above the long black arm warmer. In a front view that arm is the VIEWER'S RIGHT. Visibility depends on perspective and facing: in a back view the same arm reads viewer's left, and in side views it may be the far arm or occluded. Absence in a frame where her left arm is not the visible/near arm is not, by itself, a missing-marker failure.",
-        "traps": "Bare pale legs through the cheongsam side slits are not dark legwear. Bangs cover the viewer's-right eye (her left eye); glasses sit on the viewer's-left eye (her right eye)."
+        "PortHip": "The other hip, the supporting leg in Lila v10.",
+        "StarboardHip": "The hip that roots the kick in Lila v10, the near (front) leg in the facing-right kick frames. Track the same hip across the pair: a kick that changes hip mid-action with no declared transfer is a continuity break.",
+        "armbands": "ADOPTED 2026-10-26 (user-confirmed): two thin black buckled bands on HER LEFT upper arm, above the long black arm warmer. In a front view that arm is the VIEWER'S RIGHT. Visibility depends on perspective and facing: in a back view the same arm reads viewer's left, and in side views it may be the far arm or occluded. Absence in a frame where her port arm is not the visible/near arm is not, by itself, a missing-marker failure.",
+        "traps": "Bare pale legs through the cheongsam side slits are not dark legwear. Bangs cover the viewer's-right eye (her port eye); glasses sit on the viewer's-left eye (her starboard eye)."
       }
     },
     "Raincoat": {
       "entities": [
-        "RightLeg",
-        "LeftLeg",
+        "StarboardLeg",
+        "PortLeg",
         "Facing"
       ],
-      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Legacy Facing[right]/[left] tokens in bench files mean bow to image-right/left respectively.",
+      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Bench files written before this rename used legacy Right/Left tokens; they mean Starboard/Port respectively and are retired.",
       "markers": {},
       "notes": {
-        "LeftLeg": "The other leg.",
-        "RightLeg": "The leg that chambers in frame 9 of generated-v2. Track it across the pair."
+        "PortLeg": "The other leg.",
+        "StarboardLeg": "The leg that chambers in frame 9 of generated-v2. Track it across the pair."
       }
     },
     "SadPocky": {
       "entities": [
-        "RightLeg",
-        "LeftLeg",
+        "StarboardLeg",
+        "PortLeg",
         "Facing"
       ],
-      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Legacy Facing[right]/[left] tokens in bench files mean bow to image-right/left respectively.",
+      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Bench files written before this rename used legacy Right/Left tokens; they mean Starboard/Port respectively and are retired.",
       "hard_case": "Separate the black thigh strap from the navy skirt by position and shape, not by colour threshold alone. If the strap cannot be seen at this resolution, report marker_seen=false for that leg instead of guessing which leg carries it.",
       "marker_notes": {
-        "LeftLeg.decal": "Carrot decal plus a small bunny decal on HER left upper thigh, with a pink band-aid on the knee and a white sock.",
-        "RightLeg.strap": "Black thigh strap with a heart ring, on HER right thigh. It is a separate band on the thigh, not the navy pleated skirt. The skirt hangs from the waist; the strap sits on the leg itself. Do not merge strap and skirt by colour: both are dark, and naive colour thresholding cannot separate them."
+        "PortLeg.decal": "Carrot decal plus a small bunny decal on her port upper thigh, with a pink band-aid on the knee and a white sock.",
+        "StarboardLeg.strap": "Black thigh strap with a heart ring, on her starboard thigh. It is a separate band on the thigh, not the navy pleated skirt. The skirt hangs from the waist; the strap sits on the leg itself. Do not merge strap and skirt by colour: both are dark, and naive colour thresholding cannot separate them."
       },
       "markers": {
-        "LeftLeg": [
+        "PortLeg": [
           "decal"
         ],
-        "RightLeg": [
+        "StarboardLeg": [
           "strap"
         ]
       }
     }
   },
   "depth": "depth_rank 0 is the near (front) leg, 1 is the far (back) leg. The kicking leg in the bench cases is the near leg, drawn in front, in all kick frames.",
-  "reading_rule": "Entity names Right/Left are the character's own right/left, never image left/right. Facing is BOW direction (nose/face direction), adopted 2026-10-26, superseding the viewer-side candidate: bow toward camera, bow to image-right, bow to image-left, or bow away, as Spark + angle chart reports it. A mirrored marker is a FAIL, not a cosmetic swap. Canonical sided names are port (her left) and starboard (her right), defined by bow direction. Right/Left are legacy aliases for starboard/port.",
+  "reading_rule": "Entity names are Port (her left, defined by bow) and Starboard (her right, defined by bow), never image left/right. Facing is BOW direction (nose/face direction), adopted M1: bow toward camera, bow to image-right, bow to image-left, or bow away, as Spark + angle chart reports it. A mirrored marker is a FAIL, not a cosmetic swap. Right/Left are retired, not aliases.",
   "roles": [
     "kick",
     "support",
@@ -61,9 +61,9 @@
   "vocabulary": {
     "bow": "The character's facing direction, defined by the nose/face. Bow is forward, stern is backward (back of head). Facing is bow direction, not image left/right.",
     "stern": "Opposite bow, the back of the character.",
-    "port": "The character's LEFT side when facing the bow, exactly as on a boat. Port is intrinsic to the character: it is the same leg/arm in every view, even when it appears on the image right in one view and the image left in another. PortLeg = her left leg, PortArm = her left arm.",
-    "starboard": "The character's RIGHT side when facing the bow. StarboardLeg = her right leg, StarboardArm = her right arm. Starboard and port never swap with camera angle; only their image position does.",
-    "legacy_alias": "Right/Left in earlier bench tokens mean starboard/port respectively (RightLeg = StarboardLeg, LeftLeg = PortLeg). New prompts and glossary entries should use port/starboard; code keeps Right/Left as aliases until the checker tokens are renamed in one deliberate pass, not piecemeal.",
+    "port": "The character's LEFT side when facing the bow, exactly as on a boat. Port is intrinsic to the character: it is the same leg/arm in every view, even when it appears on the image right in one view and the image left in another. PortLeg = her port leg, PortArm = her port arm.",
+    "starboard": "The character's RIGHT side when facing the bow. StarboardLeg = her starboard leg, StarboardArm = her starboard arm. Starboard and port never swap with camera angle; only their image position does.",
+    "legacy_alias": "RETIRED 2026-10-26: Right/Left are no longer aliases. The language is Port/Starboard only. Earlier bench tokens reading StarboardLeg/PortLeg mean StarboardLeg/PortLeg and are historical records, not current language.",
     "planes": {
       "sagittal": "Vertical plane dividing port from starboard, containing the bow-stern axis. Movement in the sagittal plane is forward/backward along bow-stern: a front kick extending toward the bow, a profile view, a leg chambering forward. Bench kicks (Lila v10, SadPocky v2/v6, Raincoat) are sagittal-plane kicks.",
       "coronal": "Vertical plane dividing bow from stern, containing the port-starboard axis. Movement in the coronal plane is sideways, port-to-starboard: a side kick extending sideways, a frontal view with a leg moving laterally. A coronal-plane leg change is not the same defect as a sagittal-plane leg change.",

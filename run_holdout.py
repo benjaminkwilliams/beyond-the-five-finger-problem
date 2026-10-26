@@ -85,7 +85,7 @@ def main():
         fists = re_.sam_fg(path, "fist")
         if len(fists) == 2 and orient.get("yaw") == "front":
             centres = sorted([((b["box"][0] + b["box"][2]) // 2, (b["box"][1] + b["box"][3]) // 2) for b in fists], key=lambda p: p[0])
-            extra = {"RightHand": centres[0], "LeftHand": centres[1]}
+            extra = {"StarboardHand": centres[0], "PortHand": centres[1]}
         joints, sidecar = extract((w, h), num, character, legs, shoes,
                                   face_box=face_box, orientation=orient, leg_roles=roles,
                                   extra_joints=extra)

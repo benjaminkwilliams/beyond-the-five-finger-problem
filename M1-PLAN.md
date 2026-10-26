@@ -194,7 +194,7 @@ hand tuning on holdout.
   hand_ground_truth.json, bench only, no holdout
   tuning; foot = far end/bottom of foot, head = face
   centre, hip = leg top). Run6: 38/40 joints within
-  30px; 2 failures, both SadPocky 9/10 LeftFoot at
+  30px; 2 failures, both SadPocky 9/10 PortFoot at
   51px — root cause in placement.py _extremes, which
   took the foot max-y from the leg mask alone and
   ignored a linked shoe area across a gap (leg ends
@@ -208,10 +208,10 @@ hand tuning on holdout.
   Hand-tuning holdout joints invalidates the holdout.
   CLOSED 2026-10-26, driver run_holdout.py, output
   extraction-test/holdout_joints.json (bench joints.json
-  untouched). Raincoat 9: Head [200,101], RightFoot
-  planted [169,383], LeftFoot chambered [242,339];
-  Raincoat 10: Head [120,104], RightFoot planted
-  [155,383], LeftFoot extended [386,195] (on red boot
+  untouched). Raincoat 9: Head [200,101], StarboardFoot
+  planted [169,383], PortFoot chambered [242,339];
+  Raincoat 10: Head [120,104], StarboardFoot planted
+  [155,383], PortFoot extended [386,195] (on red boot
   pixels, far-x mean y 195, verified by pixel scan).
   Roles, from the generic Lila-template anatomy
   prompt only: port leg chambers in 9 and extends
@@ -339,7 +339,7 @@ hand tuning on holdout.
   facing have been tested as swap signals.
   SCOPED 2026-10-26 by user-approved recommendation:
   HIPS ONLY for M1. Hip role transfer is tested —
-  spec v2 Trial A (declared HipRight transfer at
+  spec v2 Trial A (declared StarboardHip transfer at
   action-boundary pairs only, adopted) and hip
   joints in every extraction/sidecar run. Arms and
   shoulders are DEFERRED to M2, because shoulders

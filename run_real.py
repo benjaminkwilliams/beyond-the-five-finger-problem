@@ -46,30 +46,30 @@ def tokens(assignments):
 
 
 SPEC = Spec(required_markers={}, reference_proportion={})
-REF = placeholder_frame([("RightLeg", ("strap",), "kick", 0), ("LeftLeg", ("decal",), "support", 1)])
+REF = placeholder_frame([("StarboardLeg", ("strap",), "kick", 0), ("PortLeg", ("decal",), "support", 1)])
 
 cases = []
 
 # --- SadPocky green-v2, kick frames 9-12 (1-based) ---
 sp = {
-    9: [("RightLeg", ("strap",), "kick", 0), ("LeftLeg", ("decal",), "support", 1), ("Facing", ("right",), "", 2)],
-    10: [("RightLeg", ("strap",), "kick", 0), ("LeftLeg", ("decal",), "support", 1), ("Facing", ("right",), "", 2)],
-    11: [("LeftLeg", ("decal",), "kick", 0), ("RightLeg", ("strap",), "support", 1), ("Facing", ("right",), "", 2)],
-    12: [("LeftLeg", ("decal",), "kick", 0), ("RightLeg", ("strap",), "support", 1), ("Facing", ("right",), "", 2)],
+    9: [("StarboardLeg", ("strap",), "kick", 0), ("PortLeg", ("decal",), "support", 1), ("Facing", ("right",), "", 2)],
+    10: [("StarboardLeg", ("strap",), "kick", 0), ("PortLeg", ("decal",), "support", 1), ("Facing", ("right",), "", 2)],
+    11: [("PortLeg", ("decal",), "kick", 0), ("StarboardLeg", ("strap",), "support", 1), ("Facing", ("right",), "", 2)],
+    12: [("PortLeg", ("decal",), "kick", 0), ("StarboardLeg", ("strap",), "support", 1), ("Facing", ("right",), "", 2)],
 }
 cases.append(("SadPocky v2 9->10 (same strapped leg chambers)", sp[9], sp[10], True))
 cases.append(("SadPocky v2 10->11 (LEG SWAP: decal leg extends, strapped leg planted)", sp[10], sp[11], False))
 cases.append(("SadPocky v2 11->12 (swap persists, no new break)", sp[11], sp[12], True))
 
 # --- Lila v10, kick frames 9-13: same hip roots the kick throughout ---
-lila10 = [("HipRight", (), "kick", 0), ("HipLeft", (), "support", 1), ("Facing", ("right",), "", 2)]
+lila10 = [("StarboardHip", (), "kick", 0), ("PortHip", (), "support", 1), ("Facing", ("right",), "", 2)]
 for a, b in [(9, 10), (10, 11), (11, 12), (12, 13)]:
     cases.append((f"Lila v10 {a}->{b} (same hip, near leg front)", lila10, lila10, True))
 
 # --- Lila v5 front-kick: opening guard faces LEFT, action goes right ---
-guard_left = [("HipRight", (), "support", 0), ("HipLeft", (), "support", 1), ("Facing", ("left",), "", 2)]
-action_right = [("HipRight", (), "kick", 0), ("HipLeft", (), "support", 1), ("Facing", ("right",), "", 2)]
-# Guard->kick is an action boundary: HipRight taking the kick role is
+guard_left = [("StarboardHip", (), "support", 0), ("PortHip", (), "support", 1), ("Facing", ("left",), "", 2)]
+action_right = [("StarboardHip", (), "kick", 0), ("PortHip", (), "support", 1), ("Facing", ("right",), "", 2)]
+# Guard->kick is an action boundary: StarboardHip taking the kick role is
 # DECLARED by the action keyframe, so it is passed as a declared
 # transfer. The facing flip is not declared anywhere. The pair must
 # still fail, on facing alone.
@@ -78,7 +78,7 @@ cases.append(("Lila v5 guard->action (MIRRORED GUARD)", guard_left, action_right
 ok = 0
 for label, aa, ab, expect in cases:
     fa, fb = placeholder_frame(aa), placeholder_frame(ab)
-    declared = frozenset({"HipRight"}) if "MIRRORED GUARD" in label else frozenset()
+    declared = frozenset({"StarboardHip"}) if "MIRRORED GUARD" in label else frozenset()
     v = check_pair(fa, fb, tokens(aa), tokens(ab), SPEC, REF, dt_seconds=DT,
                    declared_transfers=declared)
     match = v.passed == expect

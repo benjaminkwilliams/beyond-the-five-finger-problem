@@ -6,7 +6,7 @@ Design (user-stated 2026-10-13):
   against a reference/spec:
     1. Static validity: both frames individually satisfy the spec.
        Entities are named pixel sets; markers are named subsets
-       (RightLeg = A, RightLeg.strap = A.s, containment A.s <= A).
+       (StarboardLeg = A, StarboardLeg.strap = A.s, containment A.s <= A).
        As an entity moves / morphs / is occluded, its subsets must
        adjust proportionately (share of the parent set, relative
        position inside it).

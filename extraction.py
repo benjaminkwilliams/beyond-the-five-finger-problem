@@ -49,30 +49,29 @@ Joint JSON schema (also M1.5d, adopted here in full):
 Sidecar map: black canvas, same size as the frame,
 dots + polygon lines only, no character pixels.
 Colours follow the mocap schema: Head white, HeadFacing
-cyan, RightHip green, LeftHip teal, RightFoot red,
-LeftFoot blue, RightShoulder orange, LeftShoulder
-magenta, RightHand yellow, LeftHand purple. In this
-module Right/Left are legacy aliases for
-starboard/port; a leg with no role gets a grey dot
+cyan, StarboardHip green, PortHip teal, StarboardFoot red,
+PortFoot blue, StarboardShoulder orange, PortShoulder
+magenta, StarboardHand yellow, PortHand purple. In this module the language is Port/Starboard only.
+
 and the name Leg0/Leg1.
 """
 import json
 
 COLOURS = {
     "Head": (255, 255, 255), "HeadFacing": (0, 255, 255),
-    "RightShoulder": (255, 165, 0), "LeftShoulder": (255, 0, 255),
-    "RightHand": (255, 255, 0), "LeftHand": (128, 0, 128),
-    "RightHip": (0, 255, 0), "LeftHip": (0, 128, 128),
-    "RightFoot": (255, 0, 0), "LeftFoot": (0, 0, 255),
+    "StarboardShoulder": (255, 165, 0), "PortShoulder": (255, 0, 255),
+    "StarboardHand": (255, 255, 0), "PortHand": (128, 0, 128),
+    "StarboardHip": (0, 255, 0), "PortHip": (0, 128, 128),
+    "StarboardFoot": (255, 0, 0), "PortFoot": (0, 0, 255),
     "Leg0": (128, 128, 128), "Leg1": (128, 128, 128),
 }
 LINES = [
-    ("Head", "RightShoulder"), ("Head", "LeftShoulder"),
-    ("RightShoulder", "LeftShoulder"),
-    ("RightShoulder", "RightHand"), ("LeftShoulder", "LeftHand"),
-    ("RightShoulder", "RightHip"), ("LeftShoulder", "LeftHip"),
-    ("RightHip", "LeftHip"),
-    ("RightHip", "RightFoot"), ("LeftHip", "LeftFoot"),
+    ("Head", "StarboardShoulder"), ("Head", "PortShoulder"),
+    ("StarboardShoulder", "PortShoulder"),
+    ("StarboardShoulder", "StarboardHand"), ("PortShoulder", "PortHand"),
+    ("StarboardShoulder", "StarboardHip"), ("PortShoulder", "PortHip"),
+    ("StarboardHip", "PortHip"),
+    ("StarboardHip", "StarboardFoot"), ("PortHip", "PortFoot"),
     ("Head", "HeadFacing"),
 ]
 YAW_OFFSET = {
@@ -124,7 +123,7 @@ def extract(frame_size, frame_number, character, leg_masks, shoe_masks,
     for i, leg in enumerate(legs):
         role = roles[i] if i < len(roles) else None
         foot, hip = leg["foot"], leg["hip"]
-        side = {"starboard": "Right", "port": "Left"}.get(role)
+        side = {"starboard": "Starboard", "port": "Port"}.get(role)
         if side:
             hip_name, foot_name = f"{side}Hip", f"{side}Foot"
         else:
@@ -138,7 +137,7 @@ def extract(frame_size, frame_number, character, leg_masks, shoe_masks,
             joints[foot_name] = {"point": None, "marker_seen": False,
                                  "reason": leg.get("foot_reason") or "foot uncertain"}
     # Extra joints (shoulders/hands) only if supplied unambiguously.
-    for name in ("RightShoulder", "LeftShoulder", "RightHand", "LeftHand"):
+    for name in ("StarboardShoulder", "PortShoulder", "StarboardHand", "PortHand"):
         if extra_joints and name in extra_joints and extra_joints[name]:
             joints[name] = {"point": extra_joints[name], "marker_seen": True, "reason": None}
             dots[name] = extra_joints[name]

@@ -88,14 +88,14 @@ def check_length(joints, anatomical, fisheye=False):
     """joints: extraction.py joints dict (name -> {point, marker_seen}).
     anatomical: {"leg": L_leg_px, "arm": L_arm_px (optional)}.
     Returns a list of flag strings (empty = pass).
-    Pairs checked: RightHip-RightFoot, LeftHip-LeftFoot,
-    RightShoulder-RightHand, LeftShoulder-LeftHand.
+    Pairs checked: StarboardHip-StarboardFoot, PortHip-PortFoot,
+    StarboardShoulder-StarboardHand, PortShoulder-PortHand.
     """
     if fisheye:
         return ["fisheye declared: length bound waived"]
     flags = []
-    pairs = [("RightHip", "RightFoot", "leg"), ("LeftHip", "LeftFoot", "leg"),
-             ("RightShoulder", "RightHand", "arm"), ("LeftShoulder", "LeftHand", "arm")]
+    pairs = [("StarboardHip", "StarboardFoot", "leg"), ("PortHip", "PortFoot", "leg"),
+             ("StarboardShoulder", "StarboardHand", "arm"), ("PortShoulder", "PortHand", "arm")]
     for a_name, b_name, kind in pairs:
         if kind not in anatomical:
             continue
@@ -180,10 +180,10 @@ def check_arc(joints, anatomical, forward_sign=+1, head_point=None):
     Returns a list of flag strings (empty = pass).
     """
     flags = []
-    pairs = [("RightHip", "RightFoot", "leg", 120, 30),
-             ("LeftHip", "LeftFoot", "leg", 120, 30),
-             ("RightShoulder", "RightHand", "arm", 180, 60),
-             ("LeftShoulder", "LeftHand", "arm", 180, 60)]
+    pairs = [("StarboardHip", "StarboardFoot", "leg", 120, 30),
+             ("PortHip", "PortFoot", "leg", 120, 30),
+             ("StarboardShoulder", "StarboardHand", "arm", 180, 60),
+             ("PortShoulder", "PortHand", "arm", 180, 60)]
     for a_name, b_name, kind, bow_max, stern_max in pairs:
         if kind not in anatomical:
             continue

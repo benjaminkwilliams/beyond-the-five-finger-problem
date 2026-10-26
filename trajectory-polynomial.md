@@ -69,7 +69,7 @@ SadPocky 9-12 and Lila 9-12 give:
 Conclusion: movement is PIECEWISE polynomial, with
 breaks at action boundaries and role transfers —
 the same boundaries spec v2 already treats
-specially (HipRight role transfer at action-boundary
+specially (StarboardHip role transfer at action-boundary
 pairs only). A large polynomial residual is therefore
 a DIAGNOSTIC, not necessarily an extraction error:
 it flags a phase break or a role swap. A small

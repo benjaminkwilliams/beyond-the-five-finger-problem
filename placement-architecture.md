@@ -17,12 +17,12 @@ Sidecar dots give what boxes cannot: right vs left, head
 position vs head facing (white vs cyan vector), and the
 polygon context (shoulder line, hip line, foot-to-hip).
 A dot labels the box it aligns with: red foot dot + leg box
-= RightLeg, blue foot dot + leg box = LeftLeg, and so on.
+= StarboardLeg, blue foot dot + leg box = PortLeg, and so on.
 The checker uses labelled boxes, never raw SAM boxes.
 
 Current dot set (sidecar schema): Head, HeadFacing,
-Right/Left Shoulder, Right/Left Hand, Right/Left Hip,
-Right/Left Foot. Expansion template, from the user-supplied
+Starboard/Port Shoulder, Starboard/Port Hand, Starboard/Port Hip,
+Starboard/Port Foot. Expansion template, from the user-supplied
 25-marker form, when more dots are needed: chin, chest,
 back, elbow l/r, radius l/r, ulna l/r, finger l/r, knee l/r,
 ankle l/r, head front/left/back/right. Add dots only when a

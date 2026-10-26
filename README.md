@@ -18,8 +18,8 @@ Run it (CPU only, numpy + scipy + PIL):
 For an adjacent frame pair (A -> B) against a reference/spec, all
 three gates must pass:
 1. Static validity — both frames individually satisfy the spec.
-   Entities are named pixel sets (RightLeg = A); markers are named
-   subsets (RightLeg.strap = A.s, containment A.s ⊆ A). As A moves /
+   Entities are named pixel sets (StarboardLeg = A); markers are named
+   subsets (StarboardLeg.strap = A.s, containment A.s ⊆ A). As A moves /
    morphs / is occluded, A.s must adjust proportionately (share of
    parent, relative position).
 2. Transition legitimacy — the change is a legitimate perspective /
@@ -68,7 +68,7 @@ spurious findings strictly decrease.
 
 - Baseline v1: bench 8/8 matches, 2 catches, 1 spurious finding;
   holdout 3/3.
-- Trial A (fix-the-ruler: declare the HipRight role transfer at
+- Trial A (fix-the-ruler: declare the StarboardHip role transfer at
   action-boundary pairs only): spurious 1 -> 0, catches held,
   holdout unchanged -> **ADOPTED as v2**.
 - Trial B (overreach: declare leg role transfers anywhere + raise

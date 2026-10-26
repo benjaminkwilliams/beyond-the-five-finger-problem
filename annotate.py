@@ -9,10 +9,10 @@ edge, and put a large dot at the edge. The proposer then reports
 roles and depth by colour, not by anatomy.
 
 Colours, fixed:
-  RightLeg = red    (#FF0000)
-  LeftLeg  = blue   (#0000FF)
-  RightArm = yellow (#FFFF00)
-  LeftArm  = purple (#800080)
+  StarboardLeg = red    (#FF0000)
+  PortLeg  = blue   (#0000FF)
+  StarboardArm = yellow (#FFFF00)
+  PortArm  = purple (#800080)
 
 Trim rule: annotated frames are proposer inputs ONLY. Never ship
 an annotated frame as a deliverable. The original frame is the
@@ -37,10 +37,10 @@ import sys
 from PIL import Image, ImageDraw
 
 COLOURS = {
-    "RightLeg": (255, 0, 0),
-    "LeftLeg": (0, 0, 255),
-    "RightArm": (255, 255, 0),
-    "LeftArm": (128, 0, 128),
+    "StarboardLeg": (255, 0, 0),
+    "PortLeg": (0, 0, 255),
+    "StarboardArm": (255, 255, 0),
+    "PortArm": (128, 0, 128),
     # Mocap schema (user-directed 2026-10-26): the proposer input
     # simulates mocap markers. Arm/hand and leg/foot are the same
     # marker per side, at the hand/foot end. Head gets TWO markers:
@@ -49,10 +49,10 @@ COLOURS = {
     # not give facing, and facing is the perspective signal.
     "Head": (255, 255, 255),
     "HeadFacing": (0, 255, 255),
-    "RightShoulder": (255, 128, 0),
-    "LeftShoulder": (255, 0, 255),
-    "RightHip": (0, 255, 0),
-    "LeftHip": (0, 128, 128),
+    "StarboardShoulder": (255, 128, 0),
+    "PortShoulder": (255, 0, 255),
+    "StarboardHip": (0, 255, 0),
+    "PortHip": (0, 128, 128),
 }
 
 # Polygon order for mode="mocap": lines that turn the markers into
@@ -62,12 +62,12 @@ COLOURS = {
 # change narrows the shoulder/hip lines and shifts the head and
 # facing dot; a depth change moves a foot behind the hip line.
 MOCAP_LINES = [
-    ("Head", "RightShoulder"), ("Head", "LeftShoulder"),
-    ("RightShoulder", "LeftShoulder"),
-    ("RightShoulder", "RightArm"), ("LeftShoulder", "LeftArm"),
-    ("RightShoulder", "RightHip"), ("LeftShoulder", "LeftHip"),
-    ("RightHip", "LeftHip"),
-    ("RightHip", "RightLeg"), ("LeftHip", "LeftLeg"),
+    ("Head", "StarboardShoulder"), ("Head", "PortShoulder"),
+    ("StarboardShoulder", "PortShoulder"),
+    ("StarboardShoulder", "StarboardArm"), ("PortShoulder", "PortArm"),
+    ("StarboardShoulder", "StarboardHip"), ("PortShoulder", "PortHip"),
+    ("StarboardHip", "PortHip"),
+    ("StarboardHip", "StarboardLeg"), ("PortHip", "PortLeg"),
     ("Head", "HeadFacing"),
 ]
 
@@ -188,7 +188,7 @@ def main():
     parser.add_argument("input")
     parser.add_argument("output")
     parser.add_argument("--tips", required=True,
-                        help='JSON, e.g. {"RightLeg": [260, 330], "LeftLeg": [150, 360]}')
+                        help='JSON, e.g. {"StarboardLeg": [260, 330], "PortLeg": [150, 360]}')
     parser.add_argument("--pad", type=int, default=80)
     parser.add_argument("--mode", default="margin", choices=["margin", "line", "mocap", "sidecar"])
     args = parser.parse_args()

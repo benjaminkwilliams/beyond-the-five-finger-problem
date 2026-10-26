@@ -42,30 +42,30 @@ GLOSS = json.load(open("glossary.json"))
 
 PAIRS = [
     # (character, folder, num_a, num_b, expected_kick_leg)
-    ("Lila", "lila-v10", 9, 10, "LeftLeg"),
-    ("Lila", "lila-v10", 10, 11, "LeftLeg"),
-    ("Lila", "lila-v10", 11, 12, "LeftLeg"),
-    ("Lila", "lila-v10", 12, 13, "LeftLeg"),
-    ("SadPocky", "sadpocky-green-v2", 9, 10, "RightLeg"),
+    ("Lila", "lila-v10", 9, 10, "PortHip"),
+    ("Lila", "lila-v10", 10, 11, "PortHip"),
+    ("Lila", "lila-v10", 11, 12, "PortHip"),
+    ("Lila", "lila-v10", 12, 13, "PortHip"),
+    ("SadPocky", "sadpocky-green-v2", 9, 10, "StarboardLeg"),
     ("SadPocky", "sadpocky-green-v2", 10, 11, "SWAP"),
-    ("SadPocky", "sadpocky-green-v2", 11, 12, "LeftLeg"),
-    ("SadPocky", "sadpocky-green-v6", 10, 11, "LeftLeg"),
-    ("SadPocky", "sadpocky-green-v6", 11, 12, "LeftLeg"),
-    ("Raincoat", "generated-v2", 9, 10, "LeftLeg"),
+    ("SadPocky", "sadpocky-green-v2", 11, 12, "PortLeg"),
+    ("SadPocky", "sadpocky-green-v6", 10, 11, "PortLeg"),
+    ("SadPocky", "sadpocky-green-v6", 11, 12, "PortLeg"),
+    ("Raincoat", "generated-v2", 9, 10, "PortLeg"),
 ]
 
 def main():
     results = {}
     for character, folder, na, nb, exp in PAIRS:
         for run in (1, 2):
-            key = f"{character}-{na}->{nb}-run{run}"
+            key = f"{folder}-{na}->{nb}-run{run}"
             print(f"\n=== {key} expected kick={exp} ===", flush=True)
             try:
                 prompt, order = build_sidecar_prompt(character, GLOSS)
                 images = []
                 for num in (na, nb):
                     images.append(f"{SP}/{folder}/frames/frame_{num-1:02d}.png")
-                    images.append(f"extraction-test/{character}-{num}-sidecar.png")
+                    images.append(f"extraction-test/{folder}-{num}-sidecar.png")
                 # order is A orig, A sidecar, B orig, B sidecar — images built in that order
                 text = re_.spark(prompt, images)
                 print(text[:1000], flush=True)

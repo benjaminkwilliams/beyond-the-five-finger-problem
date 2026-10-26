@@ -14,7 +14,7 @@ bench score here. It stays an assignment-level case until a
 left-facing guard file is located. Counting it from these files
 would be a false green.
 
-Spec used: v2 (Trial A adopted). Declared transfer HipRight applies
+Spec used: v2 (Trial A adopted). Declared transfer StarboardHip applies
 at action-boundary pairs only. No bench case in this file-backed set
 is a boundary pair, so declared transfers are empty here. That is
 correct for these 10 pairs: none of them is the guard->action boundary.
@@ -110,7 +110,7 @@ CASES = [
 ]
 
 SPEC = Spec(required_markers={}, reference_proportion={})
-REF = placeholder_frame([("RightLeg", ("strap",), "kick", 0), ("LeftLeg", ("decal",), "support", 1)])
+REF = placeholder_frame([("StarboardLeg", ("strap",), "kick", 0), ("PortLeg", ("decal",), "support", 1)])
 
 
 def main():

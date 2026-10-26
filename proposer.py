@@ -55,7 +55,7 @@ Roles, defined by pose, not by extension alone:
 - A chamber frame has no extended leg yet. Do not assign "kick" to the planted leg just because it is in front, and do not assign "kick" to whichever leg looks longest.
 
 Rules:
-- Entity names Right/Left are the character's own right/left, NEVER image left/right. Track identity across the pair: the leg that chambers in frame A is the same leg in frame B unless the action visibly changes legs.
+- Entity names are Port/Starboard, defined by bow direction, NEVER image left/right. Track identity across the pair: the leg that chambers in frame A is the same leg in frame B unless the action visibly changes legs.
 - {hard_case}
 - If a marker is too small to see at this resolution, say marker_seen=false. Do not guess its leg.
 - First, in the "description" field, describe in two sentences what each leg is doing in each frame (bent/chambered, planted, or extended) and which markers you can actually see. Then give the assignments. Reasoning first, assignments second.
@@ -81,7 +81,7 @@ Glossary (JSON): {glossary}
 
 Four images follow, in order: frame A original, frame A sidecar map, frame B original, frame B sidecar map.
 A sidecar map is a black canvas, SAME size and SAME coordinates as its original, with coloured dots for joints only and no character pixels.
-Colours: Head white, HeadFacing cyan, RightShoulder orange, LeftShoulder magenta, RightHand yellow, LeftHand purple, RightHip green, LeftHip teal, RightFoot red, LeftFoot blue.
+Colours: Head white, HeadFacing cyan, StarboardShoulder orange, PortShoulder magenta, StarboardHand yellow, PortHand purple, StarboardHip green, PortHip teal, StarboardFoot red, PortFoot blue.
 Associate each dot with the original by its coordinates: a dot at (x, y) on the map is the joint at (x, y) in the original.
 Use the originals for what the character looks like and the maps for where the joints are. Do not invent a joint that has no dot, and do not move a dot to fit a pose you expect.
 
@@ -98,7 +98,7 @@ Roles, defined by pose, not by extension alone:
 - "support" = the PLANTED leg bearing weight, foot on the ground, leg mostly vertical.
 - A chamber frame has no extended leg yet. Do not assign "kick" to the planted leg just because it is in front, and do not assign "kick" to whichever leg looks longest.
 Rules:
-- Entity names Right/Left are the character's own right/left, NEVER image left/right. Track identity across the pair: the leg that chambers in frame A is the same leg in frame B unless the action visibly changes legs.
+- Entity names are Port/Starboard, defined by bow direction, NEVER image left/right. Track identity across the pair: the leg that chambers in frame A is the same leg in frame B unless the action visibly changes legs.
 - {hard_case}
 - If a marker is too small to see at this resolution, say marker_seen=false. Do not guess its leg.
 - First, in the "description" field, describe in two sentences what each leg is doing in each frame (bent/chambered, planted, or extended) and which markers you can actually see. Then give the assignments. Reasoning first, assignments second.

@@ -76,7 +76,7 @@ def main():
         fists = re_.sam_fg(path, "fist")
         if len(fists) == 2 and orient.get("yaw") == "front":
             centres = sorted([((b["box"][0] + b["box"][2]) // 2, (b["box"][1] + b["box"][3]) // 2) for b in fists], key=lambda p: p[0])
-            extra = {"RightHand": centres[0], "LeftHand": centres[1]}
+            extra = {"StarboardHand": centres[0], "PortHand": centres[1]}
         joints, sidecar = extract((w, h), num, character, legs, shoes, face_box=face_box, orientation=orient, leg_roles=roles, extra_joints=extra)
         out[f"{character}-{num}"] = joints
         smap = Image.new("RGB", (w, h), (0, 0, 0)); sd = ImageDraw.Draw(smap)
@@ -84,7 +84,7 @@ def main():
             sd.line([sidecar["dots"][a], sidecar["dots"][b]], fill=(80, 80, 80), width=2)
         for name, pt in sidecar["dots"].items():
             col = COLOURS.get(name, (128, 128, 128)); sd.ellipse([pt[0]-8, pt[1]-8, pt[0]+8, pt[1]+8], fill=col)
-        smap.save(f"extraction-test/{character}-{num}-sidecar.png")
+        smap.save(f"extraction-test/{folder}-{num}-sidecar.png")
         print(f"joints: {json.dumps(joints['joints'])}", flush=True)
     json.dump(out, open("extraction-test/extra_joints.json", "w"), indent=2)
     print("\nsaved extraction-test/extra_joints.json")
