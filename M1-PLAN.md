@@ -149,6 +149,23 @@ hand tuning on holdout.
   marker_seen=false. Whether f closes with
   shoulders deferred is a user decision, not taken
   here.
+  Limb limits, added 2026-10-26 in limb_limits.py
+  and tested on bench: hip-foot and shoulder-hand
+  length cannot exceed anatomical length + 10% +
+  10px, with fisheye declared in metadata waiving
+  the bound, and missing joints skipping (not
+  failing) the check; joint velocity cannot exceed
+  2.0 limb lengths per 100ms frame. Critical
+  definition: anatomical length is the straight-leg
+  distance (SadPocky 172px, Lila 138px), NOT frame
+  1's fighting-stance chord (114px / 107px) —
+  using frame 1 falsely flags true extended legs.
+  All 6 bench pairs pass both checks; corrupted
+  length (220px vs 199px limit) and corrupted
+  velocity (385px vs 344px limit) both flag
+  correctly. Velocity alone does NOT catch a role
+  swap, where positions move plausibly but
+  identities swap.
 - [ ] M1.1g Automated placement verified on bench: run
   M1.1f on bench frames only, compare extracted joints to
   hand joints, report errors per joint, fix on bench only.
