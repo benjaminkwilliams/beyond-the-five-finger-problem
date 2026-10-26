@@ -51,11 +51,24 @@
     }
   },
   "depth": "depth_rank 0 is the near (front) leg, 1 is the far (back) leg. The kicking leg in the bench cases is the near leg, drawn in front, in all kick frames.",
-  "reading_rule": "Entity names Right/Left are the character's own right/left, never image left/right. Facing[left/right] is CANDIDATE viewer-side: the direction she faces in the image. A mirrored marker is a FAIL, not a cosmetic swap. Never mirror a sided marker to make a frame pass.",
+  "reading_rule": "Entity names Right/Left are the character's own right/left, never image left/right. Facing[left/right] is CANDIDATE viewer-side: the direction she faces in the image. A mirrored marker is a FAIL, not a cosmetic swap. Never mirror a sided marker to make a frame pass. Canonical sided names are port (her left) and starboard (her right), defined by bow direction. Right/Left are legacy aliases for starboard/port.",
   "roles": [
     "kick",
     "support",
     ""
   ],
-  "status": "DRAFT for M1, not adopted spec, except Lila armbands (adopted 2026-10-26, see Lila notes). Sources: locked sheets lila.md (2026-09-28) and sadpocky.md (2026-09-26) only. Facing viewer-side remains CANDIDATE pending explicit confirmation."
+  "status": "DRAFT for M1, not adopted spec, except Lila armbands (adopted 2026-10-26, see Lila notes). Sources: locked sheets lila.md (2026-09-28) and sadpocky.md (2026-09-26) only. Facing viewer-side remains CANDIDATE pending explicit confirmation.",
+  "vocabulary": {
+    "bow": "The character's facing direction, defined by the nose/face. Bow is forward, stern is backward (back of head). Facing is bow direction, not image left/right.",
+    "stern": "Opposite bow, the back of the character.",
+    "port": "The character's LEFT side when facing the bow, exactly as on a boat. Port is intrinsic to the character: it is the same leg/arm in every view, even when it appears on the image right in one view and the image left in another. PortLeg = her left leg, PortArm = her left arm.",
+    "starboard": "The character's RIGHT side when facing the bow. StarboardLeg = her right leg, StarboardArm = her right arm. Starboard and port never swap with camera angle; only their image position does.",
+    "legacy_alias": "Right/Left in earlier bench tokens mean starboard/port respectively (RightLeg = StarboardLeg, LeftLeg = PortLeg). New prompts and glossary entries should use port/starboard; code keeps Right/Left as aliases until the checker tokens are renamed in one deliberate pass, not piecemeal.",
+    "planes": {
+      "sagittal": "Vertical plane dividing port from starboard, containing the bow-stern axis. Movement in the sagittal plane is forward/backward along bow-stern: a front kick extending toward the bow, a profile view, a leg chambering forward. Bench kicks (Lila v10, SadPocky v2/v6, Raincoat) are sagittal-plane kicks.",
+      "coronal": "Vertical plane dividing bow from stern, containing the port-starboard axis. Movement in the coronal plane is sideways, port-to-starboard: a side kick extending sideways, a frontal view with a leg moving laterally. A coronal-plane leg change is not the same defect as a sagittal-plane leg change.",
+      "axial": "Horizontal plane dividing top from bottom, viewed from above/below. Movement in the axial plane is rotation around the vertical axis: turning, spinning, a top-down view. Axial movement changes bow direction without changing port/starboard identity."
+    },
+    "depth_note": "Near/far (depth_rank) is a camera-relative signal, not a port/starboard signal. The near leg is the one drawn over the other at a crossing, whichever side (port or starboard) it happens to be in that view."
+  }
 }
