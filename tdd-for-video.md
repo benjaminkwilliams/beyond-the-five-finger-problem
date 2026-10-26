@@ -187,6 +187,40 @@ when it becomes inconvenient: deleting the
 mirrored-guard case instead of resolving it
 (M1.5a) would be deleting a test to get green.
 
+## Generality criterion (user-stated 2026-10-26)
+
+The workflow must be repeatable for different
+characters, otherwise it is a workflow for one
+character and one movement — and that does not
+count as a verifier.
+
+What repeatable means here, concretely: the CODE
+stays the same (placement.py, extraction.py,
+limb_limits.py, checker.py); only
+character-specific INPUTS change — glossary
+named sets from that character's locked sheet,
+anatomical lengths from a straight-leg reference,
+foot colour pattern learned from that character's
+clear frames, role labels from a leg overlay.
+No hand coordinates, no per-character code
+branches, no literal prompts baked in as the
+method. The foot-area prompt SET expanding
+(pink shoe/footwear for SadPocky, foot for
+barefoot Lila) is method; the individual prompt
+strings are per-character inputs.
+
+Current proof status, stated honestly: the method
+has run on three characters (SadPocky, Lila,
+Raincoat) but on one movement class (sagittal
+leg kick / guard-to-action) and, for legs and
+head, not yet for arms. That is repeatability
+across characters for one movement, not yet
+repeatability across movements. Proving the
+second half needs a new movement (walk, jump,
+dance) and ideally a fourth character, run as
+a fresh holdout — not tuned to — before the
+workflow is claimed general.
+
 ## What TDD for video is not
 
 - It is not "look at the video and say if it is
