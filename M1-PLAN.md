@@ -47,12 +47,32 @@ hand tuning on holdout.
   Caveat: for horizontal legs "foot" means leg end/toe,
   not shoe centre, so it sits ~30-40px from a shoe-centre
   reference — that is the definition, not an error.
-- [ ] M1.1d Head/facing reliable: "head" prompt is correct
-  on chambered frames (head + hair + ears, centre ~30-50px
-  above face centre) but wrong on extended frames (covers
-  the left half, centre ~80px left of true head). Next
-  candidates: "face" prompt, head from a person box, or
-  Spark for head/facing only while SAM supplies legs.
+- [x] M1.1d Head/facing reliable, CLOSED 2026-10-26 as a
+  HYBRID, tested against the user-supplied 5x5 head-angle
+  chart (columns: profile-left, 3/4-left, front, 3/4-right,
+  profile-right; rows: up, slight-up, level, slight-down,
+  down). Results in sam-test/head_candidates.json:
+  SAM "face" prompt gives head centre within 15-17px on
+  chambered frames and within ~5px on extended frames
+  once true head is measured visually; SAM "person" box
+  centre is body centre, not head (65-83px error), and is
+  NOT a head candidate. Spark, given the chart as image
+  1 and the frame as image 2, gives yaw/pitch/bow/port
+  correctly on all 3 frames tested (front, level, bow
+  toward camera, port = image-right) with head centre
+  within 15-27px. Rule: SAM "face" supplies head centre,
+  Spark + chart supplies yaw/pitch/bow. CORRECTION to
+  earlier work: the hand sidecar joints for B frames
+  copied the A head position ([200,130] / [205,115])
+  and are WRONG for B — visually, the whole body shifts
+  left as the leg extends right, so B head is ~[118,134]
+  (SadPocky) and ~[120,104] (Raincoat). SAM "face"/"head"
+  on B frames was never failing; the hand ground truth
+  was. M1.1g must compare against visually corrected B
+  head, not the old sidecar joints, or it will flag a
+  correct SAM result as an error. The old B sidecar maps
+  are not silently edited here; they are flagged for
+  correction before M1.1g.
 - [x] M1.1e Mask decoding: CLOSED 2026-10-26 with the
   cookbook basic recipe (07_sam/01_api_basics). Mask
   token is <|mask;x=..;y=..;data=H,W,<payload>|>, payload
