@@ -1,1 +1,61 @@
-{"characters":{"Lila":{"entities":["HipRight","HipLeft","Facing"],"facing":"Facing[right] means she faces toward the image right. Facing[left] means image left.","markers":{},"notes":{"HipLeft":"The other hip, the supporting leg in Lila v10.","HipRight":"The hip that roots the kick in Lila v10, the near (front) leg in the facing-right kick frames. Track the same hip across the pair: a kick that changes hip mid-action with no declared transfer is a continuity break.","armbands":"CANDIDATE, not canon: two thin black buckled bands on HER LEFT upper arm (viewer's right in front view), above the long black arm warmer. The locked sheet says only 'on one upper arm'. Do not use armbands to decide leg identity in M1 bench cases.","traps":"Bare pale legs through the cheongsam side slits are not dark legwear. Bangs cover the viewer's-right eye (her left eye); glasses sit on the viewer's-left eye (her right eye)."}},"Raincoat":{"entities":["RightLeg","LeftLeg","Facing"],"facing":"Facing[right] means she faces toward the image right.","markers":{},"notes":{"LeftLeg":"The other leg.","RightLeg":"The leg that chambers in frame 9 of generated-v2. Track it across the pair."}},"SadPocky":{"entities":["RightLeg","LeftLeg","Facing"],"facing":"Facing[right] means she faces toward the image right. Facing[left] means image left.","hard_case":"Separate the black thigh strap from the navy skirt by position and shape, not by colour threshold alone. If the strap cannot be seen at this resolution, report marker_seen=false for that leg instead of guessing which leg carries it.","marker_notes":{"LeftLeg.decal":"Carrot decal plus a small bunny decal on HER left upper thigh, with a pink band-aid on the knee and a white sock.","RightLeg.strap":"Black thigh strap with a heart ring, on HER right thigh. It is a separate band on the thigh, not the navy pleated skirt. The skirt hangs from the waist; the strap sits on the leg itself. Do not merge strap and skirt by colour: both are dark, and naive colour thresholding cannot separate them."},"markers":{"LeftLeg":["decal"],"RightLeg":["strap"]}}},"depth":"depth_rank 0 is the near (front) leg, 1 is the far (back) leg. The kicking leg in the bench cases is the near leg, drawn in front, in all kick frames.","reading_rule":"Entity names Right/Left are the character's own right/left, never image left/right. Facing[left/right] is CANDIDATE viewer-side: the direction she faces in the image. A mirrored marker is a FAIL, not a cosmetic swap. Never mirror a sided marker to make a frame pass.","roles":["kick","support",""],"status":"DRAFT for M1, not adopted spec. Sources: locked sheets lila.md (2026-09-28) and sadpocky.md (2026-09-26) only. Two candidate answers are flagged CANDIDATE and are not wired as canon until the user confirms them."}
+{
+  "characters": {
+    "Lila": {
+      "entities": [
+        "HipRight",
+        "HipLeft",
+        "Facing"
+      ],
+      "facing": "Facing[right] means she faces toward the image right. Facing[left] means image left.",
+      "markers": {},
+      "notes": {
+        "HipLeft": "The other hip, the supporting leg in Lila v10.",
+        "HipRight": "The hip that roots the kick in Lila v10, the near (front) leg in the facing-right kick frames. Track the same hip across the pair: a kick that changes hip mid-action with no declared transfer is a continuity break.",
+        "armbands": "ADOPTED 2026-10-26 (user-confirmed): two thin black buckled bands on HER LEFT upper arm, above the long black arm warmer. In a front view that arm is the VIEWER'S RIGHT. Visibility depends on perspective and facing: in a back view the same arm reads viewer's left, and in side views it may be the far arm or occluded. Absence in a frame where her left arm is not the visible/near arm is not, by itself, a missing-marker failure.",
+        "traps": "Bare pale legs through the cheongsam side slits are not dark legwear. Bangs cover the viewer's-right eye (her left eye); glasses sit on the viewer's-left eye (her right eye)."
+      }
+    },
+    "Raincoat": {
+      "entities": [
+        "RightLeg",
+        "LeftLeg",
+        "Facing"
+      ],
+      "facing": "Facing[right] means she faces toward the image right.",
+      "markers": {},
+      "notes": {
+        "LeftLeg": "The other leg.",
+        "RightLeg": "The leg that chambers in frame 9 of generated-v2. Track it across the pair."
+      }
+    },
+    "SadPocky": {
+      "entities": [
+        "RightLeg",
+        "LeftLeg",
+        "Facing"
+      ],
+      "facing": "Facing[right] means she faces toward the image right. Facing[left] means image left.",
+      "hard_case": "Separate the black thigh strap from the navy skirt by position and shape, not by colour threshold alone. If the strap cannot be seen at this resolution, report marker_seen=false for that leg instead of guessing which leg carries it.",
+      "marker_notes": {
+        "LeftLeg.decal": "Carrot decal plus a small bunny decal on HER left upper thigh, with a pink band-aid on the knee and a white sock.",
+        "RightLeg.strap": "Black thigh strap with a heart ring, on HER right thigh. It is a separate band on the thigh, not the navy pleated skirt. The skirt hangs from the waist; the strap sits on the leg itself. Do not merge strap and skirt by colour: both are dark, and naive colour thresholding cannot separate them."
+      },
+      "markers": {
+        "LeftLeg": [
+          "decal"
+        ],
+        "RightLeg": [
+          "strap"
+        ]
+      }
+    }
+  },
+  "depth": "depth_rank 0 is the near (front) leg, 1 is the far (back) leg. The kicking leg in the bench cases is the near leg, drawn in front, in all kick frames.",
+  "reading_rule": "Entity names Right/Left are the character's own right/left, never image left/right. Facing[left/right] is CANDIDATE viewer-side: the direction she faces in the image. A mirrored marker is a FAIL, not a cosmetic swap. Never mirror a sided marker to make a frame pass.",
+  "roles": [
+    "kick",
+    "support",
+    ""
+  ],
+  "status": "DRAFT for M1, not adopted spec, except Lila armbands (adopted 2026-10-26, see Lila notes). Sources: locked sheets lila.md (2026-09-28) and sadpocky.md (2026-09-26) only. Facing viewer-side remains CANDIDATE pending explicit confirmation."
+}
