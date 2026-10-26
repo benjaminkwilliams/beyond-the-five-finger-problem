@@ -248,28 +248,37 @@ hand tuning on holdout.
 ## M1.3 — Depth gate
 
 - [x] M1.3a Pure depth swap test case: same leg stays
-  kicker, depth flips near<->far. CLOSED 2026-10-26 as
-  a SYNTHETIC assignment-level case: no borrowed open
-  image was found for this exact defect (reference-art
-  search 2026-10-26, gap recorded), so the test is
-  synthetic by design. Raincoat 9->10 is the real-world
-  counterpart (same port leg, near<->far flip), but
-  its depth evidence is proposer depth_rank, not a
-  borrowed frame set.
+  kicker, depth flips near<->far. CORRECTION 2026-10-26
+  (user-stated, supersedes the synthetic case above):
+  a pure depth swap is a MISLABELING of the legs,
+  not a defect class of its own. Kicks where the leg
+  switches exist, but that is not what this verifier
+  is trying to achieve here. The test that replaces
+  it: whatever leg is meant to kick follows through
+  (chamber in A -> extension in B, same leg), and
+  the supporting leg stays on the ground. A pair
+  failing that — kick leg changes, or support leg
+  leaves the ground — is a role/grounding failure.
+  Raincoat 9->10 is therefore re-read under this
+  rule: port leg chambers then extends, starboard
+  leg planted both frames — role follow-through
+  PASSES, support grounded PASSES. The earlier
+  'depth FAIL' reading was the mislabeling itself.
 - [x] M1.3b Explicit depth gate in checker: DL cost
   alone may pass a transposition (cheap), so depth
   change needs its own gate, using foot position
   relative to the hip line from the sidecar polygon.
-  CLOSED 2026-10-26 in checker.check_depth_gate():
-  any depth_rank change with no declared turn is a
-  finding, kicker flips flagged as such; declared
-  turn passes; scope is kick pairs, not walk cycles
-  (where near/far flips legitimately every step).
-  Evidence for depth_rank is proposer overlap at a
-  crossing (pelvis/hip), foot/hip-line position is
-  secondary, not the gate. Synthetic test: flip, no
-  turn -> 2 findings; no flip -> []; flip with
-  declared turn -> [].
+  SUPERSEDED 2026-10-26 by the M1.3a user correction:
+  checker.check_depth_gate() is kept for history but
+  is NOT used in M1 exit audit. Depth_rank flip alone
+  does not fail a pair. The gate that replaces it is
+  role follow-through + support grounded, enforced
+  in the proposer audit (kick leg same in A and B,
+  support foot stays near ground level between
+  frames). This is the circle-back the user
+  authorised: the depth recommendation conflicted
+  with the kick rule, so it was replaced, not
+  defended.
 
 ## M1.4 — Glossary frozen
 

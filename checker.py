@@ -217,7 +217,18 @@ def visual_dl(a: tuple[Token, ...], b: tuple[Token, ...]):
 
 
 def check_depth_gate(depth_a, depth_b, roles_a, roles_b, declared_turn=False):
-    """Explicit depth gate, M1.3b. depth_* map entity -> depth_rank
+    """Explicit depth gate, M1.3b — SUPERSEDED 2026-10-26 by user
+    correction, kept for history, NOT used in M1 exit audit.
+    Correction: a so-called pure depth swap is a MISLABELING
+    of the legs, not a separate depth defect. The rule is:
+    whatever leg is meant to kick is the one that follows
+    through (chamber in A -> extension in B, same leg),
+    and the leg supporting the body stays on the ground.
+    A pair that shows the kicking leg changing, or the
+    support leg leaving the ground, is a role/grounding
+    failure — not a depth_rank flip. Depth_rank alone
+    must not fail a pair. See M1-PLAN M1.3a/b correction.
+    depth_* map entity -> depth_rank
     (0 = near, 1 = far, from the proposer's sidecar assignments).
     Scope, stated plainly: this gate applies to KICK pairs, where
     no step, turn, or phase change is declared. In a walk cycle
