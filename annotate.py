@@ -41,10 +41,73 @@ COLOURS = {
     "LeftLeg": (0, 0, 255),
     "RightArm": (255, 255, 0),
     "LeftArm": (128, 0, 128),
+    # Mocap schema (user-directed 2026-10-26): the proposer input
+    # simulates mocap markers. Arm/hand and leg/foot are the same
+    # marker per side, at the hand/foot end. Head gets TWO markers:
+    # Head proper (position) and HeadFacing (a dot offset in the
+    # direction the head faces), because head position alone does
+    # not give facing, and facing is the perspective signal.
+    "Head": (255, 255, 255),
+    "HeadFacing": (0, 255, 255),
+    "RightShoulder": (255, 128, 0),
+    "LeftShoulder": (255, 0, 255),
+    "RightHip": (0, 255, 0),
+    "LeftHip": (0, 128, 128),
 }
+
+# Polygon order for mode="mocap": lines that turn the markers into
+# a simple stick polygon. Shoulder line and hip line widths, head
+# offset from the shoulder line, and foot positions relative to
+# the hip line are the perspective-alignment signals: a facing
+# change narrows the shoulder/hip lines and shifts the head and
+# facing dot; a depth change moves a foot behind the hip line.
+MOCAP_LINES = [
+    ("Head", "RightShoulder"), ("Head", "LeftShoulder"),
+    ("RightShoulder", "LeftShoulder"),
+    ("RightShoulder", "RightArm"), ("LeftShoulder", "LeftArm"),
+    ("RightShoulder", "RightHip"), ("LeftShoulder", "LeftHip"),
+    ("RightHip", "LeftHip"),
+    ("RightHip", "RightLeg"), ("LeftHip", "LeftLeg"),
+    ("Head", "HeadFacing"),
+]
+
+
+def annotate_mocap(input_path, output_path, tips, pad=80):
+    """Mocap polygon overlay, proposer copy ONLY.
+
+    Dots are drawn ON the joints, lines connect them in MOCAP_LINES
+    order, forming a simple stick polygon. This mode deliberately
+    touches character pixels, so it is NOT trim-safe for a final
+    image. It is safe only by layer separation: the annotated
+    image is a proposer input, the deliverable is the original
+    unannotated file. Never clean a mocap overlay by redrawing;
+    use the original. The margin mode remains the only mode for
+    any image that might itself become a deliverable.
+    """
+    im = Image.open(input_path).convert("RGB")
+    w, h = im.size
+    canvas = Image.new("RGB", (w + 2 * pad, h + 2 * pad), (0, 0, 0))
+    canvas.paste(im, (pad, pad))
+    draw = ImageDraw.Draw(canvas)
+    pts = {}
+    for entity, (x, y) in tips.items():
+        if entity not in COLOURS:
+            raise SystemExit(f"unknown entity {entity!r}, expected one of {sorted(COLOURS)}")
+        pts[entity] = (x + pad, y + pad)
+    for a, b in MOCAP_LINES:
+        if a in pts and b in pts:
+            draw.line([pts[a], pts[b]], fill=(200, 200, 200), width=3)
+    for entity, (cx, cy) in pts.items():
+        colour = COLOURS[entity]
+        r = 12 if entity in ("Head", "HeadFacing") else 9
+        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=colour)
+    canvas.save(output_path)
+    return output_path
 
 
 def annotate(input_path, output_path, tips, pad=80, mode="margin"):
+    if mode == "mocap":
+        return annotate_mocap(input_path, output_path, tips, pad=pad)
     """tips: {entity: (x, y)} in original-frame coordinates.
 
     mode="margin" (default, trim-safe): draw ONLY a large dot in the
@@ -91,7 +154,7 @@ def main():
     parser.add_argument("--tips", required=True,
                         help='JSON, e.g. {"RightLeg": [260, 330], "LeftLeg": [150, 360]}')
     parser.add_argument("--pad", type=int, default=80)
-    parser.add_argument("--mode", default="margin", choices=["margin", "line"])
+    parser.add_argument("--mode", default="margin", choices=["margin", "line", "mocap"])
     args = parser.parse_args()
     tips = {k: tuple(v) for k, v in json.loads(args.tips).items()}
     print(annotate(args.input, args.output, tips, pad=args.pad, mode=args.mode))
