@@ -7,14 +7,22 @@ foot must be derived from the leg area itself, completed
 where possible by a shoe/boot area.
 
 Inputs are foreground pixel sets: leg_masks = [{fg: set of
-(x, y)}], shoe_masks = [{fg: set}] (shoe, boot, or sock
-masks, any of which count as a foot area). Coordinates are
-full-image coordinates.
+(x, y)}], shoe_masks = [{fg: set}] (shoe, boot, sock, or
+bare-foot masks — any of these counts as a foot area;
+a barefoot character like Lila has foot areas but no
+shoe areas). Coordinates are full-image coordinates.
 
 Rules:
-  1. Link a shoe area to a leg area if their bounding boxes
-     overlap or the shoe box sits within 40px below the leg
-     box, with x-ranges overlapping. A shoe that links to
+  1. Link a shoe area to a leg area by FOREGROUND
+     proximity, not by bounding box. Box x-overlap fails
+     when legs overlap in the image (Lila 10: both foot
+     boxes x-overlap both leg boxes, so box linking
+     marked both feet ambiguous). Instead: if a shoe
+     area overlaps exactly one leg area by >50px, it
+     links to that leg; otherwise, if it overlaps none,
+     it links to its nearest leg only if within 30px
+     (sampled foreground distance) and at least 10px
+     nearer than the next leg. A shoe that links to
      two legs, or a leg that links to two shoes, is
      AMBIGUOUS, not assigned.
   2. Merged area = leg fg union linked shoe fg.
@@ -66,12 +74,32 @@ def _bbox(fg):
     return (min(xs), min(ys), max(xs), max(ys))
 
 
-def _links(leg_box, shoe_box, gap=40):
-    lx1, ly1, lx2, ly2 = leg_box
-    sx1, sy1, sx2, sy2 = shoe_box
-    x_overlap = not (sx2 < lx1 or sx1 > lx2)
-    below = sy1 <= ly2 + gap and sy2 >= ly1
-    return x_overlap and below
+def _shoe_to_leg(shoe_fg, leg_fgs):
+    """Return leg index for a shoe area, or None if ambiguous.
+
+    Overlap >50px with exactly one leg wins outright.
+    Otherwise nearest leg within 30px, with a 10px margin
+    over the next leg. Sampled foreground distance is used
+    for the nearest case, not box distance.
+    """
+    overlaps = [len(shoe_fg & leg_fg) for leg_fg in leg_fgs]
+    strong = [i for i, o in enumerate(overlaps) if o > 50]
+    if len(strong) == 1:
+        return strong[0]
+    if len(strong) > 1:
+        return None
+    # No strong overlap: sampled nearest distance.
+    sample = list(shoe_fg)[::8]
+    dists = []
+    for leg_fg in leg_fgs:
+        lp = list(leg_fg)[::8]
+        d = min(((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5
+                for a in sample for b in lp) if lp else 9999
+        dists.append(d)
+    order = sorted(range(len(dists)), key=lambda i: dists[i])
+    if dists[order[0]] < 30 and (len(order) == 1 or dists[order[1]] - dists[order[0]] >= 10):
+        return order[0]
+    return None
 
 
 def _merge_overlapping(masks):
@@ -130,33 +158,29 @@ def derive_legs(leg_masks, shoe_masks, facing="right"):
     and, when uncertain, the reason.
     """
     shoe_masks = _merge_overlapping(shoe_masks)
-    leg_boxes = [_bbox(m["fg"]) for m in leg_masks]
-    shoe_boxes = [_bbox(m["fg"]) for m in shoe_masks]
-    # Link matrix: leg i -> shoe indices, shoe j -> leg indices.
-    leg_to_shoes = []
-    for i, lb in enumerate(leg_boxes):
-        leg_to_shoes.append([j for j, sb in enumerate(shoe_boxes)
-                             if _links(lb, sb)])
-    shoe_to_legs = []
-    for j in range(len(shoe_masks)):
-        shoe_to_legs.append([i for i, shoes in enumerate(leg_to_shoes)
-                             if j in shoes])
+    leg_fgs = [set(m["fg"]) for m in leg_masks]
+    # Each shoe assigns to at most one leg; a leg that
+    # receives two shoes is ambiguous.
+    leg_to_shoes = [[] for _ in leg_masks]
+    for j, shoe in enumerate(shoe_masks):
+        target = _shoe_to_leg(set(shoe["fg"]), leg_fgs)
+        if target is not None:
+            leg_to_shoes[target].append(j)
     out = []
     for i, leg in enumerate(leg_masks):
         fg = set(leg["fg"])
         linked = leg_to_shoes[i]
-        unique = [j for j in linked if len(shoe_to_legs[j]) == 1]
-        shoe_linked = len(unique) == 1 and len(linked) == 1
+        shoe_linked = len(linked) == 1
         if shoe_linked:
-            fg = fg | set(shoe_masks[unique[0]]["fg"])
+            fg = fg | set(shoe_masks[linked[0]]["fg"])
             confidence = "derived"
             reason = None
         else:
             confidence = "uncertain"
             if not linked:
-                reason = "no shoe area below leg mask; leg mask may be partial"
+                reason = "no shoe area linked to leg mask; leg mask may be partial"
             else:
-                reason = "shoe link ambiguous (one shoe, multiple legs or vice versa)"
+                reason = "shoe link ambiguous (one leg, multiple shoes)"
         foot, hip = _extremes(fg, leg["fg"], facing=facing)
         out.append({
             "foot": foot if shoe_linked else None,

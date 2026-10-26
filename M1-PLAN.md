@@ -114,22 +114,29 @@ hand tuning on holdout.
   PARTIAL 2026-10-26, NOT DONE: extraction.py +
   run_extraction.py run on bench (SadPocky v2 9-12,
   Lila v10 9-12), artifacts in extraction-test/
-  (annotated + sidecar + extraction_filmstrip.png).
-  What integrates: head (SAM face) correct on all 8;
-  SadPocky 11 both feet correct ([146,381] starboard,
-  [380,184] port) with roles from Spark leg-overlay.
-  What does NOT yet integrate, so f stays open:
-  SadPocky 9 gives only 1 leg mask; SadPocky 10 gives
-  hips but no feet; SadPocky 12 gives port foot only,
-  starboard foot missing; Lila gives NO feet at all
-  (shoe/boot/sock prompts return 0 — Lila is barefoot,
-  so foot area must include bare-foot masks, not just
-  shoe areas); Lila legs stay unlabeled Leg0/Leg1 (no
-  role method for bare legs yet); shoulders/hands are
-  marker_seen=false throughout (no unambiguous SAM box
-  supplied). Spark's own head_centre is unreliable
-  (out-of-frame values on SadPocky 10, Lila 11/12) —
-  extraction correctly ignores it and uses SAM face.
+  (annotated + sidecar + extraction_filmstrip_v2.png).
+  FIXED in run4: foot area now includes bare-foot
+  masks (shoe/boot/sock/foot), so Lila 9-12 all give
+  both feet; SadPocky 12 now gives both feet
+  ([118,381] starboard, [384,214] port); SadPocky 9
+  leg separation fixed by adding a disjoint "thigh"
+  mask when "leg" returns only 1; Lila roles fixed by
+  Spark leg-overlay with an anatomy prompt (no markers
+  needed), consistently leg0 port / leg1 starboard.
+  Foot linking fixed from box x-overlap to foreground
+  proximity (overlap >50px wins, else nearest within
+  30px with 10px margin) — this fixed Lila 10, which
+  box linking marked ambiguous, with no regression on
+  SadPocky 11 / Raincoat 10. What does NOT yet
+  integrate, so f stays open: SadPocky 9 starboard
+  (chambered) foot missing, SadPocky 10 both feet
+  missing — SAM foot-area prompts return 0-1 masks on
+  chambered frames, so those feet are honestly
+  marker_seen=false, not guessed; shoulders/hands are
+  marker_seen=false throughout. Spark yaw for Lila
+  varies across runs (3/4-right vs front on Lila 11),
+  so HeadFacing from yaw is less stable than head
+  centre from SAM face.
 - [ ] M1.1g Automated placement verified on bench: run
   M1.1f on bench frames only, compare extracted joints to
   hand joints, report errors per joint, fix on bench only.

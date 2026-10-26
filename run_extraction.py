@@ -94,8 +94,21 @@ def main():
         path = f"{SP}/{folder}/frames/frame_{num-1:02d}.png"
         print(f"\n=== {character} {num} {path} ===", flush=True)
         legs = sam_fg(path, "leg")
+        if len(legs) < 2:
+            # SadPocky 9: "leg" returns only the planted leg;
+            # the chambered leg comes back as "thigh" and is
+            # disjoint (0px overlap) from the leg mask.
+            for thigh in sam_fg(path, "thigh"):
+                if all(len(thigh["fg"] & leg["fg"]) < 0.1 * len(thigh["fg"])
+                       for leg in legs):
+                    legs.append(thigh)
         shoes = []
-        for pr in ("shoe", "boot", "sock"):
+        # Foot area = shoe/boot/sock OR bare foot. Lila is
+        # barefoot, so shoe prompts return 0 and "foot" is
+        # the only foot-area prompt that works for her;
+        # SadPocky 12's planted foot is found by "foot"
+        # when "shoe" finds only the extended shoe.
+        for pr in ("shoe", "boot", "sock", "foot"):
             shoes.extend(sam_fg(path, pr))
         faces = sam_fg(path, "face")
         face_box = faces[0]["box"] if faces else None
@@ -126,14 +139,26 @@ def main():
         overlay_path = f"extraction-test/{character}-{num}-leg-overlay.png"
         overlay.save(overlay_path)
         roles = [None] * len(legs)
-        if character == "SadPocky" and len(legs) == 2:
-            role_text = spark(
-                "First image is the original character frame. Second image is a leg "
-                "overlay: leg0 in red, leg1 in blue, black elsewhere.\n"
-                "SadPocky: her starboard (right) thigh has a black thigh strap with "
-                "a heart ring; her port (left) thigh has a carrot + small bunny decal.\n"
-                "Answer ONLY:\nleg0: <starboard or port>\nleg1: <starboard or port>",
-                [path, overlay_path])
+        if len(legs) == 2:
+            if character == "SadPocky":
+                role_prompt = (
+                    "First image is the original character frame. Second image is a leg "
+                    "overlay: leg0 in red, leg1 in blue, black elsewhere.\n"
+                    "SadPocky: her starboard (right) thigh has a black thigh strap with "
+                    "a heart ring; her port (left) thigh has a carrot + small bunny decal.\n"
+                    "Answer ONLY:\nleg0: <starboard or port>\nleg1: <starboard or port>")
+            else:
+                role_prompt = (
+                    "First image is the original character frame. Second image is a leg "
+                    "overlay: leg0 in red, leg1 in blue, black elsewhere.\n"
+                    "Lila is a girl with bare legs and bare feet, no leg markers. Her "
+                    "starboard (right) leg connects to the hip on her right side, her "
+                    "port (left) leg connects to the hip on her left side. In a "
+                    "front-facing view, her right hip is on the image left and her "
+                    "left hip is on the image right. Use hip position and body "
+                    "anatomy, not markers, to decide.\n"
+                    "Answer ONLY:\nleg0: <starboard or port>\nleg1: <starboard or port>")
+            role_text = spark(role_prompt, [path, overlay_path])
             print(f"roles: {role_text}", flush=True)
             for line in role_text.splitlines():
                 mm_ = re.match(r"leg(\d+):\s*(starboard|port)", line.strip())
