@@ -133,18 +133,29 @@ def _extremes(fg, leg_fg, facing="right"):
     xs = [p[0] for p in leg_fg]
     ys = [p[1] for p in leg_fg]
     w, h = max(xs) - min(xs), max(ys) - min(ys)
+    # Foot extreme comes from the MERGED area (leg + linked
+    # shoe), hip extreme from the leg mask alone. Bug
+    # found by M1.1g: using leg-only extremes for the
+    # foot ignored a shoe area separated from the leg
+    # mask by a gap (SadPocky 9/10 planted leg: leg
+    # mask ends y=324, shoe area runs to y=383, so the
+    # foot came out 51px above the shoe bottom).
+    # fg already equals leg_fg when no shoe is linked,
+    # so this changes nothing in the unlinked case.
+    fxs = [p[0] for p in fg]
+    fys = [p[1] for p in fg]
     if w > h:
         # Horizontal leg: foot is the far end in facing direction.
         if facing == "right":
-            foot_x, hip_x = max(xs), min(xs)
+            foot_x, hip_x = max(fxs), min(xs)
         else:
-            foot_x, hip_x = min(xs), max(xs)
+            foot_x, hip_x = min(fxs), max(xs)
         foot_rows = [p for p in fg if abs(p[0] - foot_x) <= 5]
         hip_rows = [p for p in leg_fg if abs(p[0] - hip_x) <= 5]
         foot = [foot_x, sum(p[1] for p in foot_rows) // len(foot_rows)]
         hip = [hip_x, sum(p[1] for p in hip_rows) // len(hip_rows)]
         return foot, hip
-    max_y, min_y = max(ys), min(ys)
+    max_y, min_y = max(fys), min(ys)
     foot = _row_centre(fg, max_y, bottom=True)
     hip = _row_centre(leg_fg, min_y, bottom=False)
     return foot, hip

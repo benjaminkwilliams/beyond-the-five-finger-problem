@@ -186,9 +186,23 @@ hand tuning on holdout.
   corrupt [0,0] flags head zone + sector 137 deg.
   Length corrupt [380,381] passes arc, proving
   length and arc are complementary checks.
-- [ ] M1.1g Automated placement verified on bench: run
+- [x] M1.1g Automated placement verified on bench: run
   M1.1f on bench frames only, compare extracted joints to
   hand joints, report errors per joint, fix on bench only.
+  CLOSED 2026-10-26: hand ground truth visually placed
+  from original bench frames (extraction-test/
+  hand_ground_truth.json, bench only, no holdout
+  tuning; foot = far end/bottom of foot, head = face
+  centre, hip = leg top). Run6: 38/40 joints within
+  30px; 2 failures, both SadPocky 9/10 LeftFoot at
+  51px — root cause in placement.py _extremes, which
+  took the foot max-y from the leg mask alone and
+  ignored a linked shoe area across a gap (leg ends
+  y=324, shoe runs to y=383). Fix: foot extreme from
+  merged leg+shoe area, hip extreme from leg mask
+  alone. Run7 (full re-run): 40/40 within 30px, max
+  error 18px (Lila 12 head), no regressions; the two
+  failing feet now 9px and 7px.
 - [ ] M1.1h Holdout run (once, as part of full M1 exit):
   run M1.1f on Raincoat holdout with no hand tuning.
   Hand-tuning holdout joints invalidates the holdout.
