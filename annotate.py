@@ -105,9 +105,45 @@ def annotate_mocap(input_path, output_path, tips, pad=80):
     return output_path
 
 
+def annotate_sidecar(input_path, output_path, tips, pad=0):
+    """Sidecar marker map: a black canvas the SAME SIZE as the
+    original, dots and polygon lines at the SAME coordinates as
+    the joints in the original, no character pixels at all.
+
+    The proposer receives original + map as separate images and
+    associates by coordinate: a dot at (x, y) in the map is the
+    joint at (x, y) in the original. No overlay, no trim, no
+    redraw: the original file is untouched and is the deliverable.
+    The map is also the text-JSON's visual twin: the JSON joint
+    coordinates are exactly the dot coordinates in this map, so
+    the same numbers can later be interpolated between keyframes
+    to generate in-between poses at higher fps.
+    """
+    im = Image.open(input_path).convert("RGB")
+    w, h = im.size
+    canvas = Image.new("RGB", (w, h), (0, 0, 0))
+    draw = ImageDraw.Draw(canvas)
+    pts = {}
+    for entity, (x, y) in tips.items():
+        if entity not in COLOURS:
+            raise SystemExit(f"unknown entity {entity!r}, expected one of {sorted(COLOURS)}")
+        pts[entity] = (x, y)
+    for a, b in MOCAP_LINES:
+        if a in pts and b in pts:
+            draw.line([pts[a], pts[b]], fill=(200, 200, 200), width=3)
+    for entity, (cx, cy) in pts.items():
+        colour = COLOURS[entity]
+        r = 12 if entity in ("Head", "HeadFacing") else 9
+        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=colour)
+    canvas.save(output_path)
+    return output_path
+
+
 def annotate(input_path, output_path, tips, pad=80, mode="margin"):
     if mode == "mocap":
         return annotate_mocap(input_path, output_path, tips, pad=pad)
+    if mode == "sidecar":
+        return annotate_sidecar(input_path, output_path, tips)
     """tips: {entity: (x, y)} in original-frame coordinates.
 
     mode="margin" (default, trim-safe): draw ONLY a large dot in the
@@ -154,7 +190,7 @@ def main():
     parser.add_argument("--tips", required=True,
                         help='JSON, e.g. {"RightLeg": [260, 330], "LeftLeg": [150, 360]}')
     parser.add_argument("--pad", type=int, default=80)
-    parser.add_argument("--mode", default="margin", choices=["margin", "line", "mocap"])
+    parser.add_argument("--mode", default="margin", choices=["margin", "line", "mocap", "sidecar"])
     args = parser.parse_args()
     tips = {k: tuple(v) for k, v in json.loads(args.tips).items()}
     print(annotate(args.input, args.output, tips, pad=args.pad, mode=args.mode))
