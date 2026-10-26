@@ -237,59 +237,107 @@ hand tuning on holdout.
   v10 4 passing pairs, SadPocky v2 9->10 and 11->12,
   SadPocky v6 2 holdout passes must still PASS, at
   assignment level, not just verdict level. Not run yet.
-- [ ] M1.2c Sidecar sending in code: proposer.py v1.1
+- [x] M1.2c Sidecar sending in code: proposer.py v1.1
   sends 4 images per pair (A orig, A map, B orig, B map)
-  in order and parses the reply. Currently only in test
-  scripts, not in proposer.py.
+  in order and parses the reply. CLOSED 2026-10-26:
+  build_sidecar_prompt() returns the 4-image prompt and
+  order list; parse_proposal() is reused. Sidecar maps
+  are automated extraction.py maps, never hand-placed
+  in v1.1.
 
 ## M1.3 — Depth gate
 
-- [ ] M1.3a Pure depth swap test case: same leg stays
-  kicker, depth flips near<->far. No such case is
-  currently in the bench; Raincoat/SadPocky were role
-  swaps, not pure depth swaps.
-- [ ] M1.3b Explicit depth gate in checker: DL cost
+- [x] M1.3a Pure depth swap test case: same leg stays
+  kicker, depth flips near<->far. CLOSED 2026-10-26 as
+  a SYNTHETIC assignment-level case: no borrowed open
+  image was found for this exact defect (reference-art
+  search 2026-10-26, gap recorded), so the test is
+  synthetic by design. Raincoat 9->10 is the real-world
+  counterpart (same port leg, near<->far flip), but
+  its depth evidence is proposer depth_rank, not a
+  borrowed frame set.
+- [x] M1.3b Explicit depth gate in checker: DL cost
   alone may pass a transposition (cheap), so depth
   change needs its own gate, using foot position
   relative to the hip line from the sidecar polygon.
-  Not implemented.
+  CLOSED 2026-10-26 in checker.check_depth_gate():
+  any depth_rank change with no declared turn is a
+  finding, kicker flips flagged as such; declared
+  turn passes; scope is kick pairs, not walk cycles
+  (where near/far flips legitimately every step).
+  Evidence for depth_rank is proposer overlap at a
+  crossing (pelvis/hip), foot/hip-line position is
+  secondary, not the gate. Synthetic test: flip, no
+  turn -> 2 findings; no flip -> []; flip with
+  declared turn -> [].
 
 ## M1.4 — Glossary frozen
 
 - [x] M1.4a Lila armbands adopted: her left upper arm,
   viewer's right in front view, visibility depends on
   perspective/facing. In glossary.json, pushed ef3a7c6.
-- [ ] M1.4b Facing = viewer-side confirmed by user.
-  Currently CANDIDATE in glossary.json, not adopted.
-- [ ] M1.4c Named-set proportions decided (in or out
-  of M1 scope) and recorded.
-- [ ] M1.4d glossary.json frozen as an M1 version
+- [x] M1.4b Facing = viewer-side confirmed by user.
+  CLOSED 2026-10-26 by user-approved recommendation:
+  facing = BOW direction (nose/face direction),
+  superseding the viewer-side candidate. Glossary
+  reading_rule and character facing fields updated
+  accordingly; legacy Facing[right]/[left] tokens
+  mean bow to image-right/left.
+- [x] M1.4c Named-set proportions decided (in or out
+  of M1 scope) and recorded. DECIDED 2026-10-26 by
+  user-approved recommendation: OUT of M1 scope, to
+  M2 calibration. M1 checker uses roles, lengths,
+  arcs, and DL, not subset proportions. Recorded in
+  glossary.json vocabulary.proportions_scope.
+- [x] M1.4d glossary.json frozen as an M1 version
   (version tag / commit noted here when frozen).
+  FROZEN 2026-10-26: glossary.json version "M1",
+  frozen "2026-10-26", status field records armbands
+  adopted, facing=bow adopted, proportions out of
+  M1, mirrored-guard dropped (M1.5a).
 
 ## M1.5 — Bench completeness and robustness
 
-- [ ] M1.5a Mirrored-guard case resolved: find a
+- [x] M1.5a Mirrored-guard case resolved: find a
   left-facing guard file, or explicitly drop the case
   from the M1 count (bench becomes 7, not 8, by
-  decision, not by omission).
+  decision, not by omission). RESOLVED 2026-10-26
+  by user-approved recommendation (search first,
+  drop only if empty): all 16 Lila v5 frames were
+  inspected as a contact sheet; all face front/right,
+  no left-facing guard exists on disk. Case DROPPED,
+  bench is 7 pairs by decision, not omission.
 - [ ] M1.5b Variance: each sidecar pair run more than
   once with Spark, variance reported. Currently one
   run per pair.
-- [ ] M1.5c Occlusion rule in code: occluded or
+- [x] M1.5c Occlusion rule in code: occluded or
   off-frame joint -> marker_seen=false, not a guess.
-  Rule is written in placement-architecture.md, not
-  yet in proposer code.
-- [ ] M1.5d Joint JSON schema formalised: frame size,
+  CLOSED 2026-10-26 in proposer.py: sidecar prompt
+  states the rule, and parse_proposal() ENFORCES it
+  — an item with marker_seen=false has its markers
+  cleared before reaching the checker. Unit test:
+  a false-seen strap item parses to markers ().
+- [x] M1.5d Joint JSON schema formalised: frame size,
   origin (top-left), frame numbers, character, source.
-  Current JSON has frames a/b, colours, polygon lines,
-  and a source field, but no size/origin/frame numbers.
-- [ ] M1.5e Arm/shoulder/hip swap signal tested:
+  CLOSED 2026-10-26: extraction.py already emits
+  frame_size, origin "top-left", frame_number
+  (1-based QA), character, and source "automated:
+  SAM masks + Spark labels, no hand coordinates".
+  The old hand sidecar JSONs (frames a/b) are legacy
+  and are NOT the schema; automated output is.
+- [x] M1.5e Arm/shoulder/hip swap signal tested:
   schema includes them, but only leg roles and head
   facing have been tested as swap signals.
-  Deferred here from M1.1f (user decision
-  2026-10-26): shoulders all bench frames, hands
-  Lila all frames and SadPocky 9 — these are the
-  residuals f closed without, to be revisited here.
+  SCOPED 2026-10-26 by user-approved recommendation:
+  HIPS ONLY for M1. Hip role transfer is tested —
+  spec v2 Trial A (declared HipRight transfer at
+  action-boundary pairs only, adopted) and hip
+  joints in every extraction/sidecar run. Arms and
+  shoulders are DEFERRED to M2, because shoulders
+  are still unseen on every frame (deferred from
+  M1.1f) and an arm/shoulder swap signal cannot be
+  tested without shoulder centres. Deferring is
+  recorded, not hidden.
 
 ## M1 exit checklist (rolls up the above)
 

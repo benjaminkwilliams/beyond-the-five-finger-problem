@@ -213,6 +213,43 @@ def visual_dl(a: tuple[Token, ...], b: tuple[Token, ...]):
     return dp[n][m], ops
 
 
+# ------------------------------------------------------- depth gate (M1.3b)
+
+
+def check_depth_gate(depth_a, depth_b, roles_a, roles_b, declared_turn=False):
+    """Explicit depth gate, M1.3b. depth_* map entity -> depth_rank
+    (0 = near, 1 = far, from the proposer's sidecar assignments).
+    Scope, stated plainly: this gate applies to KICK pairs, where
+    no step, turn, or phase change is declared. In a walk cycle
+    near/far flips legitimately every step; in a kick it does not.
+    If any entity's depth_rank changes between frames with no
+    declared turn, return a finding. A kicker whose depth flips
+    is flagged as such; a support leg flipping alone is also a
+    finding, because the support leg's depth should not change
+    mid-kick either. Evidence for depth_rank itself comes from
+    the proposer: which leg is drawn over the other at a
+    crossing (pelvis/hip overlap in the original), not from
+    foot position alone — foot position relative to the hip
+    line is a secondary signal, not the gate. A synthetic
+    assignment-level case (same kicker, depth flips, no turn)
+    is the M1.3a test case: no borrowed image was found for
+    this exact defect (see reference-art search 2026-10-26),
+    so the test is synthetic by design, not by omission.
+    """
+    if declared_turn:
+        return []
+    findings = []
+    for entity in sorted(set(depth_a) & set(depth_b)):
+        if depth_a[entity] != depth_b[entity]:
+            role = roles_a.get(entity) or roles_b.get(entity) or ""
+            findings.append(
+                f"{entity}: depth_rank {depth_a[entity]} -> {depth_b[entity]} "
+                f"with no declared turn"
+                + (f" (kicker depth flip)" if role == "kick" else "")
+            )
+    return findings
+
+
 # ---------------------------------------------------------------- pair
 
 

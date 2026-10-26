@@ -6,7 +6,7 @@
         "HipLeft",
         "Facing"
       ],
-      "facing": "Facing[right] means she faces toward the image right. Facing[left] means image left.",
+      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Legacy Facing[right]/[left] tokens in bench files mean bow to image-right/left respectively.",
       "markers": {},
       "notes": {
         "HipLeft": "The other hip, the supporting leg in Lila v10.",
@@ -21,7 +21,7 @@
         "LeftLeg",
         "Facing"
       ],
-      "facing": "Facing[right] means she faces toward the image right.",
+      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Legacy Facing[right]/[left] tokens in bench files mean bow to image-right/left respectively.",
       "markers": {},
       "notes": {
         "LeftLeg": "The other leg.",
@@ -34,7 +34,7 @@
         "LeftLeg",
         "Facing"
       ],
-      "facing": "Facing[right] means she faces toward the image right. Facing[left] means image left.",
+      "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Legacy Facing[right]/[left] tokens in bench files mean bow to image-right/left respectively.",
       "hard_case": "Separate the black thigh strap from the navy skirt by position and shape, not by colour threshold alone. If the strap cannot be seen at this resolution, report marker_seen=false for that leg instead of guessing which leg carries it.",
       "marker_notes": {
         "LeftLeg.decal": "Carrot decal plus a small bunny decal on HER left upper thigh, with a pink band-aid on the knee and a white sock.",
@@ -51,13 +51,13 @@
     }
   },
   "depth": "depth_rank 0 is the near (front) leg, 1 is the far (back) leg. The kicking leg in the bench cases is the near leg, drawn in front, in all kick frames.",
-  "reading_rule": "Entity names Right/Left are the character's own right/left, never image left/right. Facing[left/right] is CANDIDATE viewer-side: the direction she faces in the image. A mirrored marker is a FAIL, not a cosmetic swap. Never mirror a sided marker to make a frame pass. Canonical sided names are port (her left) and starboard (her right), defined by bow direction. Right/Left are legacy aliases for starboard/port.",
+  "reading_rule": "Entity names Right/Left are the character's own right/left, never image left/right. Facing is BOW direction (nose/face direction), adopted 2026-10-26, superseding the viewer-side candidate: bow toward camera, bow to image-right, bow to image-left, or bow away, as Spark + angle chart reports it. A mirrored marker is a FAIL, not a cosmetic swap. Canonical sided names are port (her left) and starboard (her right), defined by bow direction. Right/Left are legacy aliases for starboard/port.",
   "roles": [
     "kick",
     "support",
     ""
   ],
-  "status": "DRAFT for M1, not adopted spec, except Lila armbands (adopted 2026-10-26, see Lila notes). Sources: locked sheets lila.md (2026-09-28) and sadpocky.md (2026-09-26) only. Facing viewer-side remains CANDIDATE pending explicit confirmation.",
+  "status": "M1 FROZEN 2026-10-26 (user-approved recommendations): Lila armbands adopted; facing = bow direction ADOPTED (supersedes viewer-side candidate); named-set proportions OUT of M1 scope, to M2 calibration; mirrored-guard case dropped (see M1-PLAN M1.5a). Sources: locked sheets lila.md (2026-09-28) and sadpocky.md (2026-09-26) only.",
   "vocabulary": {
     "bow": "The character's facing direction, defined by the nose/face. Bow is forward, stern is backward (back of head). Facing is bow direction, not image left/right.",
     "stern": "Opposite bow, the back of the character.",
@@ -71,6 +71,9 @@
     },
     "depth_note": "Near/far (depth_rank) is a camera-relative signal, not a port/starboard signal. The near leg is the one drawn over the other at a crossing, whichever side (port or starboard) it happens to be in that view.",
     "bounded_context_foot": "Foot, Shoe, and Sock are the same bounded context for movement: one foot area at the end of a leg, not three entities. Shoe/sock/boot masks merge into that foot area before linking to a leg.",
-    "out_of_scope_fall": "NOT tracked in this phase: a walking character slips, falls, the starboard leg moves superior to the torso, the starboard shoe detaches and continues upward while the character lies on the ground. Detached-shoe and leg-superior-to-torso movement are out of scope; they would need a detached-object entity and their own bench case."
-  }
+    "out_of_scope_fall": "NOT tracked in this phase: a walking character slips, falls, the starboard leg moves superior to the torso, the starboard shoe detaches and continues upward while the character lies on the ground. Detached-shoe and leg-superior-to-torso movement are out of scope; they would need a detached-object entity and their own bench case.",
+    "proportions_scope": "OUT of M1 scope (user-approved 2026-10-26): named-set proportions (e.g. strap share of leg, marker relative position) are not calibrated in M1; M1 checker uses roles, lengths, arcs, and DL. Proportion calibration is M2 work."
+  },
+  "version": "M1",
+  "frozen": "2026-10-26"
 }
