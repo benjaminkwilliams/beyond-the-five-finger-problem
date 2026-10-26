@@ -148,6 +148,45 @@ post-process.
   is paid early, before expensive downstream
   work depends on a broken frame.
 
+## Prior art: the failing corpus
+
+User-stated 2026-10-26, pun intended: the images
+that are failing are prior art, and we are using
+them to build the framework. Know what bad looks
+like so we can know what good looks like.
+
+In TDD terms, the failing images are the red tests.
+A test suite made only of passing examples is
+vacuous — it cannot distinguish a good sequence
+from a bad one, because it has never seen bad.
+The bench is therefore deliberately a mixed corpus:
+
+- Passing examples: Lila v10 4 pairs, SadPocky
+  v2 9->10 and 11->12, SadPocky v6 holdout passes.
+  These are what good looks like, and a spec
+  amendment that breaks them is rejected.
+- Failing examples: SadPocky v2 10->11 leg swap,
+  Raincoat v2 9->10 depth-plane swap, Lila v5
+  mirrored guard (facing flip, role transfer
+  declared but facing not). These are what bad
+  looks like, and a checker that passes them is
+  wrong, no matter how clean its passing cases
+  look. The Raincoat case is load-bearing here:
+  the unannotated proposer passed it, so without
+  that failing example in the corpus, the
+  depth/role defect would have shipped as "good".
+
+Discipline that keeps this honest: bench failing
+cases MAY be used to build tests — that is what
+the bench is for. Holdout failing cases may NOT
+be tuned to — holdout is run once, with no hand
+tuning, as part of exit, or it stops being a
+test and becomes another bench case. And a
+failing example is kept as a test, not deleted
+when it becomes inconvenient: deleting the
+mirrored-guard case instead of resolving it
+(M1.5a) would be deleting a test to get green.
+
 ## What TDD for video is not
 
 - It is not "look at the video and say if it is
