@@ -28,12 +28,25 @@ hand tuning on holdout.
 - [x] M1.1b Leg separation on bench (box level): "leg"
   gives 2 boxes in all 4 bench frames tested (SadPocky v2
   9/10, Raincoat 8/9). Boxes in sam-test/boxes.json.
-- [~] M1.1c Foot derivation rule proposed, not implemented:
-  "foot" prompt gives 2 boxes on extended frames, 0 on
-  chambered frames, so foot must be derived from the leg
-  box (bottom centre / lowest pixel), not from a foot
-  prompt. Rule is written in sam_test_notes.md, no code
-  implements it yet.
+- [x] M1.1c Foot derivation from mask AREAS, implemented
+  2026-10-26 in placement.py (not from boxes, not from a
+  foot prompt, which gives 0 masks on chambered frames).
+  Rules: merge overlapping shoe/sock/boot areas into one
+  foot area per foot; link a foot area to a leg area only
+  if unique and within 40px below/overlapping; foot is
+  orientation-aware (vertical leg: bottom-5-row centre;
+  horizontal leg: far-end columns in facing direction,
+  because max y on a horizontal leg is the hip end, not
+  the foot); no shoe link -> foot=None, uncertain, never
+  a knee/shin bottom presented as a foot. Bench results:
+  Raincoat A/B feet derived correctly (boot bottoms
+  339/382/242, within ~20px of shoe areas); SadPocky B
+  feet derived ([146,381] planted, [380,184] extended
+  leg end); SadPocky A both legs correctly uncertain
+  (no shoe masks, partial leg masks ending at 279/324).
+  Caveat: for horizontal legs "foot" means leg end/toe,
+  not shoe centre, so it sits ~30-40px from a shoe-centre
+  reference — that is the definition, not an error.
 - [ ] M1.1d Head/facing reliable: "head" prompt is correct
   on chambered frames (head + hair + ears, centre ~30-50px
   above face centre) but wrong on extended frames (covers
