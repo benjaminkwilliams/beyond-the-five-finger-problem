@@ -44,8 +44,24 @@ COLOURS = {
 }
 
 
-def annotate(input_path, output_path, tips, pad=80):
-    """tips: {entity: (x, y)} in original-frame coordinates."""
+def annotate(input_path, output_path, tips, pad=80, mode="margin"):
+    """tips: {entity: (x, y)} in original-frame coordinates.
+
+    mode="margin" (default, trim-safe): draw ONLY a large dot in the
+    enlarged padding, on the same side as the tip and at the same
+    height as the tip. No line, no tip dot, no character pixel is
+    touched. Trim is then a pure crop of the padding, with zero
+    redraw. This is the only mode safe for final images.
+
+    mode="line" (test-only, superseded): draw a line from the tip
+    to the edge dot. REJECTED for production use 2026-10-26: the
+    line crosses the character (e.g. SadPocky chambered-leg line
+    draws over her other leg), so removing it would require
+    redrawing character pixels, which risks the generator returning
+    a bad form from context/memory/cache. A planted foot is not
+    the kicking foot, and a marker must never make it look like
+    it is. Kept only to reproduce the earlier mechanism test.
+    """
     im = Image.open(input_path).convert("RGB")
     w, h = im.size
     canvas = Image.new("RGB", (w + 2 * pad, h + 2 * pad), (0, 0, 0))
@@ -56,12 +72,14 @@ def annotate(input_path, output_path, tips, pad=80):
             raise SystemExit(f"unknown entity {entity!r}, expected one of {sorted(COLOURS)}")
         colour = COLOURS[entity]
         cx, cy = x + pad, y + pad
-        # Edge point: horizontally outward from the tip, to the
-        # nearer left/right edge of the enlarged canvas.
-        edge_x = pad - 10 if cx < canvas.size[0] // 2 else canvas.size[0] - pad + 10
-        draw.line([(cx, cy), (edge_x, cy)], fill=colour, width=10)
-        draw.ellipse([cx - 10, cy - 10, cx + 10, cy + 10], fill=colour)
-        draw.ellipse([edge_x - 20, cy - 20, edge_x + 20, cy + 20], fill=colour)
+        # Margin dot: same side as the tip, same height, centred
+        # in the padding. Clamp height so the dot stays in padding.
+        edge_x = pad // 2 if cx < canvas.size[0] // 2 else canvas.size[0] - pad // 2
+        edge_y = min(max(cy, 20), canvas.size[1] - 20)
+        draw.ellipse([edge_x - 20, edge_y - 20, edge_x + 20, edge_y + 20], fill=colour)
+        if mode == "line":
+            draw.line([(cx, cy), (edge_x, cy)], fill=colour, width=10)
+            draw.ellipse([cx - 10, cy - 10, cx + 10, cy + 10], fill=colour)
     canvas.save(output_path)
     return output_path
 
@@ -73,9 +91,10 @@ def main():
     parser.add_argument("--tips", required=True,
                         help='JSON, e.g. {"RightLeg": [260, 330], "LeftLeg": [150, 360]}')
     parser.add_argument("--pad", type=int, default=80)
+    parser.add_argument("--mode", default="margin", choices=["margin", "line"])
     args = parser.parse_args()
     tips = {k: tuple(v) for k, v in json.loads(args.tips).items()}
-    print(annotate(args.input, args.output, tips, pad=args.pad))
+    print(annotate(args.input, args.output, tips, pad=args.pad, mode=args.mode))
 
 
 if __name__ == "__main__":
