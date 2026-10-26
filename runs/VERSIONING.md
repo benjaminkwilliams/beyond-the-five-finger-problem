@@ -38,12 +38,31 @@ and any known contamination or loss in that version.
   `e201ae4` onward. It is filled by `archive_run.py`
   after that run finishes, not during it.
 
-## Rule for future runs
+## Current-run rule (user trick, 2026-10-26)
 
-A run writes its outputs to its version folder, or is
-archived there immediately after it finishes, with a
-manifest. A run never writes over another version's
+One folder is the current run: `runs/current/`. While a
+run is in flight, everything it writes goes there, and
+nowhere else. After it finishes — success OR failure —
+the whole folder moves, with `move_current.py`, to
+`runs/versions/<version>-<language>-<date>-<outcome>/`,
+with a manifest recording the outcome. `runs/current/`
+is then recreated empty for the next run.
+
+Failures are versioned, not discarded: a failed run's
+version folder is how the next run knows what not to
+repeat. A run never writes over another version's
 folder, and never reuses a filename that another
 character's frames already used — sidecar filenames
 include the set folder (e.g. `sadpocky-green-v2-10-sidecar.png`),
 which is what stopped the v1 collision from recurring.
+
+Activation note: the Port/Starboard re-run already in
+flight when this rule was adopted writes to the flat
+`extraction-test/` directory, because its drivers were
+loaded before the rule existed. That run is the last
+flat run: after it finishes, its outputs move to its
+version folder with `move_current.py` (or `archive_run.py`
+for the flat case), and the next run writes to
+`runs/current/` from the start. Drivers are not edited
+mid-run to switch paths, because that would break the
+job in flight.
