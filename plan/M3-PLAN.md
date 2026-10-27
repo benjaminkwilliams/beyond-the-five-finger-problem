@@ -33,6 +33,17 @@ Exit criteria:
 - [x] Readable report in runs/results/report_m3.md.
 - [x] Repo freeze recorded: commit + push, freeze
   state in this plan. FREEZE 2026-10-27:
+  Follow-up 2026-10-27 (post-freeze, recorded,
+  not silent): Meta Image API added as a
+  GENERATOR node (meta_image.py + graph.
+  generator()). muse-image-1.0 confirmed on the
+  account; /images/generations verified live
+  (guard, 12.6s) and /images/edits verified live
+  (snap from skeleton sidecar, 21.9s; first JSON
+  shape rejected with a clear error — `image`
+  only for multipart — corrected to
+  images[].image_url per the live error). The
+  verifier runs unchanged on either generator.
   remote main e6efeaf, M1 closed, M2 closed,
   M3 graph + demo green. Further work goes to
   M4 packaging or a new plan, not silent edits

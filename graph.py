@@ -21,6 +21,22 @@ Nodes:
 """
 import sys
 sys.path.insert(0, ".")
+import meta_image
+
+
+def generator(prompt, out_path, sidecar_path=None):
+    """GENERATOR node, Meta Image API edition.
+
+    sidecar_path given -> /images/edits (skeleton
+    in, drawing out). None -> /images/generations
+    (text only). Returns the local file path.
+    The rest of the graph runs unchanged on
+    whatever generator produced the frame — the
+    verifier must not care which generator drew it.
+    """
+    if sidecar_path:
+        return meta_image.edit(prompt, sidecar_path, out_path)
+    return meta_image.generate(prompt, out_path)
 from calibration import dl_for_pair, BUDGET
 from boundary import budget as boundary_budget
 from sequence_judge import judge_sequence
