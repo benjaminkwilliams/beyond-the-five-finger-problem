@@ -1,0 +1,198 @@
+infographic:
+  template_version: "1.1"
+  theme: dark
+  title: "BEYOND THE FIVE FINGER PROBLEM"
+  subtitle: "One harness engine: spec and tests first, checker per pair, repair in named-set language"
+  canvas: {width: 3200, height: 2250, safe_margin: 60}
+  layout: {mode: absolute, connectors: true, routing: orthogonal}
+  typography: ecosystem
+  icons: {enabled: false}
+  title_position: {x: 80, y: 55}
+  subtitle_position: {x: 80, y: 125}
+  boxes:
+    - id: spec
+      role: information
+      style: card
+      accent: neutral
+      title: "SPEC — shared state for every node"
+      body_lines: ["Glossary (M1 frozen) • Locked character sheets • Bench + holdout, never tuned to holdout • Feeds: Generator, Proposer, Checker"]
+      x: 60
+      y: 210
+      width: 3080
+      height: 150
+    - id: front
+      role: road_sign
+      style: banner
+      accent: teal
+      title: "FRONT BOOKEND — tests written from the spec BEFORE frames are judged"
+      body: "A test is never rewritten to pass a bad frame. Spec changes go through the bench-regression rule."
+      direction: right
+      x: 60
+      y: 380
+      width: 3080
+      height: 180
+    - id: generator
+      role: information
+      style: card
+      accent: blue
+      title: "GENERATOR"
+      body_lines: ["Muse Image / any generator", "Draws frames from the spec"]
+      x: 60
+      y: 700
+      width: 580
+      height: 280
+    - id: frames
+      role: information
+      style: card
+      accent: blue
+      title: "FRAMES — pair"
+      body_lines: ["Frame A, frame B", "Adjacent pair is the unit under test"]
+      x: 700
+      y: 700
+      width: 580
+      height: 280
+    - id: proposer
+      role: information
+      style: card
+      accent: purple
+      title: "PROPOSER"
+      body_lines: ["SAM 3.1 masks + Spark labels", "Sidecar maps, no hand coords"]
+      x: 1340
+      y: 700
+      width: 580
+      height: 280
+    - id: checker
+      role: information
+      style: card
+      accent: green
+      title: "CHECKER"
+      body_lines: ["Gate 1: individual", "Gate 2: continuity", "Gate 3: visual DL", "Limb + arc limits"]
+      x: 1980
+      y: 700
+      width: 580
+      height: 280
+    - id: amender
+      role: information
+      style: card
+      accent: amber
+      title: "AMENDER"
+      body_lines: ["Repair in named-set language", "e.g. port leg"]
+      x: 2620
+      y: 700
+      width: 580
+      height: 280
+    - id: back
+      role: information
+      style: card
+      accent: teal
+      title: "BACK BOOKEND"
+      body_lines: ["Checker per pair, as frames return", "Cheapest failing representation first", "No late full re-roll"]
+      x: 60
+      y: 1300
+      width: 980
+      height: 260
+    - id: bench
+      role: information
+      style: card
+      accent: red
+      title: "BENCH-JUDGE"
+      body_lines: ["Bench 7 pairs + holdout 3", "Passing a failing case is wrong", "Deleting a failing case = deleting a test"]
+      x: 1080
+      y: 1300
+      width: 980
+      height: 260
+    - id: report
+      role: information
+      style: card
+      accent: green
+      title: "REPORT + DEMO"
+      body_lines: ["Readable report per pair", "Lead demo: leg swap mid-sequence, frames fine"]
+      x: 2100
+      y: 1300
+      width: 980
+      height: 260
+  line_styles:
+    flow: {accent: neutral, pattern: solid, width: 5}
+    fail: {accent: red, pattern: solid, width: 5}
+    spec: {accent: red, pattern: dashed, width: 5, dash: [14, 11]}
+  relationships:
+    - id: gen_frames
+      from: {box: generator, side: right, offset: 0.5}
+      to: {box: frames, side: left, offset: 0.5}
+      points: [[640, 840], [700, 840]]
+      line_style: flow
+      arrows: end
+      label: "draw"
+      label_position: {x: 670, y: 800}
+    - id: frames_proposer
+      from: {box: frames, side: right, offset: 0.5}
+      to: {box: proposer, side: left, offset: 0.5}
+      points: [[1280, 840], [1340, 840]]
+      line_style: flow
+      arrows: end
+      label: "pair"
+      label_position: {x: 1310, y: 800}
+    - id: proposer_checker
+      from: {box: proposer, side: right, offset: 0.5}
+      to: {box: checker, side: left, offset: 0.5}
+      points: [[1920, 840], [1980, 840]]
+      line_style: flow
+      arrows: end
+      label: "assign"
+      label_position: {x: 1950, y: 800}
+    - id: checker_amender
+      from: {box: checker, side: right, offset: 0.5}
+      to: {box: amender, side: left, offset: 0.5}
+      points: [[2560, 840], [2620, 840]]
+      line_style: fail
+      arrows: end
+      label: "FAIL"
+      label_position: {x: 2590, y: 800}
+    - id: checker_report
+      from: {box: checker, side: bottom, offset: 0.5}
+      to: {box: report, side: top, offset: 0.5}
+      points: [[2270, 980], [2270, 1150], [2590, 1150], [2590, 1300]]
+      line_style: flow
+      arrows: end
+      label: "PASS"
+      label_position: {x: 2430, y: 1150}
+    - id: amender_generator
+      from: {box: amender, side: bottom, offset: 0.5}
+      to: {box: generator, side: top, offset: 0.5}
+      points: [[2910, 980], [2910, 1100], [350, 1100], [350, 700]]
+      line_style: fail
+      arrows: end
+      label: "repair instruction: regenerate only the failing named set"
+      label_position: {x: 1630, y: 1100}
+    - id: back_bench
+      from: {box: back, side: right, offset: 0.5}
+      to: {box: bench, side: left, offset: 0.5}
+      points: [[1040, 1430], [1080, 1430]]
+      line_style: flow
+      arrows: end
+    - id: bench_report
+      from: {box: bench, side: right, offset: 0.5}
+      to: {box: report, side: left, offset: 0.5}
+      points: [[2060, 1430], [2100, 1430]]
+      line_style: flow
+      arrows: end
+    - id: bench_spec
+      from: {box: bench, side: bottom, offset: 0.5}
+      to: {box: spec, side: left, offset: 0.5}
+      points: [[1570, 1560], [1570, 1700], [40, 1700], [40, 285], [60, 285]]
+      line_style: spec
+      arrows: end
+      label: "spec evolution, only under regression rule"
+      label_position: {x: 800, y: 1700}
+  legend:
+    x: 80
+    y: 1910
+    entries:
+      - {line_style: flow, label: "Data flow"}
+      - {line_style: fail, label: "Fail path"}
+      - {line_style: spec, label: "Spec evolution, regression rule only"}
+  footer:
+    x: 80
+    y: 2150
+    brand: "Beyond the Five Finger Problem"
+    note: "General workflow only. Individual steps refine each node once they are known."

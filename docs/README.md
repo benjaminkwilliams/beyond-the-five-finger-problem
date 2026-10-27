@@ -11,6 +11,7 @@ GitHub requires there.
   to its authors.
 - `sam_test_notes.md` — SAM placement test notes.
 
-Plans live in `../plan/`, not here. Run archives live
+Plans live in `../plan/`, not here. The workflow
+infographic lives in `infographic/` under this folder. Run archives live
 in `../runs/versions/`, and run result records
 in `../runs/results/`.
