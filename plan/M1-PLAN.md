@@ -233,10 +233,10 @@ hand tuning on holdout.
   SadPocky and Raincoat swaps caught correctly with
   hand-placed sidecar maps (checker FAIL, DL 6.0 vs 2.00).
   Code in annotate.py, mode sidecar, pushed e5a2636.
-- [ ] M1.2b Full file-backed re-run with sidecar: Lila
+- [x] M1.2b Full file-backed re-run with sidecar: Lila
   v10 4 passing pairs, SadPocky v2 9->10 and 11->12,
   SadPocky v6 2 holdout passes must still PASS, at
-  assignment level, not just verdict level. Not run yet.
+  assignment level, not just verdict level. CLOSED 2026-10-26: proposer v1.2 on corrected flag-only sidecars, 20 runs (v3 archive). Roles stable/correct; SadPocky v2 swap caught both runs DL 6.0 for the right reason; SadPocky v6 and Raincoat roles green. See closure note below.
 - [x] M1.2c Sidecar sending in code: proposer.py v1.1
   sends 4 images per pair (A orig, A map, B orig, B map)
   in order and parses the reply. CLOSED 2026-10-26:
@@ -322,9 +322,13 @@ hand tuning on holdout.
   inspected as a contact sheet; all face front/right,
   no left-facing guard exists on disk. Case DROPPED,
   bench is 7 pairs by decision, not omission.
-- [ ] M1.5b Variance: each sidecar pair run more than
-  once with Spark, variance reported. Currently one
-  run per pair.
+- [x] M1.5b Variance: each sidecar pair run more than
+  once with Spark, variance reported. CLOSED 2026-10-26:
+  v3 run, 20 runs (10 pairs x 2). Roles stable/correct
+  in all 20; facing flips that remain are systematic
+  (same both runs), not proposer variance. Facing
+  determination itself is re-bucketed to M2 (see M1
+  closure below), not a variance failure.
 - [x] M1.5c Occlusion rule in code: occluded or
   off-frame joint -> marker_seen=false, not a guess.
   CLOSED 2026-10-26 in proposer.py: sidecar prompt
@@ -405,14 +409,37 @@ is NOT edited; this correction lives here instead.
 
 ## M1 exit checklist (rolls up the above)
 
-- [ ] Proposer assignments (not hand assignments) over
+- [x] Proposer assignments (not hand assignments) over
   the full file-backed bench, assignment-level audit
-  clean, not just verdicts.
-- [ ] Holdout 3/3 with the same proposer, no hand
-  tuning on holdout.
-- [ ] Mirrored-guard case counted or explicitly dropped
+  clean, not just verdicts. CLOSED 2026-10-26 (v3):
+  roles stable/correct; SadPocky v2 swap caught both
+  runs DL 6.0 for the right reason.
+- [x] Holdout 3/3 with the same proposer, no hand
+  tuning on holdout. CLOSED 2026-10-26 (v3) on ROLES:
+  Raincoat 9->10 roles correct both runs, DL 0.
+  Facing on holdout is re-bucketed to M2 (below),
+  not counted as a holdout failure here.
+- [x] Mirrored-guard case counted or explicitly dropped
   (M1.5a).
-- [ ] Glossary frozen (M1.4d).
+- [x] Glossary frozen (M1.4d).
+
+## M1 CLOSED 2026-10-26 (user decision: re-bucketing,
+not a true rescope)
+
+M1 exit is met on roles + swap detection. Facing
+determination is moved to M2, where it belongs:
+Spark yaw got the ball rolling — it proved the
+proposer/sidecar/checker loop works and gave the
+first facing signal — but facing as a Spark label
+is the wrong bucket for it. In M2, facing is a
+skeleton vector (HeadFacing, and TorsoFacing as
+Back -> Chest), supplied by the skeleton, never
+guessed from a yaw label. Likewise, DL weighting
+for a marker appearing alone (SadPocky v6 11->12
+run2, DL 3.0) is M2 calibration work, not an M1
+verdict failure. Lila v10 remains in the failing
+corpus: a FAIL there is correct behaviour.
+M1 work is done. M2 is plan/M2-PLAN.md.
 
 ## CORRECTION 2026-10-26 evening (user): Lila v10 originals
 violate the rules — they are failing cases, not ground
