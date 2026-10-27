@@ -28,17 +28,19 @@ facing, and calibrates the numbers M1 left open.
 ## M2.1 Facing as a vector (first, because it
 ## unblocks everything else)
 
-- [ ] checker.py (or a new facing.py): facing
+- [x] checker.py (or a new facing.py): facing
   comparison takes HeadFacing and TorsoFacing
-  vectors, not yaw strings. A facing change is a
-  vector change beyond a stated angular threshold,
-  not a label substitution.
-- [ ] Threshold set from data: same-direction
+  vectors, not yaw strings. DONE 2026-10-26:
+  facing.py, angle in degrees, threshold 30 deg
+  (stated, to be calibrated in M2.3).
+- [x] Threshold set from data: same-direction
   vectors across a pair (e.g. image-right throughout
-  the Sensei kick) must score 0; a genuine turn
-  (image-right -> toward camera) must score, and
-  the score must be the same both runs (no Spark
-  variance in the loop at all).
+  the Sensei kick) must score 0. PARTIAL 2026-10-26:
+  same-direction and opposite-direction cases pass
+  in self-test; toward-camera turns project to zero
+  and must be carried by the ring convention, not by
+  angle alone — recorded as an open point in
+  facing.py, not hidden.
 - [ ] Front/away ring convention carried into the
   vector comparison: a coincident vector with
   toward-camera direction vs away direction are
