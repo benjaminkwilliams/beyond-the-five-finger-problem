@@ -6,7 +6,7 @@ with the angle chart, plus leg-role labelling on a numbered
 leg overlay) via the connector surrogate, then runs
 extraction.extract, writes sidecar maps + joint JSON, and
 draws annotated originals. Output goes to
-extraction-test/ (local/untracked, like other test strips).
+runs/current/ (local/untracked, like other test strips).
 
 Bench only. Holdout is NOT run here (M1.1h).
 """
@@ -25,7 +25,7 @@ mm = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mm)
 import meta_sam_parser as m
 from PIL import Image, ImageDraw, ImageFont
-from extraction import extract, COLOURS
+from extraction import extract, COLOURS, render_sidecar
 
 BASE = "https://api.meta.ai/v1"
 CHART = "/home/hatch/workspace/user/media_library/image/fe/fe2de5df81968ef0dd9d234fea1c9e1adddad52e750c2eb8035b4077ef035ccd.png"
@@ -73,12 +73,25 @@ def spark(prompt, images):
 
 def parse_orientation(text):
     out = {}
+    prev_by_key = {}
     for line in text.splitlines():
         if ":" in line:
             k, v = line.split(":", 1)
             out[k.strip()] = v.strip()
     return out
 
+
+def _prev_from_joints(joints):
+    """Build prev_joints for the next frame from this frame's joints."""
+    j = joints.get("joints", {})
+    try:
+        sf = j["StarboardFoot"]["point"]; sh = j["StarboardHip"]["point"]
+        pf = j["PortFoot"]["point"]; ph = j["PortHip"]["point"]
+        if sf and sh and pf and ph:
+            return {"starboard": (tuple(sf), tuple(sh)), "port": (tuple(pf), tuple(ph))}
+    except KeyError:
+        pass
+    return None
 
 def main():
     import os
@@ -90,6 +103,7 @@ def main():
         ("Lila", "lila-v10", 11), ("Lila", "lila-v10", 12),
     ]
     all_results = {}
+    prev_by_key = {}
     for character, folder, num in cases:
         path = f"{SP}/{folder}/frames/frame_{num-1:02d}.png"
         print(f"\n=== {character} {num} {path} ===", flush=True)
@@ -138,7 +152,7 @@ def main():
         for i, leg in enumerate(legs):
             for (x, y) in leg["fg"]:
                 od.point((x, y), fill=colours[i % len(colours)])
-        overlay_path = f"extraction-test/{character}-{num}-leg-overlay.png"
+        overlay_path = f"runs/current/{character}-{num}-leg-overlay.png"
         overlay.save(overlay_path)
         roles = [None] * len(legs)
         if len(legs) == 2:
@@ -182,19 +196,18 @@ def main():
                 [((b["box"][0] + b["box"][2]) // 2, (b["box"][1] + b["box"][3]) // 2)
                  for b in fists], key=lambda p: p[0])
             extra = {"StarboardHand": centres[0], "PortHand": centres[1]}
+        prev = prev_by_key.get((character, folder))
         joints, sidecar = extract((w, h), num, character, legs, shoes,
                                   face_box=face_box, orientation=orient, leg_roles=roles,
-                                  extra_joints=extra)
+                                  extra_joints=extra, prev_joints=prev)
         all_results[f"{character}-{num}"] = joints
+        prev_by_key[(character, folder)] = _prev_from_joints(joints)
+        if joints.get("leg_track_conflict"): print("LEG TRACK CONFLICT: Spark roles overridden by continuity", flush=True)
         # Sidecar map
         smap = Image.new("RGB", (w, h), (0, 0, 0))
         sd = ImageDraw.Draw(smap)
-        for a, b in sidecar["lines"]:
-            sd.line([sidecar["dots"][a], sidecar["dots"][b]], fill=(80, 80, 80), width=2)
-        for name, pt in sidecar["dots"].items():
-            col = COLOURS.get(name, (128, 128, 128))
-            sd.ellipse([pt[0]-8, pt[1]-8, pt[0]+8, pt[1]+8], fill=col)
-        smap.save(f"extraction-test/{character}-{num}-sidecar.png")
+        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()))
+        smap.save(f"runs/current/{character}-{num}-sidecar.png")
         # Annotated original
         ann = orig.copy()
         ad = ImageDraw.Draw(ann)
@@ -204,10 +217,10 @@ def main():
             col = COLOURS.get(name, (128, 128, 128))
             ad.ellipse([pt[0]-6, pt[1]-6, pt[0]+6, pt[1]+6], fill=col, outline=(255, 255, 255), width=1)
             ad.text((pt[0]+8, pt[1]-6), name, fill=col)
-        ann.save(f"extraction-test/{character}-{num}-annotated.png")
+        ann.save(f"runs/current/{character}-{num}-annotated.png")
         print(f"joints: {json.dumps(joints['joints'])}", flush=True)
-    json.dump(all_results, open("extraction-test/joints.json", "w"), indent=2)
-    print("\nsaved extraction-test/joints.json")
+    json.dump(all_results, open("runs/current/joints.json", "w"), indent=2)
+    print("\nsaved runs/current/joints.json")
 
 
 if __name__ == "__main__":

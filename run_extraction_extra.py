@@ -2,7 +2,7 @@
 """Extra extraction for M1.2b pairs not in run7: Lila 13, SadPocky v6 10-12.
 Same code/prompts as run_extraction.py (SadPocky marker prompt, Lila
 anatomy prompt), no new tuning. Output: sidecar/annotated files in
-extraction-test/ with the usual names, joints in extra_joints.json
+runs/current/ with the usual names, joints in extra_joints.json
 (bench joints.json untouched)."""
 import json, re, sys
 sys.path.insert(0, ".")
@@ -10,12 +10,34 @@ import importlib.util
 spec = importlib.util.spec_from_file_location("run_extraction", "run_extraction.py")
 re_ = importlib.util.module_from_spec(spec); spec.loader.exec_module(re_)
 from PIL import Image, ImageDraw
-from extraction import extract, COLOURS
+from extraction import extract, COLOURS, render_sidecar
 CHART = re_.CHART; SP = re_.SP
 CASES = [("Lila", "lila-v10", 13), ("SadPocky", "sadpocky-green-v6", 10),
          ("SadPocky", "sadpocky-green-v6", 11), ("SadPocky", "sadpocky-green-v6", 12)]
+def _prev_from_joints(joints):
+    """Build prev_joints for the next frame from this frame's joints."""
+    j = joints.get("joints", {})
+    try:
+        sf = j["StarboardFoot"]["point"]; sh = j["StarboardHip"]["point"]
+        pf = j["PortFoot"]["point"]; ph = j["PortHip"]["point"]
+        if sf and sh and pf and ph:
+            return {"starboard": (tuple(sf), tuple(sh)), "port": (tuple(pf), tuple(ph))}
+    except KeyError:
+        pass
+    return None
+
 def main():
     out = {}
+    prev_by_key = {}
+    # Seed Lila tracking from the bench run in the same chain, if present:
+    # Lila 13 continues Lila 12, it is not a fresh anchor.
+    try:
+        _bench = json.load(open("runs/current/joints.json"))
+        if "Lila-12" in _bench:
+            prev_by_key[("Lila", "lila-v10")] = _prev_from_joints(_bench["Lila-12"])
+            print("seeded Lila prev from bench Lila-12", flush=True)
+    except Exception as _e:
+        print(f"no bench seed for Lila 13: {_e}", flush=True)
     for character, folder, num in CASES:
         path = f"{SP}/{folder}/frames/frame_{num-1:02d}.png"
         print(f"\n=== EXTRA {character} {num} ===", flush=True)
@@ -49,7 +71,7 @@ def main():
         for i, leg in enumerate(legs):
             for (x, y) in leg["fg"]:
                 od.point((x, y), fill=colours[i % len(colours)])
-        overlay_path = f"extraction-test/{character}-{num}-leg-overlay.png"; overlay.save(overlay_path)
+        overlay_path = f"runs/current/{character}-{num}-leg-overlay.png"; overlay.save(overlay_path)
         roles = [None] * len(legs)
         if len(legs) == 2:
             if character == "SadPocky":
@@ -77,16 +99,16 @@ def main():
         if len(fists) == 2 and orient.get("yaw") == "front":
             centres = sorted([((b["box"][0] + b["box"][2]) // 2, (b["box"][1] + b["box"][3]) // 2) for b in fists], key=lambda p: p[0])
             extra = {"StarboardHand": centres[0], "PortHand": centres[1]}
-        joints, sidecar = extract((w, h), num, character, legs, shoes, face_box=face_box, orientation=orient, leg_roles=roles, extra_joints=extra)
+        prev = prev_by_key.get((character, folder))
+        joints, sidecar = extract((w, h), num, character, legs, shoes, face_box=face_box, orientation=orient, leg_roles=roles, extra_joints=extra, prev_joints=prev)
         out[f"{character}-{num}"] = joints
+        prev_by_key[(character, folder)] = _prev_from_joints(joints)
+        if joints.get("leg_track_conflict"): print("LEG TRACK CONFLICT: Spark roles overridden by continuity", flush=True)
         smap = Image.new("RGB", (w, h), (0, 0, 0)); sd = ImageDraw.Draw(smap)
-        for a, b in sidecar["lines"]:
-            sd.line([sidecar["dots"][a], sidecar["dots"][b]], fill=(80, 80, 80), width=2)
-        for name, pt in sidecar["dots"].items():
-            col = COLOURS.get(name, (128, 128, 128)); sd.ellipse([pt[0]-8, pt[1]-8, pt[0]+8, pt[1]+8], fill=col)
-        smap.save(f"extraction-test/{folder}-{num}-sidecar.png")
+        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()))
+        smap.save(f"runs/current/{folder}-{num}-sidecar.png")
         print(f"joints: {json.dumps(joints['joints'])}", flush=True)
-    json.dump(out, open("extraction-test/extra_joints.json", "w"), indent=2)
-    print("\nsaved extraction-test/extra_joints.json")
+    json.dump(out, open("runs/current/extra_joints.json", "w"), indent=2)
+    print("\nsaved runs/current/extra_joints.json")
 if __name__ == "__main__":
     main()
