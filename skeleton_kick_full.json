@@ -1,11 +1,12 @@
 {
-  "name": "full-body-starboard-kick-v2",
+  "name": "front-kick-sensei",
+  "source": "https://www.martialartsrobots.com/kicks/front.html",
   "kick_side": "Starboard",
   "ground_y": 380,
   "facing": "image-right",
   "frames": [
     {
-      "name": "idle",
+      "name": "guard",
       "Chest": [
         200,
         200
@@ -31,106 +32,39 @@
         210
       ],
       "StarboardElbow": [
-        175,
-        260
+        180,
+        235
       ],
       "PortElbow": [
-        225,
-        260
+        220,
+        235
       ],
       "StarboardHand": [
-        170,
-        300
-      ],
-      "PortHand": [
-        230,
-        300
-      ],
-      "StarboardHip": [
         190,
-        280
-      ],
-      "PortHip": [
-        210,
-        280
-      ],
-      "StarboardKnee": [
-        190,
-        330
-      ],
-      "PortKnee": [
-        210,
-        330
-      ],
-      "StarboardFoot": [
-        190,
-        380
-      ],
-      "PortFoot": [
-        210,
-        380
-      ]
-    },
-    {
-      "name": "windup",
-      "Chest": [
-        185,
-        205
-      ],
-      "Back": [
-        175,
-        205
-      ],
-      "Head": [
-        185,
-        125
-      ],
-      "HeadFacing": [
-        205,
-        125
-      ],
-      "StarboardShoulder": [
-        170,
-        215
-      ],
-      "PortShoulder": [
-        200,
-        215
-      ],
-      "StarboardElbow": [
-        160,
-        265
-      ],
-      "PortElbow": [
-        210,
-        265
-      ],
-      "StarboardHand": [
-        155,
-        305
+        180
       ],
       "PortHand": [
         215,
-        305
+        180
       ],
       "StarboardHip": [
-        175,
-        285
+        190,
+        280
       ],
       "PortHip": [
-        195,
-        285
+        210,
+        280
       ],
       "StarboardKnee": [
-        185,
-        340
+        190,
+        330
       ],
       "PortKnee": [
-        195,
-        335
+        210,
+        330
       ],
       "StarboardFoot": [
-        180,
+        190,
         380
       ],
       "PortFoot": [
@@ -165,36 +99,36 @@
         205
       ],
       "StarboardElbow": [
-        185,
-        255
+        190,
+        230
       ],
       "PortElbow": [
-        235,
-        255
+        230,
+        230
       ],
       "StarboardHand": [
-        180,
-        295
+        200,
+        175
       ],
       "PortHand": [
-        240,
-        295
+        225,
+        175
       ],
       "StarboardHip": [
-        200,
-        270
+        210,
+        275
       ],
       "PortHip": [
-        220,
+        230,
         275
       ],
       "StarboardKnee": [
-        260,
+        285,
         300
       ],
       "PortKnee": [
-        220,
-        325
+        215,
+        330
       ],
       "StarboardFoot": [
         260,
@@ -206,66 +140,66 @@
       ]
     },
     {
-      "name": "extend",
+      "name": "snap",
       "Chest": [
-        235,
-        190
+        230,
+        195
       ],
       "Back": [
-        225,
-        190
+        220,
+        195
       ],
       "Head": [
-        235,
-        110
+        230,
+        115
       ],
       "HeadFacing": [
-        255,
-        110
+        250,
+        115
       ],
       "StarboardShoulder": [
-        220,
-        200
+        215,
+        205
       ],
       "PortShoulder": [
-        250,
-        200
+        245,
+        205
       ],
       "StarboardElbow": [
         210,
-        250
+        230
       ],
       "PortElbow": [
-        260,
-        250
+        250,
+        230
       ],
       "StarboardHand": [
-        205,
-        290
+        220,
+        175
       ],
       "PortHand": [
-        265,
-        290
+        245,
+        175
       ],
       "StarboardHip": [
-        225,
-        265
+        250,
+        275
       ],
       "PortHip": [
-        245,
+        270,
         275
       ],
       "StarboardKnee": [
-        285,
-        270
+        310,
+        265
       ],
       "PortKnee": [
-        245,
-        320
+        220,
+        335
       ],
       "StarboardFoot": [
-        320,
-        270
+        340,
+        260
       ],
       "PortFoot": [
         210,
@@ -275,60 +209,60 @@
     {
       "name": "full",
       "Chest": [
-        250,
-        185
-      ],
-      "Back": [
-        240,
-        185
-      ],
-      "Head": [
-        250,
-        105
-      ],
-      "HeadFacing": [
-        270,
-        105
-      ],
-      "StarboardShoulder": [
         235,
         195
       ],
-      "PortShoulder": [
-        265,
+      "Back": [
+        225,
         195
       ],
+      "Head": [
+        235,
+        115
+      ],
+      "HeadFacing": [
+        255,
+        115
+      ],
+      "StarboardShoulder": [
+        220,
+        205
+      ],
+      "PortShoulder": [
+        250,
+        205
+      ],
       "StarboardElbow": [
-        225,
-        245
+        215,
+        230
       ],
       "PortElbow": [
-        275,
-        245
+        255,
+        230
       ],
       "StarboardHand": [
-        220,
-        285
+        225,
+        175
       ],
       "PortHand": [
-        280,
-        285
+        250,
+        175
       ],
       "StarboardHip": [
-        240,
-        260
-      ],
-      "PortHip": [
         260,
         275
       ],
+      "PortHip": [
+        280,
+        275
+      ],
       "StarboardKnee": [
-        310,
+        320,
         260
       ],
       "PortKnee": [
-        260,
-        315
+        222,
+        335
       ],
       "StarboardFoot": [
         370,
@@ -342,127 +276,60 @@
     {
       "name": "recoil",
       "Chest": [
-        235,
-        190
+        230,
+        195
       ],
       "Back": [
-        225,
-        190
-      ],
-      "Head": [
-        235,
-        110
-      ],
-      "HeadFacing": [
-        255,
-        110
-      ],
-      "StarboardShoulder": [
         220,
-        200
-      ],
-      "PortShoulder": [
-        250,
-        200
-      ],
-      "StarboardElbow": [
-        210,
-        250
-      ],
-      "PortElbow": [
-        260,
-        250
-      ],
-      "StarboardHand": [
-        205,
-        290
-      ],
-      "PortHand": [
-        265,
-        290
-      ],
-      "StarboardHip": [
-        225,
-        270
-      ],
-      "PortHip": [
-        245,
-        270
-      ],
-      "StarboardKnee": [
-        285,
-        270
-      ],
-      "PortKnee": [
-        245,
-        320
-      ],
-      "StarboardFoot": [
-        320,
-        270
-      ],
-      "PortFoot": [
-        210,
-        380
-      ]
-    },
-    {
-      "name": "retract",
-      "Chest": [
-        210,
-        195
-      ],
-      "Back": [
-        200,
         195
       ],
       "Head": [
-        210,
-        115
-      ],
-      "HeadFacing": [
         230,
         115
       ],
+      "HeadFacing": [
+        250,
+        115
+      ],
       "StarboardShoulder": [
-        195,
+        215,
         205
       ],
       "PortShoulder": [
-        225,
+        245,
         205
       ],
       "StarboardElbow": [
-        185,
-        255
+        210,
+        230
       ],
       "PortElbow": [
-        235,
-        255
+        250,
+        230
       ],
       "StarboardHand": [
-        180,
-        295
+        220,
+        175
       ],
       "PortHand": [
-        240,
-        295
+        245,
+        175
       ],
       "StarboardHip": [
-        200,
+        250,
         275
       ],
       "PortHip": [
-        220,
+        270,
         275
       ],
       "StarboardKnee": [
-        260,
+        285,
         300
       ],
       "PortKnee": [
-        220,
-        325
+        215,
+        330
       ],
       "StarboardFoot": [
         260,
@@ -500,20 +367,20 @@
         210
       ],
       "StarboardElbow": [
-        175,
-        260
+        180,
+        235
       ],
       "PortElbow": [
-        225,
-        260
+        220,
+        235
       ],
       "StarboardHand": [
-        170,
-        300
+        190,
+        180
       ],
       "PortHand": [
-        230,
-        300
+        215,
+        180
       ],
       "StarboardHip": [
         190,
