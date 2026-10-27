@@ -1,0 +1,34 @@
+{
+  "fonts": {
+    "DejaVuSans-Bold.ttf": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895",
+    "DejaVuSans.ttf": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+  },
+  "icons": {
+    "outlined/accessibility": "0fd345b95374088b021f6d4562fec614a97cf730f651ff863b766c8f5db7decc",
+    "outlined/analytics": "6902eae9f4a4e0fb86360ce322d3f85487477a99b513b2523657857715a9f5bd",
+    "outlined/article": "b85df0d5a0a8b5721b6a9f7a2114b5367bfeef3484111d5462a53cffdd9bd7a5",
+    "outlined/auto_awesome": "7753ed52070beb2ef3d73e8dae4562b5b6a29de51598ac912207f99c6cc5ab8e",
+    "outlined/build": "7f34f98f9c6aa9244b9aeac75afc5228b19285d35d497b9bebb5789d1b5e6c97",
+    "outlined/calculate": "0aac5eef1f1af1ff7fcd7d089d41f1291b21a5c90adfc9e02bd7dff471365d64",
+    "outlined/collections": "7d6fa0bb45792306061d0b3cfdcadd146c33cdc4116b81817c990250147a4378",
+    "outlined/crop_free": "f6ec5a084bce37d83cee471c45dec681732523720cac40e20c57fdf5c2c8377c",
+    "outlined/gavel": "244c03a928a6a2dbd0fb7f2a3cfd86d73c2d6271e3c430db6c91e3c5fc6e1f16",
+    "outlined/grid_on": "7c517081c8b41a0d4ed37dbc71e8da41ae266aed76ef92ab447c8f7f4807ae63",
+    "outlined/image": "f31284efab911e5ff3e6b4972cc425da80036e7f1be70c7f96e476263ef0bbba",
+    "outlined/menu_book": "05b74ea83dccc734c8c1e4c37b3f49e263766ccb1eef9c8609db3410d1587268",
+    "outlined/psychology": "163318e42f1737467e2105e29d2c435ddf1aab915b4368bdca930254896f14e6",
+    "outlined/timeline": "d2b495ff5fd9cc6fbbfb3ac6d331be44eadcaf33d750f7e3a846f11b7ef1f486",
+    "outlined/visibility": "bdd8f956ba9573ff18136d5c3afa560dc72bd7e8262ea6bb0c3989e80e0c06c8",
+    "outlined/warning": "eee2519fc9a3968d78fa8ece7ec6bb06419dada7ef08af0a94acceb30efa7d60"
+  },
+  "input_sha256": "473fdce6c71017449c3a84831fc75c6a179244da0d999195027eec2e91bc1ab4",
+  "output_sha256": "22eb13f3715f7d7958dae97270e7fdd15972b265723ceed43053e1fa4ece3ca0",
+  "preset": "ecosystem",
+  "theme": "dark",
+  "versions": {
+    "cairosvg": "2.9.1",
+    "pillow": "12.3.0",
+    "python": "3.12.3",
+    "pyyaml": "6.0.3"
+  }
+}
