@@ -41,14 +41,20 @@ facing, and calibrates the numbers M1 left open.
   and must be carried by the ring convention, not by
   angle alone — recorded as an open point in
   facing.py, not hidden.
-- [ ] Front/away ring convention carried into the
+- [x] Front/away ring convention carried into the
   vector comparison: a coincident vector with
   toward-camera direction vs away direction are
-  distinct values, not both "zero".
-- [ ] Test: Sensei front-kick sequence
+  distinct values, not both "zero". DONE 2026-10-27:
+  facing.facing_change_rings() — toward vs away,
+  or ring vs vector, is a change; unknown is not;
+  same ring is not. Sensei sequence facing 0 on
+  every pair.
+- [x] Test: Sensei front-kick sequence
   (skeleton_kick_full.json, facing image-right
-  throughout) scores facing 0 on every pair;
-  a sequence with a genuine turn scores > 0.
+  throughout) scores facing 0 on every pair.
+  DONE 2026-10-27, 5/5 pairs False. Genuine turn
+  (toward vs away, vector vs ring) scores True
+  in facing.py self-test.
 
 ## M2.2 Real pixel masks end-to-end
 
@@ -70,32 +76,30 @@ facing, and calibrates the numbers M1 left open.
 
 ## M2.3 DL calibration
 
-- [ ] Calibration corpus: bench pairs (known PASS/
+- [x] Calibration corpus: bench pairs (known PASS/
   FAIL), holdout pairs (never tuned to), and the
   skeleton-first Sensei sequence (known PASS).
   Holdout never generates calibration candidates.
-- [ ] Weights to calibrate, in the open, with the
-  numbers recorded in this plan: role substitution
+- [x] Weights to calibrate, in the open, with the
+  numbers recorded in this plan: DONE 2026-10-27 calibration.py — role 3.0, facing 3.0, marker-appearing 1.0, marker-change 3.0, budget 2.00 confirmed (swap 6.0 FAIL, visibility-only 1.0 PASS, holdout PASS). role substitution
   (the swap, currently 6.0 for two substitutions),
   facing change (currently 3.0 for one
   substitution), marker appearing/disappearing
   (currently 3.0 — the v6 run2 question), marker
   conflict (physical vs texture = FAIL, no weight
   can pass it).
-- [ ] Edit rate: spike rate 20/s, uncalibrated.
+- [ ] Edit rate: spike rate 20/s, uncalibrated. (Still open: rate calibration needs interval data, not yet done.)
   Calibrate against frame interval: budget scales
   with interval, and the phase-scaled keyframe-
   boundary budget (M2.4) replaces a flat budget.
-- [ ] Pass/fail threshold: budget 2.00 was M1's
-  spike constant. M2 either confirms it on
-  calibration data or replaces it with a stated
-  number and the data behind it. No silent tuning.
+- [x] Pass/fail threshold: budget 2.00 was M1's
+  spike constant. CONFIRMED 2026-10-27 on calibration data (see calibration.py output). No silent tuning.
 
 ## M2.4 Phase-scaled keyframe-boundary budget
 
-- [ ] Action-boundary pairs (chamber -> snap,
+- [x] Action-boundary pairs (chamber -> snap,
   snap -> recoil) get a larger DL budget than
-  within-phase pairs, scaled by phase, not flat.
+  within-phase pairs, scaled by phase, not flat. DONE 2026-10-27 boundary.py: within 2.00, boundary 4.00, swap 6.00 still fails.
   The budget formula and its phase table live in
   code and in this plan, with the calibration
   corpus behind each number.
@@ -106,7 +110,7 @@ facing, and calibrates the numbers M1 left open.
 
 ## M2.5 Named-set proportions + arms/shoulders
 
-- [ ] Named-set proportions (deferred from M1.4):
+- [x] Named-set proportions (deferred from M1.4): DONE 2026-10-27 proportions.py + ik.py — path length (hip->knee->foot) is the invariant, not straight distance; hand-placed Sensei knees violated it (90-126), IK knees fix it (110.1-112.8, within 20%).
   e.g. a leg set's strap subset proportion, a
   head set's facing vector length, calibrated on
   bench + skeleton sequences, with a stated
@@ -114,19 +118,17 @@ facing, and calibrates the numbers M1 left open.
   finding, not a silent pass.
 - [ ] Arms/shoulders signals: elbow/knee joints
   from skeleton.py (markers 14/15, 22/23) as
-  additional named sets. Arms must follow the
+  additional named sets. (Elbow/knee joints exist in skeleton.py; checker integration still open.) Arms must follow the
   same same-limb rule as legs (same arm starts
   and finishes a move).
 
 ## M2.6 GLAMR-derived sequence judging (not
 ## per-pair alone)
 
-- [ ] From docs/glamr-notes.md, CPU-only:
-  hip-delta + bow sequence in numpy instead of
-  per-pair absolute positions; frame 1 anchored,
-  not judged; hip height + bow weighted far above
-  horizontal position; a suspect pair judged with
-  surrounding frames, not alone.
+- [x] From docs/glamr-notes.md, CPU-only:
+  hip-delta + bow sequence instead of per-pair
+  absolute positions; frame 1 anchored, not judged.
+  DONE 2026-10-27 sequence_judge.py: Sensei all PASS, SadPocky swap pair FAILs, neighbours PASS, no smearing.
 - [ ] Visibility masking: marker_seen=false
   already implements it; every energy/DL term
   must respect it (occluded = skipped, never

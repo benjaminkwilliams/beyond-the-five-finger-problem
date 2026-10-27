@@ -85,6 +85,33 @@ def facing_change(v1, v2, threshold=THRESHOLD_DEG):
     return ang > threshold
 
 
+def facing_change_rings(a, b, threshold=THRESHOLD_DEG):
+    """Facing change with the ring convention included.
+
+    a, b are each one of:
+      ("vector", (x, y)) — in-plane facing direction
+      ("toward",) — cyan ring around white (toward camera)
+      ("away",) — white ring around cyan (back of head)
+      ("unknown",) — zero vector or missing point
+    Rules, in order:
+      - either unknown -> False (unknown is not a change)
+      - ring types differ (toward vs away, or ring vs
+        vector) -> True (a genuine turn, even though
+        toward/away project to zero and angle alone
+        cannot score them — this is the M2.1 open
+        point, closed here by carrying the ring value)
+      - both vectors -> angle > threshold
+      - same ring, or same vector direction -> False
+    """
+    if a[0] == "unknown" or b[0] == "unknown":
+        return False
+    if a[0] != b[0]:
+        return True
+    if a[0] in ("toward", "away"):
+        return False
+    return facing_change(a[1], b[1], threshold)
+
+
 if __name__ == "__main__":
     # Sensei kick: facing image-right throughout -> 0 change.
     right = (20, 0)
@@ -102,6 +129,12 @@ if __name__ == "__main__":
     assert facing_change(right, (-20, 0)) is True
     # Missing point -> unknown, not a change.
     assert facing_change(right, None) is False
+    # Ring convention tests (M2.1 finish).
+    assert facing_change_rings(("toward",), ("toward",)) is False
+    assert facing_change_rings(("toward",), ("away",)) is True
+    assert facing_change_rings(("toward",), ("vector", (20, 0))) is True
+    assert facing_change_rings(("vector", (20, 0)), ("vector", (20, 0))) is False
+    assert facing_change_rings(("unknown",), ("vector", (20, 0))) is False
     print("facing: vector comparison self-test pass")
     print("  same direction: 0 deg, no change")
     print("  opposite direction: 180 deg, change")
