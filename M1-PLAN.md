@@ -354,6 +354,55 @@ hand tuning on holdout.
   tested without shoulder centres. Deferring is
   recorded, not hidden.
 
+## CORRECTION 2026-10-26 evening (user-corrected, supersedes v1.2 audit)
+
+User, on seeing the DL 3.0 filmstrips: Lila v10 9->10,
+10->11, 12->13 have legs mislabeled on frame 10, and
+cyan dots missing on frames 9, 11, 13. Raincoat v2
+legs are mislabeled, and cyan dot missing on frame 9.
+DL 3.0 is the CORRECT call, because the images do not
+match the mocap (sidecar maps).
+
+What this overturns: the v1.2 audit claimed DL 3.0
+false-positived PASS pairs via a legitimate head turn.
+That claim is WITHDRAWN. The facing change in the
+proposer output is not a verified legitimate turn —
+it is built on sidecars that do not match the originals,
+so the checker is right to fail the pair.
+
+Two distinct defects, both in the mocap layer, not
+in the proposer prompt:
+1. Cyan hidden when coincident. On front-facing frames
+   (Lila 9, 11, 13; Raincoat 9) extraction sets
+   HeadFacing = Head, and the sidecar draws white over
+   cyan at the same coordinates, so cyan is invisible.
+   Pixel check confirms: sidecar matches extraction
+   exactly, but the map carries no visible facing
+   information on those frames. Proposer inferring
+   "toward camera" from no cyan dot is guessing from
+   absence, not reading a dot. Rule going forward:
+   never draw coincident dots on top of each other —
+   a coincident facing dot must still be visible
+   (ring, larger radius, or fixed offset with a link).
+2. Leg identity wrong vs the original. Sidecar dots
+   match extraction joints exactly (pixel-verified),
+   so the mislabeling is in EXTRACTION, not in the
+   sidecar renderer: Spark leg0/leg1 identity for
+   Lila frame 10 and for Raincoat does not match the
+   legs in the original image. v1.2's dot-reading
+   cannot fix a wrong dot — it faithfully reads a
+   mislabeled map. Fix belongs in extraction leg
+   identity (tracked across frames, not assigned
+   per-frame by x-order or Spark label alone), and
+   must be verified against the original by eye,
+   not against extraction's own output.
+Consequence: M1 exit blocker is extraction identity
++ sidecar rendering, NOT DL calibration alone. Do
+not lower the facing weight to hide a mocap mismatch.
+DL 3.0 stands for these pairs until the mocap matches
+the image. The v1.2 version folder is historical and
+is NOT edited; this correction lives here instead.
+
 ## M1 exit checklist (rolls up the above)
 
 - [ ] Proposer assignments (not hand assignments) over
