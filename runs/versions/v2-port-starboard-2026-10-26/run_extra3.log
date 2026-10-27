@@ -1,0 +1,46 @@
+
+=== EXTRA Lila 13 ===
+legs=2 shoes=2 face=[135, 105, 211, 186]
+head_centre: [195, 155]
+yaw: front
+pitch: level
+bow: camera
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [173, 145], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [173, 145], "marker_seen": true, "reason": "front bow: no image-plane offset"}, "PortHip": {"point": [273, 224], "marker_seen": true, "reason": null}, "PortFoot": {"point": [276, 313], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [177, 275], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [189, 378], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [146, 195], "marker_seen": true, "reason": null}, "PortHand": {"point": [236, 176], "marker_seen": true, "reason": null}}
+
+=== EXTRA SadPocky 10 ===
+legs=2 shoes=10 face=[138, 91, 181, 135]
+head_centre: [480, 275]
+yaw: front
+pitch: level
+bow: toward camera
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [159, 113], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [159, 113], "marker_seen": true, "reason": "front bow: no image-plane offset"}, "PortHip": {"point": [279, 166], "marker_seen": true, "reason": null}, "PortFoot": {"point": [266, 292], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [215, 235], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [191, 381], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [146, 132], "marker_seen": true, "reason": null}, "PortHand": {"point": [210, 114], "marker_seen": true, "reason": null}}
+
+=== EXTRA SadPocky 11 ===
+legs=2 shoes=10 face=[99, 99, 143, 142]
+head_centre: [310, 240]
+yaw: front
+pitch: level
+bow: toward camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+joints: {"Head": {"point": [121, 120], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [121, 120], "marker_seen": true, "reason": "front bow: no image-plane offset"}, "StarboardHip": {"point": [178, 239], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [142, 382], "marker_seen": true, "reason": null}, "PortHip": {"point": [185, 215], "marker_seen": true, "reason": null}, "PortFoot": {"point": [366, 190], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [108, 144], "marker_seen": true, "reason": null}, "PortHand": {"point": [176, 122], "marker_seen": true, "reason": null}}
+
+=== EXTRA SadPocky 12 ===
+legs=2 shoes=10 face=[96, 105, 139, 145]
+head_centre: [300, 275]
+yaw: front
+pitch: level
+bow: camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+joints: {"Head": {"point": [117, 125], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [117, 125], "marker_seen": true, "reason": "front bow: no image-plane offset"}, "StarboardHip": {"point": [189, 241], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [152, 382], "marker_seen": true, "reason": null}, "PortHip": {"point": [193, 221], "marker_seen": true, "reason": null}, "PortFoot": {"point": [378, 195], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [106, 155], "marker_seen": true, "reason": null}, "PortHand": {"point": [173, 122], "marker_seen": true, "reason": null}}
+
+saved extraction-test/extra_joints.json

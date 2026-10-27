@@ -1,0 +1,35 @@
+
+=== EXTRA SadPocky 10 ===
+legs=2 shoes=4 face=[188, 98, 247, 154]
+head_centre: [500, 290]
+yaw: front
+pitch: level
+bow: toward camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+joints: {"Head": {"point": [217, 126], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [217, 126], "marker_seen": true, "reason": "front bow: no image-plane offset"}, "StarboardHip": {"point": [220, 258], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [132, 284], "marker_seen": true, "reason": null}, "PortHip": {"point": [230, 262], "marker_seen": true, "reason": null}, "PortFoot": {"point": [208, 382], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [186, 148], "marker_seen": true, "reason": null}, "PortHand": {"point": [257, 150], "marker_seen": true, "reason": null}}
+
+=== EXTRA SadPocky 11 ===
+legs=2 shoes=10 face=[88, 107, 148, 162]
+head_centre: [305, 285]
+yaw: front
+pitch: slight-down
+bow: camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+joints: {"Head": {"point": [118, 134], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [118, 139], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [184, 260], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [146, 382], "marker_seen": true, "reason": null}, "PortHip": {"point": [216, 235], "marker_seen": true, "reason": null}, "PortFoot": {"point": [380, 184], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [94, 160], "marker_seen": true, "reason": null}, "PortHand": {"point": [236, 155], "marker_seen": true, "reason": null}}
+
+=== EXTRA SadPocky 12 ===
+legs=2 shoes=7 face=[94, 110, 153, 168]
+head_centre: [340, 325]
+yaw: front
+pitch: level
+bow: toward camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+joints: {"Head": {"point": [123, 139], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [123, 139], "marker_seen": true, "reason": "front bow: no image-plane offset"}, "StarboardHip": {"point": [171, 269], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [118, 382], "marker_seen": true, "reason": null}, "PortHip": {"point": [219, 243], "marker_seen": true, "reason": null}, "PortFoot": {"point": [384, 214], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [101, 170], "marker_seen": true, "reason": null}, "PortHand": {"point": [259, 161], "marker_seen": true, "reason": null}}
+
+saved extraction-test/extra_joints.json
