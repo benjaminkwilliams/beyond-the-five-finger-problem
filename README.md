@@ -42,7 +42,7 @@ Photorealistic is out of scope. CPU-only (no GPU on either system).
 - `test_synthetic.py` — rendered pixel-set frames, known verdicts.
 - `run_real.py` — real sets at the assignment level (see limits).
 - `results_synthetic.txt`, `results_real.txt` — captured runs.
-- `glamr-notes.md` — external prior art, annotated: Yuan et al.,
+- `docs/glamr-notes.md` — external prior art, annotated: Yuan et al.,
   "GLAMR: Global Occlusion-Aware Human Mesh Recovery with Dynamic
   Cameras" (CVPR 2022, https://arxiv.org/abs/2112.01524,
   https://github.com/NVlabs/GLAMR). Stage structure and

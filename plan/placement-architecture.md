@@ -9,7 +9,7 @@ SAM prompts return boxes for areas: head, torso, arm, hand,
 hip, leg, foot. A box says "a leg is here". It does NOT say
 which leg. Tested 2026-10-26: "leg" gives 2 boxes in all 4
 bench frames, "foot" only on extended frames, "head" fails
-on extended frames. See sam_test_notes.md.
+on extended frames. See ../docs/sam_test_notes.md.
 
 ## Layer 2: mocap dots — sided identity + context
 

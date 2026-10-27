@@ -298,7 +298,7 @@ hand tuning on holdout.
   M2 calibration. M1 checker uses roles, lengths,
   arcs, and DL, not subset proportions. Recorded in
   glossary.json vocabulary.proportions_scope.
-  Prior art for M2, annotated in glamr-notes.md (Yuan
+  Prior art for M2, annotated in ../docs/glamr-notes.md (Yuan
   et al., GLAMR, CVPR 2022, https://arxiv.org/abs/2112.01524):
   egocentric delta trajectories, visibility masking,
   anchor-plus-free-initial-frame, and context+look-ahead
