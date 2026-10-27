@@ -23,6 +23,17 @@ module. Five nodes, spec as shared state, structured
 records on edges: GENERATOR -> PROPOSER -> CHECKER ->
 AMENDER -> BENCH-JUDGE.
 
+## Generators
+
+(A) Muse media pipeline. (B) Meta Image API
+muse-image-1.0 via meta_image.py, dispatched by
+graph.generator(): generations (text only) and sidecar
+edits (skeleton in, drawing out); guard generation
+12.6s, snap edit 21.9s, both full-size checked. The
+verifier is generator-agnostic — proposer, checker,
+amender, and bench-judge run unchanged on either
+generator's frames.
+
 ## Verifier
 
 Three-way validation for ADJACENT frame pairs only:
@@ -53,13 +64,21 @@ kick (chamber->snap and full->recoil FAIL), with an
 amender instruction naming the leg to lock instead
 of a re-roll.
 
+## Debugging artifact
+
+docs/infographic/workflow-debug-v2.png (2000x6514
+vertical, Spec at top, final output at bottom) is the
+what-calls-what map of the harness: every node, API,
+and service with first-line kind tags.
+
 ## Judging-criteria mapping
 
 - Impact 30%: sequence continuity is the gap between
   "looks fine" and "moves right" for every generative
   video/frame tool, not just this character set.
 - Meta tooling 25%: built on Meta Model API — Spark
-  1.3 as proposer, SAM 3.1 for real pixel masks.
+  1.3 as proposer, SAM 3.1 for real pixel masks, Meta
+  Image API muse-image-1.0 as a second generator node.
 - Technical Depth 20%: set-based checker math,
   calibrated DL, boundary budgets, GLAMR-derived
   sequence judging, skeleton-first generation.
