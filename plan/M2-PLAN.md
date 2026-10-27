@@ -147,9 +147,17 @@ facing, and calibrates the numbers M1 left open.
   (same kick leg, support grounded, facing
   vector) when re-extracted, or the generator
   step fails — not the checker.
-- [ ] Sizing layer (deferred, user-stated):
-  adult/chibi/fumo scale is a mapping on top of
-  the skeleton, not a change to its logic.
+- [ ] Sizing layer (user-stated 2026-10-26 evening,
+  refined): Spark yaw is kept for the IDLE pose on
+  reference sheets, where views are simple front /
+  back / left / right and yaw is reliable. With
+  that idle view known, plus Port/Starboard
+  (character's left/right, never viewer-side),
+  the idle measurements size the skeleton: head
+  size, limb lengths, shoulder/hip widths measured
+  in a known view become the character's scale.
+  Adult/chibi/fumo scale is then a mapping on top
+  of the skeleton, not a change to its logic.
   Limb lengths and head size change; joint
   roles and sequence logic do not.
 - [ ] Character-data layer (deferred, user-stated):

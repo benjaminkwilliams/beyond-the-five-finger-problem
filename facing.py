@@ -7,6 +7,27 @@ the wrong bucket: Spark yaw flipped between frames
 on images that stay image-right, and a front label
 cannot distinguish toward-camera from away.
 
+Spark yaw is NOT discarded: it is helpful on the
+idle pose that reference sheets have, where views
+are simple front / back / left / right. There it
+gives a clean facing classification. It is in-
+sequence facing, where a character turns mid-move,
+that Spark yaw flips and fails — that is what the
+vector replaces. Keep yaw for idle, vectors for
+sequence.
+
+Left/right ambiguity, and why Port/Starboard:
+"left" on a reference sheet can mean the
+character's side OR the facing/viewer side, and
+those flip with view. Port = character's left,
+Starboard = character's right, always, in every
+view. With the idle view known (front/back/left/
+right from yaw) plus the Port/Starboard mapping,
+the idle measurements size the skeleton: head size,
+limb lengths, shoulder/hip widths in a known view
+become the character's scale, instead of a guessed
+adult/chibi/fumo size.
+
 M2 facing:
   HeadFacing vector = HeadFacing point - Head point.
   TorsoFacing vector = Chest point - Back point
