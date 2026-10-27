@@ -413,3 +413,31 @@ is NOT edited; this correction lives here instead.
 - [ ] Mirrored-guard case counted or explicitly dropped
   (M1.5a).
 - [ ] Glossary frozen (M1.4d).
+
+## CORRECTION 2026-10-26 evening (user): Lila v10 originals
+violate the rules — they are failing cases, not ground
+truth to match
+
+User, taking the poses himself: in Lila 10 his
+right/starboard leg is loaded (chambered); in Lila 12
+his right/starboard leg is grounded (support). The
+mocap skeleton does not match the pixel drawing
+(mocap idle pose: "ankle r" is dot 25, red). That is
+why the original images are wrong: they violate the
+same-leg-starts-and-finishes rule and the support-leg
+rule across the sequence. Extraction "mislabeling"
+Lila 10/12 is therefore not, by itself, an extraction
+error to chase — the source frames are incoherent,
+and a faithful extraction shows that incoherence.
+Consequence for M1 exit: Lila v10 pairs must NOT be
+expected to PASS as a clean bench. They belong in
+the failing/regression corpus. A proposer/checker
+that FAILs them is doing its job; forcing them to
+PASS would be tuning to a broken source.
+Direction adopted (user): skeleton first, then
+drawing over it. Build the mocap skeleton, then
+generate the pixel drawing from it, instead of
+drawing freehand and trying to extract a skeleton
+afterwards. This is the generator-side fix and the
+M2/M3 direction; it removes the extraction-vs-
+original argument loop at its root.
