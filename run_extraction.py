@@ -206,7 +206,7 @@ def main():
         # Sidecar map
         smap = Image.new("RGB", (w, h), (0, 0, 0))
         sd = ImageDraw.Draw(smap)
-        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()))
+        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()), coincident_away=sidecar.get("coincident_away", False))
         smap.save(f"runs/current/{character}-{num}-sidecar.png")
         # Annotated original
         ann = orig.copy()

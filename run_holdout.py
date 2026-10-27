@@ -108,7 +108,7 @@ def main():
         if joints.get("leg_track_conflict"): print("LEG TRACK CONFLICT: Spark roles overridden by continuity", flush=True)
         smap = Image.new("RGB", (w, h), (0, 0, 0))
         sd = ImageDraw.Draw(smap)
-        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()))
+        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()), coincident_away=sidecar.get("coincident_away", False))
         smap.save(f"runs/current/{character}-{num}-sidecar.png")
         ann = orig.copy()
         ad = ImageDraw.Draw(ann)

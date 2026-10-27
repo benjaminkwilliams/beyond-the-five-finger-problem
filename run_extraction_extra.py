@@ -105,7 +105,7 @@ def main():
         prev_by_key[(character, folder)] = _prev_from_joints(joints)
         if joints.get("leg_track_conflict"): print("LEG TRACK CONFLICT: Spark roles overridden by continuity", flush=True)
         smap = Image.new("RGB", (w, h), (0, 0, 0)); sd = ImageDraw.Draw(smap)
-        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()))
+        render_sidecar(sd, sidecar["dots"], sidecar["lines"], coincident=sidecar.get("coincident", ()), coincident_away=sidecar.get("coincident_away", False))
         smap.save(f"runs/current/{folder}-{num}-sidecar.png")
         print(f"joints: {json.dumps(joints['joints'])}", flush=True)
     json.dump(out, open("runs/current/extra_joints.json", "w"), indent=2)

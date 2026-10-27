@@ -27,6 +27,12 @@ kick foot travels far. A conflict does not silently
 win: callers record leg_track_conflict=True in the
 joints JSON and in the log, so a swapped frame is
 visible instead of passing through as a clean label.
+CRITICAL (2026-10-26): the caller must NOT override
+the per-frame label with the tracked assignment. The
+defect under test IS a discontinuity — SadPocky v2
+10->11 chambers Starboard and extends Port — and
+overriding it makes the sequence look continuous and
+hides the lead defect. Tracking is a flag only.
 """
 
 def _d(a, b):

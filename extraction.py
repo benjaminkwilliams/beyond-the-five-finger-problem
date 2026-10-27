@@ -93,7 +93,7 @@ def _dist(a, b):
     return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5
 
 
-def render_sidecar(draw, dots, lines, coincident=()):
+def render_sidecar(draw, dots, lines, coincident=(), coincident_away=False):
     """Draw a sidecar map: grey polygon lines, radius-8 dots.
 
     coincident: names whose dot coincides with another dot's
@@ -102,6 +102,12 @@ def render_sidecar(draw, dots, lines, coincident=()):
     width 4) around the dot it coincides with, so it is
     visible instead of hidden underneath it. Rule: never
     draw one dot fully on top of another.
+    coincident_away: HeadFacing == Head AND bow is away
+    (back of head). Then the ring swaps: cyan centre,
+    white ring around it. Front = cyan ring around white;
+    away = white ring around cyan. The swap is the
+    meaning — both cases project to zero offset, so
+    without it front and away would be identical.
     """
     for a, b in lines:
         if a in dots and b in dots:
@@ -109,8 +115,14 @@ def render_sidecar(draw, dots, lines, coincident=()):
     for name, pt in dots.items():
         if name in coincident:
             continue  # drawn as a ring below, not as a filled dot on top
+        if coincident_away and name == "Head":
+            continue  # Head is the ring in the away case, not the centre
         col = COLOURS.get(name, (128, 128, 128))
         draw.ellipse([pt[0] - 8, pt[1] - 8, pt[0] + 8, pt[1] + 8], fill=col)
+    if coincident_away and "HeadFacing" in dots:
+        pt = dots["HeadFacing"]
+        draw.ellipse([pt[0] - 13, pt[1] - 13, pt[0] + 13, pt[1] + 13],
+                     outline=COLOURS["Head"], width=4)
     for name in coincident:
         if name in dots:
             pt = dots[name]
@@ -132,9 +144,13 @@ def extract(frame_size, frame_number, character, leg_masks, shoe_masks,
                   "port": (foot, hip)} from the previous
                   frame of the same set. When supplied
                   and two legs are present, leg_track
-                  continuity overrides a conflicting
-                  per-frame Spark label, and the
-                  conflict is recorded, not hidden.
+                  continuity is CHECKED against the
+                  per-frame Spark label: a conflict is
+                  recorded and the suggested assignment
+                  saved, but the Spark label is KEPT.
+                  Overriding would hide a real
+                  discontinuity, which is the defect
+                  under test.
     Returns (joints_dict, sidecar_spec) where sidecar_spec
     is {"dots": {name: [x, y]}, "lines": [[a, b], ...]}.
     """
@@ -144,13 +160,19 @@ def extract(frame_size, frame_number, character, leg_masks, shoe_masks,
     # Spark label is a candidate, continuity is the check.
     _track_conflict = False
     _spark_roles = list(leg_roles) if leg_roles else []
+    _track_suggested = None
     if prev_joints and len(legs) == 2:
         from leg_track import track_roles as _track_roles
         _curr = [{"spark": (leg_roles[i] if leg_roles and i < len(leg_roles) else None),
                   "foot": leg["foot"], "hip": leg["hip"]} for i, leg in enumerate(legs)]
-        _tracked, _track_conflict = _track_roles(prev_joints, _curr)
-        if _track_conflict:
-            leg_roles = _tracked
+        _track_suggested, _track_conflict = _track_roles(prev_joints, _curr)
+        # CORRECTION 2026-10-26: tracking must NEVER override the
+        # per-frame label. The lead defect IS a discontinuity
+        # (SadPocky v2 10->11: Starboard chambers, Port extends),
+        # and overriding it to make the sequence continuous
+        # hides the defect and would falsely pass M1.2b.
+        # Tracking is a flag only: conflict recorded, Spark
+        # roles kept, suggested assignment recorded for audit.
     joints = {}
     dots = {}
     # Head
@@ -197,8 +219,13 @@ def extract(frame_size, frame_number, character, leg_masks, shoe_masks,
                             "reason": "no unambiguous SAM box supplied"}
     lines = [[a, b] for a, b in LINES if a in dots and b in dots]
     coincident = []
+    coincident_away = False
     if "HeadFacing" in dots and "Head" in dots and dots["HeadFacing"] == dots["Head"]:
-        coincident = ["HeadFacing"]
+        _bow = (orientation.get("bow") or "").lower() if orientation else ""
+        if "away" in _bow or "back" in _bow:
+            coincident_away = True
+        else:
+            coincident = ["HeadFacing"]
     out = {
         "frame_size": list(frame_size), "origin": "top-left",
         "frame_number": frame_number, "character": character,
@@ -210,4 +237,5 @@ def extract(frame_size, frame_number, character, leg_masks, shoe_masks,
         "joints": joints,
         "leg_track_conflict": _track_conflict,
     }
-    return out, {"dots": dots, "lines": lines, "coincident": coincident}
+    out["leg_track_suggested"] = _track_suggested
+    return out, {"dots": dots, "lines": lines, "coincident": coincident, "coincident_away": coincident_away}
