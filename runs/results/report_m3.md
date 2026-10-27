@@ -37,15 +37,19 @@ use the other.
 - guard->chamber: ANCHOR, not judged (the kick
   starts here; support -> kick is the action
   starting, not a swap — M2.6 frame-1 anchor rule)
-- chamber->snap: FAIL, DL 6.0 (leg switches)
+- chamber->snap: FAIL, DL 6.0 (leg switches;
+  snap uses the wrong leg, chamber is correct)
 - snap->full: PASS
-- full->recoil: FAIL, DL 6.0 (leg switches back)
+- full->recoil: FAIL, DL 6.0 (leg switches back;
+  full uses the wrong leg, recoil is correct)
 - Bench judge: PASS against the user's reading.
 
 Amender instruction: lock StarboardLeg as kick
-in all frames; regenerate chamber and recoil
-with StarboardLeg as the raised/folding leg,
-PortLeg planted, facing image-right unchanged.
+in all frames; regenerate snap and full with
+StarboardLeg as the extended leg, PortLeg
+planted, facing image-right unchanged. Chamber
+and recoil are already correct and are NOT
+regenerated.
 
 ## What this proves, and what it does not
 

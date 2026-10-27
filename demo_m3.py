@@ -36,11 +36,20 @@ def main():
     spec = {"kick_side": "Starboard", "support_side": "Port",
             "facing": "image-right"}
     # Case 2: Sensei GIF, human role reading.
-    # Leg A = Port (chamber, recoil), Leg B = Starboard (snap, full).
+    # CORRECTED 2026-10-27 (user): snap and full
+    # (frames 3, 4) use the WRONG leg. Chamber and
+    # recoil (frames 2, 5) are correct. So: chamber
+    # = Starboard (correct), snap = Port (wrong),
+    # full = Port (wrong), recoil = Starboard
+    # (correct). The FAIL pairs are unchanged
+    # (chamber->snap, full->recoil), but the
+    # amender target flips: regenerate snap and
+    # full, not chamber and recoil. The first
+    # version had this backwards.
     # Guard is the anchor, not judged (see above).
-    sensei_frames = [assignments(None), assignments("Port"),
-                     assignments("Starboard"), assignments("Starboard"),
-                     assignments("Port")]
+    sensei_frames = [assignments(None), assignments("Starboard"),
+                     assignments("Port"), assignments("Port"),
+                     assignments("Starboard")]
     # M2.6 rule: frame 0 (guard) is the anchor, not
     # judged. The kick starts at chamber, so the
     # guard->chamber role change (support -> kick)
@@ -107,15 +116,19 @@ use the other.
 - guard->chamber: ANCHOR, not judged (the kick
   starts here; support -> kick is the action
   starting, not a swap — M2.6 frame-1 anchor rule)
-- chamber->snap: FAIL, DL 6.0 (leg switches)
+- chamber->snap: FAIL, DL 6.0 (leg switches;
+  snap uses the wrong leg, chamber is correct)
 - snap->full: PASS
-- full->recoil: FAIL, DL 6.0 (leg switches back)
+- full->recoil: FAIL, DL 6.0 (leg switches back;
+  full uses the wrong leg, recoil is correct)
 - Bench judge: PASS against the user's reading.
 
 Amender instruction: lock StarboardLeg as kick
-in all frames; regenerate chamber and recoil
-with StarboardLeg as the raised/folding leg,
-PortLeg planted, facing image-right unchanged.
+in all frames; regenerate snap and full with
+StarboardLeg as the extended leg, PortLeg
+planted, facing image-right unchanged. Chamber
+and recoil are already correct and are NOT
+regenerated.
 
 ## What this proves, and what it does not
 
