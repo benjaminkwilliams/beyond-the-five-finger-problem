@@ -21,15 +21,22 @@ records on edges. Nodes:
     + holdout, never tuned to holdout.
 
 Exit criteria:
-- [ ] Graph runs end-to-end on SadPocky v2 9-12:
+- [x] Graph runs end-to-end on SadPocky v2 9-12:
   swap pair FAILs, neighbours PASS, no smearing.
-- [ ] Graph runs on the Sensei GIF drawings:
+  DONE 2026-10-27, demo_m3.py, commit e6efeaf.
+- [x] Graph runs on the Sensei GIF drawings:
   2->3 and 4->5 role changes FAIL (the swap
   the user caught 2026-10-27), with an amender
   instruction naming the leg to lock.
-- [ ] Readable report in runs/results/report_m3.md.
-- [ ] Repo freeze recorded: commit + push, freeze
-  state in this plan.
+  DONE 2026-10-27, demo_m3.py. Guard is the
+  anchor, not judged (M2.6 rule).
+- [x] Readable report in runs/results/report_m3.md.
+- [x] Repo freeze recorded: commit + push, freeze
+  state in this plan. FREEZE 2026-10-27:
+  remote main e6efeaf, M1 closed, M2 closed,
+  M3 graph + demo green. Further work goes to
+  M4 packaging or a new plan, not silent edits
+  to frozen code.
 
 Open, recorded 2026-10-27: generated drawings
 carry no side markers, so a proposer cannot
