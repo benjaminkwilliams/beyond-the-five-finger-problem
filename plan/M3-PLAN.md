@@ -145,6 +145,25 @@ carried into both retry-2 frames. Side still
 needs the user's hip reading; filmstrip v7 marks
 retry pairs UNVERIFIED, not PASS.
 
+Eye verdict 2026-10-27 (user, via main chat):
+filmstrip v6 retry-1 snap and retry-1 full both
+read STARBOARD, not Port. This closes the
+UNVERIFIED block on SIDE IDENTITY for the
+retry-1 frames only. It does NOT by itself make
+any pair PASS — pair verdicts still come from
+the checker. With retry-1 side certified, the
+checker on the retry-1 sequence (guard, chamber,
+retry-1 snap, retry-1 full, recoil) gives
+chamber->snap PASS, snap->full PASS, full->recoil
+PASS, all cost 0.0, product verdict PASS on leg
+roles as encoded. Caveat, stated not hidden:
+that checker run encodes leg roles only, so it
+does not judge identity drift in the retry-1
+full frame (barefoot vs shod elsewhere). Retry-2
+(v7) side identity is NOT covered by this
+verdict and stays open pending the user's hip
+reading on v7.
+
 Open, recorded 2026-10-27: generated drawings
 carry no side markers, so a proposer cannot
 assign Starboard/Port from the drawing alone —
