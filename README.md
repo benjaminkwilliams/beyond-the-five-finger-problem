@@ -42,6 +42,13 @@ Photorealistic is out of scope. CPU-only (no GPU on either system).
 - `test_synthetic.py` — rendered pixel-set frames, known verdicts.
 - `run_real.py` — real sets at the assignment level (see limits).
 - `results_synthetic.txt`, `results_real.txt` — captured runs.
+- `glamr-notes.md` — external prior art, annotated: Yuan et al.,
+  "GLAMR: Global Occlusion-Aware Human Mesh Recovery with Dynamic
+  Cameras" (CVPR 2022, https://arxiv.org/abs/2112.01524,
+  https://github.com/NVlabs/GLAMR). Stage structure and
+  optimization form borrowed and re-expressed CPU-only; no
+  GLAMR code or model weights used. See that file for what was
+  taken, what was not, and the credit rule.
 
 ## Results (2026-10-13, this VM, CPU-only)
 - Synthetic: **7/7** expected verdicts — pass on move+morph with
