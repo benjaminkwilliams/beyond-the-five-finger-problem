@@ -16,7 +16,7 @@ change is visible in the record, not silent.
 """
 import os
 
-TEMPLATE_VERSION = "prompt-v1"
+TEMPLATE_VERSION = "prompt-v3"  # v3: NONE-kick handling for guard/return (both feet planted); v2: full torso BACKWARDS
 
 # Fixed phase wording per frame name. Written once, reused
 # verbatim; never reworded per call.
@@ -32,7 +32,8 @@ PHASE_TEXT = {
              "in guard"),
     "full": ("one leg planted on the ground, the other leg "
              "extended straight forward in a full front kick, "
-             "fists up in guard, slight forward lean"),
+             "torso moving backwards for balance, "
+             "fists up in guard"),
     "recoil": ("one leg planted on the ground, the other leg "
                "folding back to a chambered position after a "
                "kick, fists up in guard"),
@@ -64,7 +65,10 @@ def build_input(spec, frame_name, sidecar_path, previous_frame_path=None,
          "LEFT leg."),
         (f"   - The leg marked KICK in the sidecar is the "
          f"kicking leg: {kick.upper()}. The leg marked "
-         f"PLANTED stays on the ground: {support.upper()}."),
+         f"PLANTED stays on the ground: {support.upper()}.")
+        if kick.upper() != "NONE" else
+        ("   - No kicking leg in this frame: both feet "
+         "stay planted on the ground."),
         ("   - Follow the leg from its HIP glyph, through "
          "its KNEE glyph, to its FOOT glyph. A leg is the "
          "hip it hangs from, not where its foot lands on "
@@ -81,7 +85,9 @@ def build_input(spec, frame_name, sidecar_path, previous_frame_path=None,
     lines += [
         f"DRAW THIS FRAME: {phase}.",
         (f"Kicking leg: {kick} (red star). Support leg: "
-         f"{support} (blue disc), planted on the ground."),
+         f"{support} (blue disc), planted on the ground.")
+        if kick.upper() != "NONE" else
+        "Kicking leg: none. Both feet planted on the ground.",
         f"Facing: {spec.get('facing', 'image-right')}.",
         f"Character: {character_desc}.",
         "Drawing itself: no text, no labels, no symbols, "
