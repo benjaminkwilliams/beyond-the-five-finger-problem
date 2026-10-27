@@ -62,7 +62,10 @@ def main():
     sensei_ok, sensei_report = bench_judge(sensei_verdicts, ["FAIL", "PASS", "FAIL"])
     print("Sensei bench judge:", "PASS" if sensei_ok else "FAIL", sensei_report)
     assert sensei_ok, sensei_report
-    sensei_amend = amender(spec, sensei_verdicts)
+    sensei_amend = amender(spec, sensei_frames,
+                            labels=["guard", "chamber", "snap", "full", "recoil"])
+    assert (len(sensei_amend) == 2 and "frame snap" in sensei_amend[0]
+            and "frame full" in sensei_amend[1]), sensei_amend
 
     # Case 1: SadPocky, from graph.py run (recomputed here).
     path = "runs/versions/v3-corrected-port-starboard-port-starboard-2026-10-27-failure/proposer_v11_results.json"
@@ -75,7 +78,13 @@ def main():
     sad_ok, sad_report = bench_judge(sad_verdicts, ["PASS", "FAIL", "PASS"])
     print("SadPocky bench judge:", "PASS" if sad_ok else "FAIL", sad_report)
     assert sad_ok, sad_report
-    sad_amend = amender(spec, sad_verdicts)
+    sad_amend = amender(spec, [a9, a10, a11, a12], labels=[9, 10, 11, 12])
+    # Frames 11 AND 12 both extend PortLeg: the wrong-leg
+    # run spans the whole extension phase, not one frame.
+    # Regenerating 11 alone would leave 12 Port and open
+    # a new swap at 11->12.
+    assert (len(sad_amend) == 2 and "frame 11" in sad_amend[0]
+            and "frame 12" in sad_amend[1]), sad_amend
 
     report = """# M3 lead demo report
 
@@ -100,9 +109,11 @@ silent re-roll, never a mirror.
 - Bench judge: PASS. The swap FAILs, neighbours
   PASS, no smearing.
 
-Amender instruction: regenerate frame 11 with
-StarboardLeg kick, PortLeg support, facing
+Amender instruction: regenerate frames 11 and 12
+with StarboardLeg kick, PortLeg support, facing
 image-right unchanged. Do not mirror a frame.
+Both extension frames use the wrong leg; fixing
+11 alone would open a new swap at 11->12.
 
 ## Case 2: Sensei GIF drawings, human role reading
 

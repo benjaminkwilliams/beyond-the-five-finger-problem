@@ -49,6 +49,21 @@ Exit criteria:
   M4 packaging or a new plan, not silent edits
   to frozen code.
 
+Follow-up 2026-10-27 (post-freeze, recorded,
+not silent): amender fixed to the spec-mismatch
+rule, user-approved. graph.amender() used to
+say "regenerate the later frame" per FAIL pair,
+which regenerated recoil for full->recoil, where
+recoil was correct and full was wrong. New rule:
+regenerate exactly the frames whose kick
+assignment disagrees with spec kick_side, anchors
+(no kick role) skipped. Sensei: snap + full.
+SadPocky: 11 AND 12 — both extension frames use
+the wrong leg, so fixing 11 alone would open a
+new swap at 11->12. Demo asserts both targets.
+Assumes one kick side per sequence; phase-varying
+kick side needs per-phase spec.
+
 Open, recorded 2026-10-27: generated drawings
 carry no side markers, so a proposer cannot
 assign Starboard/Port from the drawing alone —

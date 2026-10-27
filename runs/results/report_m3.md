@@ -21,9 +21,11 @@ silent re-roll, never a mirror.
 - Bench judge: PASS. The swap FAILs, neighbours
   PASS, no smearing.
 
-Amender instruction: regenerate frame 11 with
-StarboardLeg kick, PortLeg support, facing
+Amender instruction: regenerate frames 11 and 12
+with StarboardLeg kick, PortLeg support, facing
 image-right unchanged. Do not mirror a frame.
+Both extension frames use the wrong leg; fixing
+11 alone would open a new swap at 11->12.
 
 ## Case 2: Sensei GIF drawings, human role reading
 

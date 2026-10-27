@@ -16,7 +16,8 @@ Nodes:
     human role readings where the drawing carries
     no markers, flagged as such)
   checker(spec, assignments) -> verdicts
-  amender(spec, verdicts) -> repair instructions
+  amender(spec, assignments_by_frame, labels=None)
+    -> repair instructions
   bench_judge(verdicts, ground_truth) -> PASS/FAIL
 """
 import sys
@@ -59,20 +60,36 @@ def checker(spec, assignments_by_frame):
     return verdicts
 
 
-def amender(spec, verdicts):
+def amender(spec, assignments_by_frame, labels=None):
     """Repair instructions in named-set language.
+    Spec-mismatch rule (2026-10-27, user-approved):
+    regenerate exactly the frames whose kick
+    assignment disagrees with spec['kick_side'].
+    A FAIL pair alone cannot say which frame is
+    wrong: the old 'regenerate the later frame'
+    rule regenerated recoil for full->recoil,
+    where recoil was correct and full was wrong.
+    Frames with no kick role (guard/return
+    anchors) are skipped, not regenerated.
+    Assumes one kick side for the whole sequence;
+    a phase-varying kick side needs per-phase
+    spec, not this rule.
     Never a re-roll, never a mirror."""
+    kick = f"{spec['kick_side']}Leg"
+    support = f"{spec['support_side']}Leg"
+    if labels is None:
+        labels = [f"frame {i}" for i in range(len(assignments_by_frame))]
     out = []
-    for v in verdicts:
-        if v["verdict"] == "FAIL":
-            out.append(
-                f"Pair {v['pair']}: {spec['kick_side']}Leg is kick in "
-                f"all frames; this pair assigns it otherwise "
-                f"({'; '.join(v['ops'])}). Regenerate the later "
-                f"frame with {spec['kick_side']}Leg kick, "
-                f"{spec['support_side']}Leg support, facing "
-                f"{spec['facing']} unchanged. Do not mirror a frame."
-            )
+    for i, assignments in enumerate(assignments_by_frame):
+        for x in assignments:
+            if x[2] == "kick" and x[0] != kick:
+                out.append(
+                    f"Frame {labels[i]}: {x[0]} is kick, but spec "
+                    f"kick side is {spec['kick_side']} ({kick}). "
+                    f"Regenerate frame {labels[i]} with {kick} "
+                    f"kick, {support} support, facing "
+                    f"{spec['facing']} unchanged. Do not mirror a frame."
+                )
     return out
 
 
@@ -106,5 +123,5 @@ if __name__ == "__main__":
     assert ok, report
     print("graph: SadPocky swap FAILs, neighbours PASS, no smearing")
     print("amender instructions:")
-    for ins in amender(spec, verdicts):
+    for ins in amender(spec, [a9, a10, a11, a12], labels=[9, 10, 11, 12]):
         print(" -", ins)
