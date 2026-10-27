@@ -9,8 +9,8 @@ GitHub requires there.
   Yuan et al., GLAMR (CVPR 2022), what was borrowed,
   what was not, the 2.5D direction, and the acknowledgment
   to its authors.
-- `results_m1.md` — proposer v1 results record.
 - `sam_test_notes.md` — SAM placement test notes.
 
 Plans live in `../plan/`, not here. Run archives live
-in `../runs/versions/`.
+in `../runs/versions/`, and run result records
+in `../runs/results/`.
