@@ -109,9 +109,23 @@ def render_sidecar(draw, dots, lines, coincident=(), coincident_away=False):
     meaning — both cases project to zero offset, so
     without it front and away would be identical.
     """
+    # Side-coloured lines (2026-10-26 evening, user):
+    # a leg crossing in front of the opposite hip must
+    # NOT snap to the closest hip when read. Grey lines
+    # force a reader to use proximity, which is exactly
+    # the wrong signal at a crossing. Starboard edges
+    # are red, Port edges blue, matching the foot dots;
+    # torso/head edges stay grey. Follow the colour,
+    # not the nearest dot.
     for a, b in lines:
         if a in dots and b in dots:
-            draw.line([dots[a], dots[b]], fill=(80, 80, 80), width=2)
+            if a.startswith("Starboard") and b.startswith("Starboard"):
+                col = COLOURS["StarboardFoot"]
+            elif a.startswith("Port") and b.startswith("Port"):
+                col = COLOURS["PortFoot"]
+            else:
+                col = (80, 80, 80)
+            draw.line([dots[a], dots[b]], fill=col, width=2)
     for name, pt in dots.items():
         if name in coincident:
             continue  # drawn as a ring below, not as a filled dot on top
