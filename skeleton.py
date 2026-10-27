@@ -20,8 +20,17 @@ Simplification, stated, not hidden:
     PortHip = midpoint of 11 (hip fl) and 12 (hip bl).
   - Wrist markers 16-19 collapse to hands: StarboardHand
     = 21 (finger r), PortHand = 20 (finger l).
-  - Chest (8) is kept as the torso anchor; back (9) is
-    not a separate joint in the simple version.
+  - Chest (8) and Back (9) are BOTH kept, as a pair.
+    CORRECTION 2026-10-26 evening (user): a single
+    torso point has the same problem as a single head
+    point — from idle you cannot tell which direction
+    the body is rotated. The torso direction is the
+    VECTOR Back (9) -> Chest (8), i.e. the body's
+    front direction, exactly parallel to HeadFacing.
+    In a front idle view that vector projects to
+    near zero, so rotation is UNKNOWN from idle
+    alone and must be supplied as a vector, never
+    inferred from the chest point.
 
 Subject-side mapping (this is the rule, not viewer-side):
   subject's r = Starboard, subject's l = Port.
@@ -78,6 +87,7 @@ MARKERS = {
 SIMPLE_JOINTS = {
     "Head": (1, 2, 3, 4, 5),
     "Chest": (8,),
+    "Back": (9,),  # torso vector anchor: Back -> Chest = front
     "StarboardShoulder": (7,),
     "PortShoulder": (6,),
     "StarboardElbow": (15,),
@@ -94,7 +104,8 @@ SIMPLE_JOINTS = {
 
 COLOURS = {
     "Head": (255, 255, 255), "HeadFacing": (0, 255, 255),
-    "Chest": (128, 128, 128),
+    "Chest": (128, 128, 128), "Back": (64, 64, 64),
+    "TorsoFacing": (0, 255, 255),
     "StarboardShoulder": (255, 165, 0), "PortShoulder": (255, 0, 255),
     "StarboardElbow": (255, 200, 0), "PortElbow": (180, 0, 180),
     "StarboardHand": (255, 255, 0), "PortHand": (128, 0, 128),
@@ -104,7 +115,7 @@ COLOURS = {
 }
 
 EDGES = [
-    ("Head", "Chest"),
+    ("Head", "Chest"), ("Chest", "Back"),
     ("Chest", "StarboardShoulder"), ("Chest", "PortShoulder"),
     ("StarboardShoulder", "StarboardElbow"),
     ("PortShoulder", "PortElbow"),
@@ -138,6 +149,25 @@ def simplify(markers):
         if all(n in markers for n in nums):
             out[joint] = midpoint([markers[n] for n in nums])
     return out
+
+
+def torso_facing(frame):
+    """Torso front direction as a vector, or None.
+
+    frame: {joint: (x, y)}. Returns Chest - Back, the
+    body's front direction, parallel to HeadFacing.
+    Returns None if either point is missing, and
+    (0, 0) — rotation unknown, not "facing camera" —
+    if the pair projects to the same point, as in a
+    front idle view. A zero vector must never be
+    read as a facing; it means the view gives no
+    torso direction.
+    """
+    if "Chest" not in frame or "Back" not in frame:
+        return None
+    cx, cy = frame["Chest"]
+    bx, by = frame["Back"]
+    return (cx - bx, cy - by)
 
 
 def validate_sequence(frames, ground_y, kick_side):
@@ -193,6 +223,12 @@ if __name__ == "__main__":
            {"StarboardFoot": (100, 380), "PortFoot": (350, 250)}]
     bad_violations = validate_sequence(bad, 380, "Starboard")
     assert bad_violations, "leg-switch sequence must fail"
+    # Torso vector: front idle projects to zero (unknown),
+    # profile gives a direction, missing point gives None.
+    from skeleton import torso_facing
+    assert torso_facing({"Chest": (100, 200), "Back": (100, 200)}) == (0, 0)
+    assert torso_facing({"Chest": (120, 200), "Back": (100, 200)}) == (20, 0)
+    assert torso_facing({"Chest": (100, 200)}) is None
     print("skeleton: mapping + validation self-test pass")
     print("  valid Starboard kick: 0 violations")
     print(f"  leg-switch (Lila v10 shape): {bad_violations}")
