@@ -227,7 +227,7 @@ def check_depth_gate(depth_a, depth_b, roles_a, roles_b, declared_turn=False):
     A pair that shows the kicking leg changing, or the
     support leg leaving the ground, is a role/grounding
     failure — not a depth_rank flip. Depth_rank alone
-    must not fail a pair. See M1-PLAN M1.3a/b correction.
+    must not fail a pair. See plan/M1-PLAN M1.3a/b correction.
     depth_* map entity -> depth_rank
     (0 = near, 1 = far, from the proposer's sidecar assignments).
     Scope, stated plainly: this gate applies to KICK pairs, where

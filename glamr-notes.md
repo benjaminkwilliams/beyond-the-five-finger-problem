@@ -94,7 +94,7 @@ character at the same time — a departure from pure 2D into
 
 - Camera-extrinsic optimization. Our camera is a fixed sprite
   frame; the analogue is bow direction + depth rank, and the
-  depth gate was already superseded (see M1-PLAN.md, M1.3a/b
+  depth gate was already superseded (see plan/M1-PLAN.md, M1.3a/b
   correction) for the same reason: a rank flip alone is not
   a failure.
 - SDF inter-person penetration loss (Sec. 3.3, Eq. 9, E_pen).
@@ -104,7 +104,7 @@ character at the same time — a departure from pure 2D into
   estimator. All need GPU and/or training data. The CPU
   version of the infiller is interpolation/polynomial through
   seen joints, flagged as infilled — which is what the
-  trajectory-polynomial spike already proved.
+  plan/trajectory-polynomial spike already proved.
 - No new LLM call is introduced by any of this. The proposer
   (Spark via the existing Model API connector) is unchanged;
   GLAMR's infiller and predictor are replaced by
