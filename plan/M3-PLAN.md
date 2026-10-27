@@ -164,6 +164,23 @@ full frame (barefoot vs shod elsewhere). Retry-2
 verdict and stays open pending the user's hip
 reading on v7.
 
+CORRECTION 2026-10-27 — WITHDRAWN, do not
+treat commit 861a501 as settled: the user
+states the widget tap was NOT a verdict made
+after seeing the frames — he had not seen them
+in the main chat. The retry-1 Starboard verdict
+above is therefore WITHDRAWN pending his visual
+check of the retry frames now posted in the main
+chat. Filmstrip v8, built on that verdict, is
+likewise withdrawn and must not be cited as
+certified. Current status, until he rules from
+the images: retry-1 side identity OPEN /
+UNVERIFIED, retry-2 side identity OPEN /
+UNVERIFIED. Do not record either as correct or
+incorrect, and do not build any certification,
+checker encoding, or filmstrip on a verdict
+that has not been made from the images.
+
 Open, recorded 2026-10-27: generated drawings
 carry no side markers, so a proposer cannot
 assign Starboard/Port from the drawing alone —
