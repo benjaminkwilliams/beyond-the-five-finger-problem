@@ -17,7 +17,7 @@ Writes runs/results/report_m3.md.
 """
 import json, sys
 sys.path.insert(0, ".")
-from graph import checker, amender, bench_judge
+from graph import checker, amender, bench_judge, product_verdict
 
 
 def assignments(kick_leg):
@@ -62,6 +62,8 @@ def main():
     sensei_ok, sensei_report = bench_judge(sensei_verdicts, ["FAIL", "PASS", "FAIL"])
     print("Sensei bench judge:", "PASS" if sensei_ok else "FAIL", sensei_report)
     assert sensei_ok, sensei_report
+    print("Sensei product verdict:", product_verdict(sensei_verdicts),
+          "(bench-judge PASS above is checker accuracy only)")
     sensei_amend = amender(spec, sensei_frames,
                             labels=["guard", "chamber", "snap", "full", "recoil"])
     assert (len(sensei_amend) == 2 and "frame snap" in sensei_amend[0]
@@ -78,6 +80,8 @@ def main():
     sad_ok, sad_report = bench_judge(sad_verdicts, ["PASS", "FAIL", "PASS"])
     print("SadPocky bench judge:", "PASS" if sad_ok else "FAIL", sad_report)
     assert sad_ok, sad_report
+    print("SadPocky product verdict:", product_verdict(sad_verdicts),
+          "(bench fixture: a FAIL here is the expected swap, not a product)")
     sad_amend = amender(spec, [a9, a10, a11, a12], labels=[9, 10, 11, 12])
     # Frames 11 AND 12 both extend PortLeg: the wrong-leg
     # run spans the whole extension phase, not one frame.

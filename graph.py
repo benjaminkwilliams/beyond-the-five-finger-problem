@@ -80,24 +80,87 @@ def amender(spec, assignments_by_frame, labels=None):
     if labels is None:
         labels = [f"frame {i}" for i in range(len(assignments_by_frame))]
     out = []
-    for i, assignments in enumerate(assignments_by_frame):
-        for x in assignments:
-            if x[2] == "kick" and x[0] != kick:
-                out.append(
-                    f"Frame {labels[i]}: {x[0]} is kick, but spec "
-                    f"kick side is {spec['kick_side']} ({kick}). "
-                    f"Regenerate frame {labels[i]} with {kick} "
-                    f"kick, {support} support, facing "
-                    f"{spec['facing']} unchanged. Do not mirror a frame."
-                )
+    for i in _mismatched_indices(spec, assignments_by_frame):
+        wrong = [x[0] for x in assignments_by_frame[i] if x[2] == "kick"][0]
+        out.append(
+            f"Frame {labels[i]}: {wrong} is kick, but spec "
+            f"kick side is {spec['kick_side']} ({kick}). "
+            f"Regenerate frame {labels[i]} with {kick} "
+            f"kick, {support} support, facing "
+            f"{spec['facing']} unchanged. Do not mirror a frame."
+        )
     return out
 
 
 def bench_judge(verdicts, ground_truth):
-    """ground_truth: list of expected verdicts per
-    pair. Returns (passed, report)."""
+    """Checker-accuracy test only: do the verdicts
+    match an expected pattern (e.g. a known swap
+    FAILing)? A bench_judge PASS is NOT a product
+    pass. Product success is product_verdict: all
+    pairs PASS. Never conflate the two."""
     ok = all(v["verdict"] == g for v, g in zip(verdicts, ground_truth))
     return ok, [(v["pair"], v["verdict"], g) for v, g in zip(verdicts, ground_truth)]
+
+
+def product_verdict(verdicts):
+    """Product verdict for a generation: PASS iff
+    every judged pair PASSes. Any FAIL pair is a
+    failed output, however accurately the checker
+    caught it. Returns (verdict, failing_pairs)."""
+    failing = [v["pair"] for v in verdicts if v["verdict"] != "PASS"]
+    return ("PASS", []) if not failing else ("FAIL", failing)
+
+
+def _mismatched_indices(spec, assignments_by_frame):
+    """Frame indices whose kick assignment disagrees
+    with spec['kick_side']. Single source of truth
+    for amender and retry_loop."""
+    kick = f"{spec['kick_side']}Leg"
+    out = []
+    for i, assignments in enumerate(assignments_by_frame):
+        for x in assignments:
+            if x[2] == "kick" and x[0] != kick:
+                out.append(i)
+                break
+    return out
+
+
+def retry_loop(spec, assignments_by_frame, labels, fix_frame, max_retries=1):
+    """Retry loop, capped. Attempt 0 is the original
+    frames. Each retry regenerates ONLY the
+    spec-mismatching frames (amender rule) via
+    fix_frame(label, instruction, index), which
+    returns new assignments for that frame (in
+    production: generator + proposer; for unmarked
+    drawings: generator + human role reading,
+    flagged as such). Stops on first all-PASS or
+    when retries run out — it never ships FAILs
+    as a pass and never loosens the checker.
+    Returns a dict with product verdict, attempts
+    used, final verdicts, and final frames."""
+    frames = [list(f) for f in assignments_by_frame]
+    if labels is None:
+        labels = [f"frame {i}" for i in range(len(frames))]
+    verdicts = []
+    for attempt in range(max_retries + 1):
+        verdicts = checker(spec, frames)
+        pv, failing = product_verdict(verdicts)
+        if pv == "PASS":
+            return {"product": "PASS", "attempts": attempt,
+                    "verdicts": verdicts, "frames": frames}
+        if attempt == max_retries:
+            break
+        for i in _mismatched_indices(spec, frames):
+            kick = f"{spec['kick_side']}Leg"
+            support = f"{spec['support_side']}Leg"
+            ins = (f"Frame {labels[i]}: regenerate with {kick} kick, "
+                   f"{support} support, facing {spec['facing']} unchanged. "
+                   f"Do not mirror a frame.")
+            frames[i] = fix_frame(labels[i], ins, i)
+    pv, failing = product_verdict(verdicts)
+    return {"product": pv, "attempts": max_retries,
+            "verdicts": verdicts, "frames": frames,
+            "failing": failing}
 
 
 if __name__ == "__main__":

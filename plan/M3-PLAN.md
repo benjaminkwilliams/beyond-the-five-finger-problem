@@ -64,6 +64,40 @@ new swap at 11->12. Demo asserts both targets.
 Assumes one kick side per sequence; phase-varying
 kick side needs per-phase spec.
 
+Correction 2026-10-27 (user, recorded, not
+silent): product success is ALL pairs PASS.
+A bench-judge PASS on an expected FAIL/PASS/
+FAIL pattern is a checker-accuracy test only —
+it proves the checker detects a known swap, it
+is NOT a passing generation. A generation with
+any FAIL pair is failed output, however
+accurately the checker caught it. The Sensei
+filmstrip v5 is therefore a FAILED output, not
+a passing demo. The retry loop (not yet built)
+must run until all pairs PASS or hit its cap
+and report failure; it must never ship FAILs
+as a pass.
+
+Retry loop 2026-10-27 (user-approved, single
+retry for the proof run): graph.retry_loop()
+with product_verdict() — PASS iff every judged
+pair PASSes. Attempt 0 is the original frames;
+each retry regenerates ONLY spec-mismatching
+frames via fix_frame, then re-checks; stops on
+first all-PASS or when retries run out, never
+loosening the checker. Synthetic test: fix that
+corrects -> PASS at attempt 1; no-op fix ->
+FAIL after 1 retry. Sensei retry 1 (Meta Image
+edits from skeleton sidecars, 12.2s snap, 11.6s
+full): frames changed, but side is NOT
+verifiable from unmarked drawings — geometry
+matches the sidecar in both old and new frames,
+so a PASS cannot be certified from the drawing
+alone. That gap, not the loop, is now the
+blocker for a closed loop: markers in the
+drawing (character-data layer) or a human eye
+reading per retry.
+
 Open, recorded 2026-10-27: generated drawings
 carry no side markers, so a proposer cannot
 assign Starboard/Port from the drawing alone —
