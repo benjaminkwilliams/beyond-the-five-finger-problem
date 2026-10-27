@@ -55,11 +55,20 @@ def generate(prompt, out_path, n=1):
 
 
 def edit(prompt, image_path, out_path):
-    with open(image_path, "rb") as fh:
-        b64 = base64.b64encode(fh.read()).decode()
+    """image_path: one path, or a list of paths in order.
+    List order is the prompt_builder contract: labeled
+    sidecar first, previous-frame drawing second. A single
+    string still works (old callers)."""
+    paths = [image_path] if isinstance(image_path, str) else image_path
+    images = []
+    for p in paths:
+        with open(p, "rb") as fh:
+            b64 = base64.b64encode(fh.read()).decode()
+        ext = "png" if p.lower().endswith(".png") else "webp"
+        images.append({"image_url": f"data:image/{ext};base64,{b64}"})
     data = mm.call("POST", "/images/edits", {
         "model": MODEL, "prompt": prompt,
-        "images": [{"image_url": f"data:image/png;base64,{b64}"}],
+        "images": images,
         "n": 1, "response_format": "b64_json", "output_format": "webp",
     })
     return _save(data, out_path)

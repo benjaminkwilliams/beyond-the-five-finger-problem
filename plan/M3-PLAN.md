@@ -98,6 +98,53 @@ blocker for a closed loop: markers in the
 drawing (character-data layer) or a human eye
 reading per retry.
 
+Diagnostic correction 2026-10-27 (user):
+leg identity is read by HIP CHAIN, not foot
+screen position. A leg is the hip it hangs
+from, followed hip->knee->foot. Frame 2
+(chamber): image hip chains match the sidecar
+chains. Frame 3 (snap): they do not — the
+image extended leg hangs from the Port hip
+while the sidecar extends the Starboard hip.
+Foot image-right in both cases, which is why
+a foot-position reading passes a wrong frame.
+Spark yaw is NOT this check: yaw is facing
+direction only (idle sheets), identical for
+chamber and snap (both image-right), and it
+was never run on the Sensei frames.
+Retry-1 payload audit (meta_image.edit):
+POST /v1/images/edits, muse-image-1.0, prompt
+text + skeleton sidecar PNG ONLY. Missing:
+no colour legend (prompt never said red =
+Starboard, blue = Port; sidecar carries no
+labels), no chamber frame for continuity, no
+character sheet. Result dissociation proves
+the point: retry geometry followed the sidecar
+while side identity did not change — pose is
+conditioned, identity is not constrained.
+
+Labeled sidecars + Python-built input 2026-10-27
+(user-directed): render_skeleton_labeled.py draws
+the skeleton with coloured glyphs instead of dots —
+red star = Starboard, blue disc = Port — plus a
+legend header, STARBOARD/PORT FOOT + KICK/PLANTED
+labels at the feet, and a footer naming frame,
+facing, kick, support. Hip/knee joints carry glyphs
+only (hip word labels collided: hips are 20 units
+apart in the source). prompt_builder.py (prompt-v1)
+builds prompt + image list deterministically: same
+inputs -> same prompt string, verified by repeat
+build; fixed order [labeled sidecar, previous frame
+drawing], fixed phase wording, legend repeated in
+words, hip-chain instruction in words. meta_image.
+edit() now takes a list of images. Retry 2 (snap
+13.8s, full 13.3s, sequential: full used retry-2
+snap as previous frame): previous-frame context
+DID move identity — the chamber yellow sleeve
+carried into both retry-2 frames. Side still
+needs the user's hip reading; filmstrip v7 marks
+retry pairs UNVERIFIED, not PASS.
+
 Open, recorded 2026-10-27: generated drawings
 carry no side markers, so a proposer cannot
 assign Starboard/Port from the drawing alone —
