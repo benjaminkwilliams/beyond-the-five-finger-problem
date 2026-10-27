@@ -9,8 +9,8 @@
       "facing": "Facing is bow direction (adopted M1): bow toward camera / to image-right / to image-left / away, per Spark + angle chart. Bench files written before this rename used legacy Right/Left tokens; they mean Starboard/Port respectively and are retired.",
       "markers": {},
       "notes": {
-        "PortHip": "The other hip, the supporting leg in Lila v10.",
-        "StarboardHip": "The hip that roots the kick in Lila v10, the near (front) leg in the facing-right kick frames. Track the same hip across the pair: a kick that changes hip mid-action with no declared transfer is a continuity break.",
+        "PortHip": "The hip that roots the kick in Lila v10, the near (front) leg in the facing-right kick frames. Track the same hip across the pair: a kick that changes hip mid-action with no declared transfer is a continuity break.",
+        "StarboardHip": "The other hip, the supporting leg in Lila v10.",
         "armbands": "ADOPTED 2026-10-26 (user-confirmed): two thin black buckled bands on her port upper arm, above the long black arm warmer. In a front view that arm is the VIEWER'S RIGHT. Visibility depends on perspective and facing: in a back view the same arm reads viewer's left, and in side views it may be the far arm or occluded. Absence in a frame where her port arm is not the visible/near arm is not, by itself, a missing-marker failure.",
         "traps": "Bare pale legs through the cheongsam side slits are not dark legwear. Bangs cover the viewer's-right eye (her port eye); glasses sit on the viewer's-left eye (her starboard eye)."
       }

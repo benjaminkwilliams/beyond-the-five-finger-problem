@@ -43,10 +43,10 @@ GLOSS = json.load(open("glossary.json"))
 
 PAIRS = [
     # (character, folder, num_a, num_b, expected_kick_leg)
-    ("Lila", "lila-v10", 9, 10, "StarboardHip"),
-    ("Lila", "lila-v10", 10, 11, "StarboardHip"),
-    ("Lila", "lila-v10", 11, 12, "StarboardHip"),
-    ("Lila", "lila-v10", 12, 13, "StarboardHip"),
+    ("Lila", "lila-v10", 9, 10, "PortHip"),
+    ("Lila", "lila-v10", 10, 11, "PortHip"),
+    ("Lila", "lila-v10", 11, 12, "PortHip"),
+    ("Lila", "lila-v10", 12, 13, "PortHip"),
     ("SadPocky", "sadpocky-green-v2", 9, 10, "StarboardLeg"),
     ("SadPocky", "sadpocky-green-v2", 10, 11, "SWAP"),
     ("SadPocky", "sadpocky-green-v2", 11, 12, "PortLeg"),
