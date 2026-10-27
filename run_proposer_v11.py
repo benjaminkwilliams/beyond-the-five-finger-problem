@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""M1.2b / M1.5b driver: proposer v1.1 sidecar re-run, twice (variance).
+"""M1.2b / M1.5b driver: proposer v1.2 sidecar re-run, twice (variance).
 
 For each pair, sends 4 images (A orig, A sidecar, B orig, B sidecar)
 to Spark with proposer.build_sidecar_prompt, parses with
@@ -16,13 +16,14 @@ parse_proposal, and audits assignments against expected roles:
   port chambers then extends, starboard planted; depth gate is
   reported separately (depth_rank from proposer).
 
-Sidecar maps and originals come from extraction-test/ (run7 bench,
+Sidecar maps and originals come from runs/current/ (copied from the
+v2 archive; extraction is not re-run for a prompt-only re-run),
 holdout for Raincoat, and new extraction for Lila 13 / SadPocky v6
 frames, run by run_extraction_v11_extra.py if needed — this driver
 does NOT extract, it only proposes from existing maps).
 
 Runs each pair TWICE for M1.5b variance (2x, user-approved).
-Output: extraction-test/proposer_v11_results.json + log.
+Output: runs/current/proposer_v11_results.json + log.
 """
 import json, sys
 sys.path.insert(0, ".")
@@ -65,7 +66,7 @@ def main():
                 images = []
                 for num in (na, nb):
                     images.append(f"{SP}/{folder}/frames/frame_{num-1:02d}.png")
-                    images.append(f"extraction-test/{folder}-{num}-sidecar.png")
+                    images.append(f"runs/current/{folder}-{num}-sidecar.png")
                 # order is A orig, A sidecar, B orig, B sidecar — images built in that order
                 text = re_.spark(prompt, images)
                 print(text[:1000], flush=True)
@@ -89,8 +90,8 @@ def main():
             except Exception as e:
                 print(f"ERROR {key}: {e}", flush=True)
                 results[key] = {"error": str(e)}
-    json.dump(results, open("extraction-test/proposer_v11_results.json", "w"), indent=2)
-    print("\nsaved extraction-test/proposer_v11_results.json")
+    json.dump(results, open("runs/current/proposer_v11_results.json", "w"), indent=2)
+    print("\nsaved runs/current/proposer_v11_results.json")
 
 if __name__ == "__main__":
     main()

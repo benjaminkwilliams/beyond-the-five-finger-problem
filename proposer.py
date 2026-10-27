@@ -85,6 +85,12 @@ Colours: Head white, HeadFacing cyan, StarboardShoulder orange, PortShoulder mag
 Associate each dot with the original by its coordinates: a dot at (x, y) on the map is the joint at (x, y) in the original.
 Use the originals for what the character looks like and the maps for where the joints are. Do not invent a joint that has no dot, and do not move a dot to fit a pose you expect.
 
+READING ORDER — mandatory, in this order, and the description MUST start with step 1:
+1. DOT READING FIRST. Read each sidecar map before judging any pose. List every coloured dot, its entity, and its approximate coordinates, for frame A and then for frame B. Identity comes from DOT COLOUR, never from screen position: a green dot is StarboardHip even if it sits to the image-left of the teal dot, and a red dot is StarboardFoot even if it sits to the image-left of the blue dot. Hip dots (green StarboardHip, teal PortHip) sit close together — colour is the only identity there; do NOT swap them by left-right order on screen.
+2. POSE FROM ORIGINALS. Only after the dot reading, describe each leg in each original as chambered (bent, knee raised, foot tucked), planted (vertical, foot on the ground), or extended (straight out to the side).
+3. ROLES BY FOOT DOT, NOT BY LOOKS. Support = the leg whose foot dot stays at the ground line (largest y, hip-to-foot line near vertical) in BOTH frames. Kick = the other leg: chambered in A (foot dot near its hip, tucked) and extended in B (foot dot far from its hip, out to the side), or extended in both frames. A leg whose foot dot is on the ground in both frames is support, NEVER kick, even if it looks in front or longest. Never assign kick by image-left/image-right position, by which leg is on the image-right, or by which leg looks longest.
+4. FACING FROM DOTS ONLY. Facing is the HeadFacing cyan dot relative to the Head white dot: cyan coinciding with white means toward camera; cyan offset to image-right means image-right; cyan offset to image-left means image-left. Do NOT infer facing from the kick direction, the leg direction, or which way the body leans. If there is no cyan dot, facing marker_seen=false.
+
 For EACH frame, report, in depth order (near leg first, depth_rank 0, then far leg, depth_rank 1):
 - every entity in the glossary entity list for this character, exactly once
 - its markers, from the glossary marker list for that entity, only if you can actually see them in that frame
@@ -101,7 +107,7 @@ Rules:
 - Entity names are Port/Starboard, defined by bow direction, NEVER image left/right. Track identity across the pair: the leg that chambers in frame A is the same leg in frame B unless the action visibly changes legs.
 - {hard_case}
 - If a marker is too small to see at this resolution, say marker_seen=false. Do not guess its leg.
-- First, in the "description" field, describe in two sentences what each leg is doing in each frame (bent/chambered, planted, or extended) and which markers you can actually see. Then give the assignments. Reasoning first, assignments second.
+- First, in the "description" field, start with the dot reading from step 1 (every dot, entity, coordinates, A then B), then two sentences on pose and visible markers. Then give the assignments. Dot reading first, assignments second — an assignment that contradicts your own dot reading is wrong.
 - Output JSON ONLY, no prose outside the JSON, no markdown fences, exactly this shape:
 {{"description": "...", "frame_a": [{{"entity": "...", "markers": ["..."], "marker_seen": true, "role": "...", "depth_rank": 0}}], "frame_b": [...], "facing_a": "image-right", "facing_b": "image-right"}}
 Include a Facing entry in each frame list with role "" and depth_rank 2, and markers matching facing_a / facing_b.
@@ -110,7 +116,10 @@ Depth: depth_rank 0 is the near (front) leg, drawn in front of the other leg. Th
 
 
 def build_sidecar_prompt(character, glossary):
-    """v1.1 prompt for 4-image sidecar sending. Returns (prompt, image_order)."""
+    """v1.2 prompt for 4-image sidecar sending. Returns (prompt, image_order).
+    v1.2 (2026-10-26, after run #2 audit): mandatory dot-reading order,
+    roles by foot dot (support = foot at ground in both frames),
+    facing from Head/HeadFacing dots only, hip colour warning."""
     char = glossary["characters"][character]
     hard = char.get("hard_case", "Report only what you can see.")
     prompt = SIDECAR_PROMPT_TEMPLATE.format(
