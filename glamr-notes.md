@@ -60,6 +60,36 @@ Four stages, in order:
 | Infill from context AND look-ahead, not the past alone (Fig. 3) | Judge a suspect pair with its surrounding frames in view, not the pair alone | Proposed for M2; also explains proposer misses on pair-only input |
 | Global optimization improves multi-person relative translation/rotation most (Sec. 4.2, Table 6) | Two-figure relative position (e.g. holding-plush) is a later problem, not M1 | Noted, out of M1 scope |
 
+## 2.5D direction (user-stated 2026-10-26, post-hackathon, or during if time)
+
+This round is pure 2D: a fixed sprite frame, camera static,
+character moving. The next direction is to move camera and
+character at the same time — a departure from pure 2D into
+2.5D. That changes the scope of the section below:
+
+- Camera-extrinsic optimization is NOT permanently rejected.
+  It was rejected for the pure-2D phase, where the camera
+  does not move and the depth gate was superseded for that
+  reason. In 2.5D, camera motion is a real variable again:
+  camera heading and character bow become separate
+  quantities, depth rank becomes a real signal instead of
+  a superseded proxy, and GLAMR's joint optimization of
+  trajectories and camera parameters (Sec. 3.3) becomes
+  the relevant framework — re-expressed in 2D terms
+  (pan, zoom, parallax layers, screen-space parallax),
+  not full 3D extrinsics, so it stays CPU-feasible.
+- What 2.5D adds to the checker: a world-coordinate motion
+  and a camera motion must be separated before any leg
+  assignment is judged. A leg that moves on screen because
+  the camera panned is not a leg that moved. The
+  egocentric delta representation above is what makes
+  that separation possible: character deltas in heading
+  coordinates, camera deltas separately, then a
+  composition step.
+- This is NOT M1, M2, or M3 scope. It is recorded here
+  so the pure-2D rejection above is not misread later
+  as a permanent ruling.
+
 ## Ideas explicitly NOT taken
 
 - Camera-extrinsic optimization. Our camera is a fixed sprite
