@@ -80,6 +80,18 @@ Four stages, in order:
   GLAMR's infiller and predictor are replaced by
   deterministic code, not by another model.
 
+## Acknowledgment
+
+Thank you to Ye Yuan, Umar Iqbal, Pavlo Molchanov, Kris Kitani,
+and Jan Kautz, and to NVIDIA Research, for GLAMR and for
+publishing it openly with code and paper. Even where this
+project's design was already heading the same way — estimate,
+infill, anchor a trajectory, check against visible evidence —
+finding that structure worked out, tested, and published in
+GLAMR confirmed we were on the right track, and that
+confirmation itself is worth crediting. This note exists
+because of that, not only because of what was borrowed.
+
 ## Credit rule for this file
 
 If any part of this design is described publicly, credit
