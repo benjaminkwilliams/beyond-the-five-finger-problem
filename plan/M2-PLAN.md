@@ -58,9 +58,17 @@ facing, and calibrates the numbers M1 left open.
 
 ## M2.2 Real pixel masks end-to-end
 
-- [ ] extraction.py: SAM masks (decoded via
+- [x] extraction.py: SAM masks (decoded via
   meta-sam-parser, M1.1e) become the checker's
   per-frame set assignments, not just sidecar dots.
+  DONE 2026-10-27: run_masks.py, v4 archive — 50
+  masks on disk (10 frames x leg/shoe/face/fist),
+  48.6s total, per-frame 3.3-6.0s (uniform, no
+  single-frame bottleneck; ~1.25s per SAM prompt).
+  Leg masks: 2 per frame except SadPocky-9 (1);
+  shoe masks: 0 on most frames (SadPocky 11/12
+  only) — shoe prompt unreliable, leg prompt
+  reliable. Telemetry in runs/telemetry.jsonl.
   Each named set = a pixel set; a marker = a named
   subset, expected to adjust proportionately as
   the set moves/morphs/hides.

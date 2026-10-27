@@ -1,0 +1,532 @@
+{
+  "SadPocky-9": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          207,
+          263,
+          238,
+          324
+        ],
+        "file": "runs/current/masks/SadPocky-9-leg-0.png"
+      },
+      "face-0": {
+        "box": [
+          190,
+          98,
+          249,
+          154
+        ],
+        "file": "runs/current/masks/SadPocky-9-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          288,
+          165,
+          303,
+          199
+        ],
+        "file": "runs/current/masks/SadPocky-9-fist-0.png"
+      },
+      "fist-1": {
+        "box": [
+          242,
+          134,
+          275,
+          166
+        ],
+        "file": "runs/current/masks/SadPocky-9-fist-1.png"
+      },
+      "fist-2": {
+        "box": [
+          171,
+          133,
+          205,
+          165
+        ],
+        "file": "runs/current/masks/SadPocky-9-fist-2.png"
+      }
+    }
+  },
+  "SadPocky-10": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          171,
+          234,
+          220,
+          279
+        ],
+        "file": "runs/current/masks/SadPocky-10-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          205,
+          262,
+          237,
+          324
+        ],
+        "file": "runs/current/masks/SadPocky-10-leg-1.png"
+      },
+      "face-0": {
+        "box": [
+          188,
+          98,
+          247,
+          154
+        ],
+        "file": "runs/current/masks/SadPocky-10-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          240,
+          134,
+          274,
+          166
+        ],
+        "file": "runs/current/masks/SadPocky-10-fist-0.png"
+      },
+      "fist-1": {
+        "box": [
+          169,
+          133,
+          203,
+          164
+        ],
+        "file": "runs/current/masks/SadPocky-10-fist-1.png"
+      }
+    }
+  },
+  "SadPocky-11": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          124,
+          260,
+          189,
+          381
+        ],
+        "file": "runs/current/masks/SadPocky-11-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          216,
+          171,
+          380,
+          239
+        ],
+        "file": "runs/current/masks/SadPocky-11-leg-1.png"
+      },
+      "shoe-0": {
+        "box": [
+          124,
+          342,
+          171,
+          382
+        ],
+        "file": "runs/current/masks/SadPocky-11-shoe-0.png"
+      },
+      "shoe-1": {
+        "box": [
+          328,
+          171,
+          380,
+          225
+        ],
+        "file": "runs/current/masks/SadPocky-11-shoe-1.png"
+      },
+      "face-0": {
+        "box": [
+          88,
+          107,
+          148,
+          162
+        ],
+        "file": "runs/current/masks/SadPocky-11-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          220,
+          140,
+          252,
+          171
+        ],
+        "file": "runs/current/masks/SadPocky-11-fist-0.png"
+      },
+      "fist-1": {
+        "box": [
+          76,
+          143,
+          112,
+          178
+        ],
+        "file": "runs/current/masks/SadPocky-11-fist-1.png"
+      }
+    }
+  },
+  "SadPocky-12": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          98,
+          269,
+          182,
+          381
+        ],
+        "file": "runs/current/masks/SadPocky-12-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          219,
+          214,
+          341,
+          247
+        ],
+        "file": "runs/current/masks/SadPocky-12-leg-1.png"
+      },
+      "shoe-0": {
+        "box": [
+          335,
+          190,
+          384,
+          252
+        ],
+        "file": "runs/current/masks/SadPocky-12-shoe-0.png"
+      },
+      "face-0": {
+        "box": [
+          94,
+          110,
+          153,
+          168
+        ],
+        "file": "runs/current/masks/SadPocky-12-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          82,
+          154,
+          120,
+          187
+        ],
+        "file": "runs/current/masks/SadPocky-12-fist-0.png"
+      },
+      "fist-1": {
+        "box": [
+          244,
+          146,
+          275,
+          176
+        ],
+        "file": "runs/current/masks/SadPocky-12-fist-1.png"
+      }
+    }
+  },
+  "Lila-9": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          242,
+          196,
+          310,
+          283
+        ],
+        "file": "runs/current/masks/Lila-9-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          177,
+          265,
+          209,
+          381
+        ],
+        "file": "runs/current/masks/Lila-9-leg-1.png"
+      },
+      "face-0": {
+        "box": [
+          146,
+          95,
+          221,
+          176
+        ],
+        "file": "runs/current/masks/Lila-9-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          219,
+          138,
+          271,
+          197
+        ],
+        "file": "runs/current/masks/Lila-9-fist-0.png"
+      },
+      "fist-1": {
+        "box": [
+          137,
+          151,
+          181,
+          186
+        ],
+        "file": "runs/current/masks/Lila-9-fist-1.png"
+      }
+    }
+  },
+  "Lila-10": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          184,
+          248,
+          273,
+          340
+        ],
+        "file": "runs/current/masks/Lila-10-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          168,
+          291,
+          220,
+          380
+        ],
+        "file": "runs/current/masks/Lila-10-leg-1.png"
+      },
+      "face-0": {
+        "box": [
+          170,
+          101,
+          246,
+          181
+        ],
+        "file": "runs/current/masks/Lila-10-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          237,
+          157,
+          280,
+          195
+        ],
+        "file": "runs/current/masks/Lila-10-fist-0.png"
+      }
+    }
+  },
+  "Lila-11": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          220,
+          235,
+          357,
+          286
+        ],
+        "file": "runs/current/masks/Lila-11-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          120,
+          276,
+          164,
+          380
+        ],
+        "file": "runs/current/masks/Lila-11-leg-1.png"
+      },
+      "face-0": {
+        "box": [
+          110,
+          107,
+          187,
+          187
+        ],
+        "file": "runs/current/masks/Lila-11-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          186,
+          149,
+          236,
+          207
+        ],
+        "file": "runs/current/masks/Lila-11-fist-0.png"
+      }
+    }
+  },
+  "Lila-12": {
+    "size": [
+      388,
+      388
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          227,
+          226,
+          364,
+          269
+        ],
+        "file": "runs/current/masks/Lila-12-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          134,
+          276,
+          175,
+          381
+        ],
+        "file": "runs/current/masks/Lila-12-leg-1.png"
+      },
+      "face-0": {
+        "box": [
+          111,
+          110,
+          186,
+          189
+        ],
+        "file": "runs/current/masks/Lila-12-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          186,
+          148,
+          240,
+          204
+        ],
+        "file": "runs/current/masks/Lila-12-fist-0.png"
+      }
+    }
+  },
+  "Raincoat-9": {
+    "size": [
+      400,
+      400
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          212,
+          221,
+          280,
+          339
+        ],
+        "file": "runs/current/masks/Raincoat-9-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          140,
+          263,
+          199,
+          382
+        ],
+        "file": "runs/current/masks/Raincoat-9-leg-1.png"
+      },
+      "face-0": {
+        "box": [
+          155,
+          63,
+          246,
+          139
+        ],
+        "file": "runs/current/masks/Raincoat-9-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          166,
+          152,
+          198,
+          184
+        ],
+        "file": "runs/current/masks/Raincoat-9-fist-0.png"
+      },
+      "fist-1": {
+        "box": [
+          264,
+          136,
+          297,
+          170
+        ],
+        "file": "runs/current/masks/Raincoat-9-fist-1.png"
+      }
+    }
+  },
+  "Raincoat-10": {
+    "size": [
+      400,
+      400
+    ],
+    "masks": {
+      "leg-0": {
+        "box": [
+          125,
+          257,
+          194,
+          382
+        ],
+        "file": "runs/current/masks/Raincoat-10-leg-0.png"
+      },
+      "leg-1": {
+        "box": [
+          223,
+          176,
+          386,
+          242
+        ],
+        "file": "runs/current/masks/Raincoat-10-leg-1.png"
+      },
+      "face-0": {
+        "box": [
+          75,
+          67,
+          166,
+          142
+        ],
+        "file": "runs/current/masks/Raincoat-10-face-0.png"
+      },
+      "fist-0": {
+        "box": [
+          91,
+          178,
+          125,
+          210
+        ],
+        "file": "runs/current/masks/Raincoat-10-fist-0.png"
+      },
+      "fist-1": {
+        "box": [
+          235,
+          120,
+          269,
+          151
+        ],
+        "file": "runs/current/masks/Raincoat-10-fist-1.png"
+      }
+    }
+  }
+}
