@@ -1,0 +1,467 @@
+infographic:
+  template_version: '1.1'
+  theme: dark
+  title: "BEYOND THE FIVE FINGER PROBLEM \u2014 DEBUG MAP"
+  subtitle: 'Vertical flow: Spec at top, final output at bottom. Icons = Material outlined. First line of each card says its kind.'
+  canvas:
+    width: 2000
+    height: 6514
+    safe_margin: 60
+  layout:
+    mode: absolute
+    connectors: true
+    routing: orthogonal
+  typography: ecosystem
+  icons:
+    enabled: true
+    family: outlined
+    treatment: circle
+  title_position:
+    x: 80
+    y: 55
+  subtitle_position:
+    x: 80
+    y: 125
+  boxes:
+  - id: spec
+    role: information
+    style: card
+    accent: neutral
+    title: "SPEC \u2014 shared state, every node reads it"
+    body_lines:
+    - '[CODE] docs/glossary, skeleton_kick_full.json'
+    - calibration weights (M2.3)
+    - bench 7 + holdout 3, never tuned
+    icon: menu_book
+    icon_placement: top_right
+    x: 60
+    y: 210
+    width: 1880
+    height: 276
+  - id: skeleton
+    role: information
+    style: card
+    accent: teal
+    title: "SKELETON \u2014 source of truth, not a prompt"
+    body_lines:
+    - '[CODE] skeleton.py, 25 markers -> joints'
+    - ik.py two-bone IK knees
+    - render_skeleton.py sidecars
+    - red = Starboard, blue = Port
+    icon: accessibility
+    icon_placement: top_right
+    x: 60
+    y: 541
+    width: 1880
+    height: 318
+  - id: gen_media
+    role: information
+    style: card
+    accent: blue
+    title: "GENERATOR A \u2014 Muse media pipeline"
+    body_lines:
+    - '[SERVICE] media.generate_image()'
+    - subagent expands prompt, unseen
+    - 'input: sidecar PNG + text'
+    - 'output: webp drawing'
+    icon: auto_awesome
+    icon_placement: top_right
+    x: 60
+    y: 914
+    width: 1880
+    height: 318
+  - id: gen_meta
+    role: information
+    style: card
+    accent: blue
+    title: "GENERATOR B \u2014 Meta Image API (new)"
+    body_lines:
+    - "[API \u2022 Image] meta_image.py, graph.generator()"
+    - POST /v1/images/generations
+    - POST /v1/images/edits (sidecar in)
+    - model muse-image-1.0, b64 webp
+    icon: image
+    icon_placement: top_right
+    x: 60
+    y: 1287
+    width: 1880
+    height: 318
+  - id: frames
+    role: information
+    style: card
+    accent: blue
+    title: "FRAMES \u2014 adjacent pair is the unit"
+    body_lines:
+    - '[CODE] frame A, frame B, never alone'
+    - guard = anchor, not judged
+    - return = anchor-end, not judged
+    icon: collections
+    icon_placement: top_right
+    x: 60
+    y: 1660
+    width: 1880
+    height: 276
+  - id: sam
+    role: information
+    style: card
+    accent: purple
+    title: "PROPOSER 1 \u2014 SAM 3.1 masks"
+    body_lines:
+    - "[API \u2022 SAM] run_extraction.sam_fg()"
+    - POST /v1/responses, model sam-3.1
+    - meta-sam-parser decode to raster
+    - leg / shoe / face / fist masks
+    icon: crop_free
+    icon_placement: top_right
+    x: 60
+    y: 1991
+    width: 1880
+    height: 318
+  - id: spark
+    role: information
+    style: card
+    accent: purple
+    title: "PROPOSER 2 \u2014 Spark 1.3 roles + facing"
+    body_lines:
+    - "[API \u2022 Spark] run_extraction.spark()"
+    - POST /v1/chat/completions
+    - dot-first prompt v1.2
+    - roles by foot dot, never screen side
+    icon: psychology
+    icon_placement: top_right
+    x: 60
+    y: 2364
+    width: 1880
+    height: 318
+  - id: sidecar
+    role: information
+    style: card
+    accent: purple
+    title: "SIDECAR \u2014 separate black canvas"
+    body_lines:
+    - '[CODE] extraction.render_sidecar()'
+    - dots + polygon only, never on image
+    - cyan ring = toward, white = away
+    - zero vector = unknown, not camera
+    icon: grid_on
+    icon_placement: top_right
+    x: 60
+    y: 2737
+    width: 1880
+    height: 318
+  - id: checker_dl
+    role: information
+    style: card
+    accent: green
+    title: "CHECKER \u2014 DL + boundary budget"
+    body_lines:
+    - '[CODE] calibration.dl_for_pair()'
+    - role 3.0, facing 3.0
+    - appear 1.0, change 3.0
+    - within 2.00, boundary 4.00, swap 6.00
+    icon: calculate
+    icon_placement: top_right
+    x: 60
+    y: 3110
+    width: 1880
+    height: 318
+  - id: checker_seq
+    role: information
+    style: card
+    accent: green
+    title: "CHECKER \u2014 sequence + proportions"
+    body_lines:
+    - '[CODE] sequence_judge.judge_sequence()'
+    - kick leg constant, no smearing
+    - 'proportions: hip-knee-foot path'
+    - limb limit x1.10 + 10px
+    icon: timeline
+    icon_placement: top_right
+    x: 60
+    y: 3483
+    width: 1880
+    height: 318
+  - id: facing
+    role: information
+    style: card
+    accent: green
+    title: "CHECKER \u2014 facing as vector"
+    body_lines:
+    - '[CODE] facing.py, Head + Torso vectors'
+    - angle, threshold 30 deg
+    - ring vs vector = change
+    - unknown is not a change
+    icon: visibility
+    icon_placement: top_right
+    x: 60
+    y: 3856
+    width: 1880
+    height: 318
+  - id: amender
+    role: information
+    style: card
+    accent: amber
+    title: "AMENDER \u2014 repair, never re-roll"
+    body_lines:
+    - '[CODE] graph.amender()'
+    - named-set instruction
+    - regenerate failing frame only
+    - do not mirror a frame
+    icon: build
+    icon_placement: top_right
+    x: 60
+    y: 4229
+    width: 1880
+    height: 318
+  - id: bench
+    role: information
+    style: card
+    accent: red
+    title: "BENCH-JUDGE \u2014 verdict vs ground truth"
+    body_lines:
+    - '[CODE] graph.bench_judge()'
+    - SadPocky swap FAIL, rest PASS
+    - Sensei 2->3 FAIL, 4->5 FAIL
+    - passing a failing case is wrong
+    icon: gavel
+    icon_placement: top_right
+    x: 60
+    y: 4602
+    width: 1880
+    height: 318
+  - id: observ
+    role: information
+    style: card
+    accent: teal
+    title: "OBSERVABILITY \u2014 heartbeat + telemetry"
+    body_lines:
+    - '[CODE] heartbeat.py, 90s + step change'
+    - runs/current/heartbeat.json
+    - telemetry.py -> telemetry.jsonl
+    - 'masks run: 48.6s, 3.3-6.0s/frame'
+    icon: analytics
+    icon_placement: top_right
+    x: 60
+    y: 4975
+    width: 1880
+    height: 318
+  - id: gaps
+    role: information
+    style: card
+    accent: red
+    title: "KNOWN GAPS \u2014 debug here first"
+    body_lines:
+    - '[NOTE] unmarked drawings: no side assign'
+    - sidecar = loose, not a lock
+    - 'shoe prompt: 0 masks mostly'
+    - edit rate 20/s uncalibrated
+    icon: warning
+    icon_placement: top_right
+    x: 60
+    y: 5348
+    width: 1880
+    height: 318
+  - id: report
+    role: information
+    style: card
+    accent: green
+    title: "FINAL OUTPUT \u2014 report + demo"
+    body_lines:
+    - '[CODE] demo_m3.py, no new API calls'
+    - runs/results/report_m3.md
+    - 'lead demo: leg swap, frames fine'
+    - 3-min video scripted from this demo
+    icon: article
+    icon_placement: top_right
+    x: 60
+    y: 5721
+    width: 1880
+    height: 318
+  line_styles:
+    flow:
+      accent: neutral
+      pattern: solid
+      width: 5
+    fail:
+      accent: red
+      pattern: solid
+      width: 5
+  legend:
+    x: 80
+    y: 6134
+    entries:
+    - line_style: flow
+      label: "Flow \u2014 top to bottom, Spec first, output last"
+    - line_style: fail
+      label: "Fail path \u2014 checker FAIL to amender (red arrows in code, not drawn here)"
+  footer:
+    x: 80
+    y: 6354
+    brand: "Beyond the Five Finger Problem \u2014 debug map v2, 2026-10-27"
+    note: "Kind tags: [CODE] local Python \u2022 [API - Spark] muse-spark-1.3 \u2022 [API - Image] muse-image-1.0 \u2022 [API - SAM] sam-3.1 \u2022 [SERVICE] Muse media pipeline."
+  relationships:
+  - id: spec_skeleton
+    from:
+      box: spec
+      side: bottom
+      offset: 0.5
+    to:
+      box: skeleton
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: skeleton_gen_media
+    from:
+      box: skeleton
+      side: bottom
+      offset: 0.5
+    to:
+      box: gen_media
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: gen_media_gen_meta
+    from:
+      box: gen_media
+      side: bottom
+      offset: 0.5
+    to:
+      box: gen_meta
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: gen_meta_frames
+    from:
+      box: gen_meta
+      side: bottom
+      offset: 0.5
+    to:
+      box: frames
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: frames_sam
+    from:
+      box: frames
+      side: bottom
+      offset: 0.5
+    to:
+      box: sam
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: sam_spark
+    from:
+      box: sam
+      side: bottom
+      offset: 0.5
+    to:
+      box: spark
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: spark_sidecar
+    from:
+      box: spark
+      side: bottom
+      offset: 0.5
+    to:
+      box: sidecar
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: sidecar_checker_dl
+    from:
+      box: sidecar
+      side: bottom
+      offset: 0.5
+    to:
+      box: checker_dl
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: checker_dl_checker_seq
+    from:
+      box: checker_dl
+      side: bottom
+      offset: 0.5
+    to:
+      box: checker_seq
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: checker_seq_facing
+    from:
+      box: checker_seq
+      side: bottom
+      offset: 0.5
+    to:
+      box: facing
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: facing_amender
+    from:
+      box: facing
+      side: bottom
+      offset: 0.5
+    to:
+      box: amender
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: amender_bench
+    from:
+      box: amender
+      side: bottom
+      offset: 0.5
+    to:
+      box: bench
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: bench_observ
+    from:
+      box: bench
+      side: bottom
+      offset: 0.5
+    to:
+      box: observ
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: observ_gaps
+    from:
+      box: observ
+      side: bottom
+      offset: 0.5
+    to:
+      box: gaps
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
+  - id: gaps_report
+    from:
+      box: gaps
+      side: bottom
+      offset: 0.5
+    to:
+      box: report
+      side: top
+      offset: 0.5
+    line_style: flow
+    arrows: end
