@@ -1,0 +1,92 @@
+
+=== SadPocky 9 /home/hatch/workspace/sprite-gif-workflow/output/sadpocky-green-v2/frames/frame_08.png ===
+legs=2 shoes=5 face_box=[189, 98, 249, 154]
+head_centre: [505, 260]
+yaw: front
+pitch: level
+bow: facing camera
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [219, 126], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [219, 126], "marker_seen": true, "reason": "front bow: no image-plane offset, drawn as cyan ring"}, "PortHip": {"point": [231, 263], "marker_seen": true, "reason": null}, "PortFoot": {"point": [208, 384], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [221, 257], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [134, 284], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}}
+
+=== SadPocky 10 /home/hatch/workspace/sprite-gif-workflow/output/sadpocky-green-v2/frames/frame_09.png ===
+legs=2 shoes=4 face_box=[188, 98, 247, 154]
+head_centre: [500, 280]
+yaw: front
+pitch: level
+bow: toward camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+joints: {"Head": {"point": [217, 126], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [217, 126], "marker_seen": true, "reason": "front bow: no image-plane offset, drawn as cyan ring"}, "StarboardHip": {"point": [220, 258], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [132, 284], "marker_seen": true, "reason": null}, "PortHip": {"point": [230, 262], "marker_seen": true, "reason": null}, "PortFoot": {"point": [208, 382], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [186, 148], "marker_seen": true, "reason": null}, "PortHand": {"point": [257, 150], "marker_seen": true, "reason": null}}
+
+=== SadPocky 11 /home/hatch/workspace/sprite-gif-workflow/output/sadpocky-green-v2/frames/frame_10.png ===
+legs=2 shoes=10 face_box=[88, 107, 148, 162]
+head_centre: [305, 285]
+yaw: front
+pitch: level
+bow: toward camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+LEG TRACK CONFLICT: Spark roles overridden by continuity
+joints: {"Head": {"point": [118, 134], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [118, 134], "marker_seen": true, "reason": "front bow: no image-plane offset, drawn as cyan ring"}, "PortHip": {"point": [184, 260], "marker_seen": true, "reason": null}, "PortFoot": {"point": [146, 382], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [216, 235], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [380, 184], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [94, 160], "marker_seen": true, "reason": null}, "PortHand": {"point": [236, 155], "marker_seen": true, "reason": null}}
+
+=== SadPocky 12 /home/hatch/workspace/sprite-gif-workflow/output/sadpocky-green-v2/frames/frame_11.png ===
+legs=2 shoes=7 face_box=[94, 110, 153, 168]
+head_centre: [310, 360]
+yaw: front
+pitch: level
+bow: camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+LEG TRACK CONFLICT: Spark roles overridden by continuity
+joints: {"Head": {"point": [123, 139], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [123, 139], "marker_seen": true, "reason": "front bow: no image-plane offset, drawn as cyan ring"}, "PortHip": {"point": [171, 269], "marker_seen": true, "reason": null}, "PortFoot": {"point": [118, 382], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [219, 243], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [384, 214], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [101, 170], "marker_seen": true, "reason": null}, "PortHand": {"point": [259, 161], "marker_seen": true, "reason": null}}
+
+=== Lila 9 /home/hatch/workspace/sprite-gif-workflow/output/lila-v10/frames/frame_08.png ===
+legs=2 shoes=2 face_box=[146, 95, 221, 176]
+head_centre: [445, 285]
+yaw: 3/4-right
+pitch: level
+bow: image-right
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [183, 135], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [203, 135], "marker_seen": true, "reason": null}, "PortHip": {"point": [278, 196], "marker_seen": true, "reason": null}, "PortFoot": {"point": [299, 283], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [182, 265], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [193, 381], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}}
+
+=== Lila 10 /home/hatch/workspace/sprite-gif-workflow/output/lila-v10/frames/frame_09.png ===
+legs=2 shoes=2 face_box=[170, 101, 246, 181]
+head_centre: [505, 305]
+yaw: 3/4-right
+pitch: slight-down
+bow: image-right-down
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [208, 141], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [228, 146], "marker_seen": true, "reason": null}, "PortHip": {"point": [216, 248], "marker_seen": true, "reason": null}, "PortFoot": {"point": [233, 341], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [204, 291], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [189, 380], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}}
+
+=== Lila 11 /home/hatch/workspace/sprite-gif-workflow/output/lila-v10/frames/frame_10.png ===
+legs=2 shoes=2 face_box=[110, 107, 187, 187]
+head_centre: [310, 260]
+yaw: 3/4-right
+pitch: level
+bow: toward camera, slightly image-right
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [148, 147], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [168, 147], "marker_seen": true, "reason": null}, "PortHip": {"point": [220, 255], "marker_seen": true, "reason": null}, "PortFoot": {"point": [357, 261], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [151, 276], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [135, 381], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}}
+
+=== Lila 12 /home/hatch/workspace/sprite-gif-workflow/output/lila-v10/frames/frame_11.png ===
+legs=2 shoes=2 face_box=[111, 110, 186, 189]
+head_centre: [330, 300]
+yaw: 3/4-right
+pitch: level
+bow: image-right
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [148, 149], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [168, 149], "marker_seen": true, "reason": null}, "PortHip": {"point": [227, 249], "marker_seen": true, "reason": null}, "PortFoot": {"point": [365, 233], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [162, 276], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [149, 381], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortHand": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}}
+
+saved runs/current/joints.json

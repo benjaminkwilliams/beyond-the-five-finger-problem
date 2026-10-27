@@ -1,0 +1,373 @@
+{
+  "Lila-13": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 13,
+    "character": "Lila",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "3/4-right",
+    "pitch": "level",
+    "bow": "slightly image-right of camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          173,
+          145
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          193,
+          145
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortHip": {
+        "point": [
+          273,
+          224
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortFoot": {
+        "point": [
+          276,
+          313
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardHip": {
+        "point": [
+          177,
+          275
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardFoot": {
+        "point": [
+          189,
+          378
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "PortShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "StarboardHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "PortHand": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      }
+    },
+    "leg_track_conflict": false,
+    "leg_track_suggested": [
+      "port",
+      "starboard"
+    ]
+  },
+  "SadPocky-10": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 10,
+    "character": "SadPocky",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          159,
+          113
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          159,
+          113
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset, drawn as cyan ring"
+      },
+      "PortHip": {
+        "point": [
+          279,
+          166
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortFoot": {
+        "point": [
+          266,
+          292
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardHip": {
+        "point": [
+          215,
+          235
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardFoot": {
+        "point": [
+          191,
+          381
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "PortShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "StarboardHand": {
+        "point": [
+          146,
+          132
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortHand": {
+        "point": [
+          210,
+          114
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    },
+    "leg_track_conflict": false,
+    "leg_track_suggested": null
+  },
+  "SadPocky-11": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 11,
+    "character": "SadPocky",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          121,
+          120
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          121,
+          120
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset, drawn as cyan ring"
+      },
+      "StarboardHip": {
+        "point": [
+          178,
+          239
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardFoot": {
+        "point": [
+          142,
+          382
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortHip": {
+        "point": [
+          185,
+          215
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortFoot": {
+        "point": [
+          366,
+          190
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "PortShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "StarboardHand": {
+        "point": [
+          108,
+          144
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortHand": {
+        "point": [
+          176,
+          122
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    },
+    "leg_track_conflict": false,
+    "leg_track_suggested": [
+      "starboard",
+      "port"
+    ]
+  },
+  "SadPocky-12": {
+    "frame_size": [
+      388,
+      388
+    ],
+    "origin": "top-left",
+    "frame_number": 12,
+    "character": "SadPocky",
+    "source": "automated: SAM masks + Spark labels, no hand coordinates",
+    "yaw": "front",
+    "pitch": "level",
+    "bow": "toward camera",
+    "port_side_in_image": "image-right",
+    "joints": {
+      "Head": {
+        "point": [
+          117,
+          125
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "HeadFacing": {
+        "point": [
+          117,
+          125
+        ],
+        "marker_seen": true,
+        "reason": "front bow: no image-plane offset, drawn as cyan ring"
+      },
+      "StarboardHip": {
+        "point": [
+          189,
+          241
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardFoot": {
+        "point": [
+          152,
+          382
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortHip": {
+        "point": [
+          193,
+          221
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortFoot": {
+        "point": [
+          378,
+          195
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "StarboardShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "PortShoulder": {
+        "point": null,
+        "marker_seen": false,
+        "reason": "no unambiguous SAM box supplied"
+      },
+      "StarboardHand": {
+        "point": [
+          106,
+          155
+        ],
+        "marker_seen": true,
+        "reason": null
+      },
+      "PortHand": {
+        "point": [
+          173,
+          122
+        ],
+        "marker_seen": true,
+        "reason": null
+      }
+    },
+    "leg_track_conflict": false,
+    "leg_track_suggested": [
+      "starboard",
+      "port"
+    ]
+  }
+}

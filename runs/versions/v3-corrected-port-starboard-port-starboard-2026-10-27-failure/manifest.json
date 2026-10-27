@@ -1,0 +1,7 @@
+{
+  "entity_language": "port-starboard",
+  "glossary_version": "v3-corrected-port-starboard",
+  "outcome": "failure",
+  "repo_commit": "3096823",
+  "rule": "A run lives in runs/current/ while it runs, then moves whole to its version folder. Historical runs are never edited."
+}

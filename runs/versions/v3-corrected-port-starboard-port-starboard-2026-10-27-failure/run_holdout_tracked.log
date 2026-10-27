@@ -1,0 +1,24 @@
+
+=== HOLDOUT Raincoat 9 /home/hatch/workspace/sprite-gif-workflow/output/generated-v2/frames/frame_08.png ===
+legs=2 shoes=6 face_box=[155, 63, 246, 139]
+head_centre: [500, 250]
+yaw: front
+pitch: level
+bow: toward camera
+port_side_in_image: image-right
+roles: leg0: port
+leg1: starboard
+joints: {"Head": {"point": [200, 101], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [200, 101], "marker_seen": true, "reason": "front bow: no image-plane offset, drawn as cyan ring"}, "PortHip": {"point": [256, 221], "marker_seen": true, "reason": null}, "PortFoot": {"point": [242, 339], "marker_seen": true, "reason": null}, "StarboardHip": {"point": [189, 263], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [169, 383], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [182, 168], "marker_seen": true, "reason": null}, "PortHand": {"point": [280, 153], "marker_seen": true, "reason": null}}
+
+=== HOLDOUT Raincoat 10 /home/hatch/workspace/sprite-gif-workflow/output/generated-v2/frames/frame_09.png ===
+legs=2 shoes=8 face_box=[75, 67, 166, 142]
+head_centre: [310, 175]
+yaw: front
+pitch: level
+bow: forward toward camera
+port_side_in_image: image-right
+roles: leg0: starboard
+leg1: port
+joints: {"Head": {"point": [120, 104], "marker_seen": true, "reason": null}, "HeadFacing": {"point": [120, 104], "marker_seen": true, "reason": "front bow: no image-plane offset, drawn as cyan ring"}, "StarboardHip": {"point": [185, 257], "marker_seen": true, "reason": null}, "StarboardFoot": {"point": [155, 383], "marker_seen": true, "reason": null}, "PortHip": {"point": [223, 221], "marker_seen": true, "reason": null}, "PortFoot": {"point": [386, 195], "marker_seen": true, "reason": null}, "StarboardShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "PortShoulder": {"point": null, "marker_seen": false, "reason": "no unambiguous SAM box supplied"}, "StarboardHand": {"point": [108, 194], "marker_seen": true, "reason": null}, "PortHand": {"point": [252, 135], "marker_seen": true, "reason": null}}
+
+saved runs/current/holdout_joints.json
