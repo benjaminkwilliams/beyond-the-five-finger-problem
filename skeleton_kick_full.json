@@ -1,0 +1,544 @@
+{
+  "name": "full-body-starboard-kick",
+  "kick_side": "Starboard",
+  "ground_y": 380,
+  "facing": "image-right",
+  "frames": [
+    {
+      "name": "idle",
+      "Chest": [
+        200,
+        200
+      ],
+      "Back": [
+        190,
+        200
+      ],
+      "Head": [
+        200,
+        120
+      ],
+      "HeadFacing": [
+        220,
+        120
+      ],
+      "StarboardShoulder": [
+        185,
+        210
+      ],
+      "PortShoulder": [
+        215,
+        210
+      ],
+      "StarboardElbow": [
+        180,
+        260
+      ],
+      "PortElbow": [
+        220,
+        260
+      ],
+      "StarboardHand": [
+        180,
+        300
+      ],
+      "PortHand": [
+        220,
+        300
+      ],
+      "StarboardHip": [
+        190,
+        280
+      ],
+      "PortHip": [
+        210,
+        280
+      ],
+      "StarboardKnee": [
+        190,
+        330
+      ],
+      "PortKnee": [
+        210,
+        330
+      ],
+      "StarboardFoot": [
+        190,
+        380
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    },
+    {
+      "name": "windup",
+      "Chest": [
+        195,
+        205
+      ],
+      "Back": [
+        185,
+        205
+      ],
+      "Head": [
+        195,
+        125
+      ],
+      "HeadFacing": [
+        215,
+        125
+      ],
+      "StarboardShoulder": [
+        180,
+        215
+      ],
+      "PortShoulder": [
+        210,
+        215
+      ],
+      "StarboardElbow": [
+        170,
+        255
+      ],
+      "PortElbow": [
+        225,
+        255
+      ],
+      "StarboardHand": [
+        165,
+        295
+      ],
+      "PortHand": [
+        230,
+        295
+      ],
+      "StarboardHip": [
+        185,
+        290
+      ],
+      "PortHip": [
+        205,
+        290
+      ],
+      "StarboardKnee": [
+        190,
+        340
+      ],
+      "PortKnee": [
+        210,
+        335
+      ],
+      "StarboardFoot": [
+        185,
+        380
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    },
+    {
+      "name": "chamber",
+      "Chest": [
+        200,
+        195
+      ],
+      "Back": [
+        190,
+        195
+      ],
+      "Head": [
+        200,
+        115
+      ],
+      "HeadFacing": [
+        220,
+        115
+      ],
+      "StarboardShoulder": [
+        185,
+        205
+      ],
+      "PortShoulder": [
+        215,
+        205
+      ],
+      "StarboardElbow": [
+        175,
+        250
+      ],
+      "PortElbow": [
+        230,
+        250
+      ],
+      "StarboardHand": [
+        170,
+        285
+      ],
+      "PortHand": [
+        235,
+        285
+      ],
+      "StarboardHip": [
+        195,
+        275
+      ],
+      "PortHip": [
+        215,
+        275
+      ],
+      "StarboardKnee": [
+        260,
+        300
+      ],
+      "PortKnee": [
+        210,
+        330
+      ],
+      "StarboardFoot": [
+        260,
+        340
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    },
+    {
+      "name": "extend",
+      "Chest": [
+        210,
+        190
+      ],
+      "Back": [
+        200,
+        190
+      ],
+      "Head": [
+        210,
+        110
+      ],
+      "HeadFacing": [
+        230,
+        110
+      ],
+      "StarboardShoulder": [
+        195,
+        200
+      ],
+      "PortShoulder": [
+        225,
+        200
+      ],
+      "StarboardElbow": [
+        180,
+        240
+      ],
+      "PortElbow": [
+        240,
+        240
+      ],
+      "StarboardHand": [
+        175,
+        275
+      ],
+      "PortHand": [
+        245,
+        275
+      ],
+      "StarboardHip": [
+        205,
+        270
+      ],
+      "PortHip": [
+        225,
+        270
+      ],
+      "StarboardKnee": [
+        280,
+        270
+      ],
+      "PortKnee": [
+        210,
+        330
+      ],
+      "StarboardFoot": [
+        320,
+        270
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    },
+    {
+      "name": "full",
+      "Chest": [
+        215,
+        185
+      ],
+      "Back": [
+        205,
+        185
+      ],
+      "Head": [
+        215,
+        105
+      ],
+      "HeadFacing": [
+        235,
+        105
+      ],
+      "StarboardShoulder": [
+        200,
+        195
+      ],
+      "PortShoulder": [
+        230,
+        195
+      ],
+      "StarboardElbow": [
+        185,
+        235
+      ],
+      "PortElbow": [
+        245,
+        235
+      ],
+      "StarboardHand": [
+        180,
+        270
+      ],
+      "PortHand": [
+        250,
+        270
+      ],
+      "StarboardHip": [
+        210,
+        265
+      ],
+      "PortHip": [
+        230,
+        265
+      ],
+      "StarboardKnee": [
+        300,
+        260
+      ],
+      "PortKnee": [
+        210,
+        330
+      ],
+      "StarboardFoot": [
+        370,
+        250
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    },
+    {
+      "name": "recoil",
+      "Chest": [
+        210,
+        190
+      ],
+      "Back": [
+        200,
+        190
+      ],
+      "Head": [
+        210,
+        110
+      ],
+      "HeadFacing": [
+        230,
+        110
+      ],
+      "StarboardShoulder": [
+        195,
+        200
+      ],
+      "PortShoulder": [
+        225,
+        200
+      ],
+      "StarboardElbow": [
+        180,
+        240
+      ],
+      "PortElbow": [
+        240,
+        240
+      ],
+      "StarboardHand": [
+        175,
+        275
+      ],
+      "PortHand": [
+        245,
+        275
+      ],
+      "StarboardHip": [
+        205,
+        270
+      ],
+      "PortHip": [
+        225,
+        270
+      ],
+      "StarboardKnee": [
+        280,
+        270
+      ],
+      "PortKnee": [
+        210,
+        330
+      ],
+      "StarboardFoot": [
+        320,
+        270
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    },
+    {
+      "name": "retract",
+      "Chest": [
+        200,
+        195
+      ],
+      "Back": [
+        190,
+        195
+      ],
+      "Head": [
+        200,
+        115
+      ],
+      "HeadFacing": [
+        220,
+        115
+      ],
+      "StarboardShoulder": [
+        185,
+        205
+      ],
+      "PortShoulder": [
+        215,
+        205
+      ],
+      "StarboardElbow": [
+        175,
+        250
+      ],
+      "PortElbow": [
+        230,
+        250
+      ],
+      "StarboardHand": [
+        170,
+        285
+      ],
+      "PortHand": [
+        235,
+        285
+      ],
+      "StarboardHip": [
+        195,
+        275
+      ],
+      "PortHip": [
+        215,
+        275
+      ],
+      "StarboardKnee": [
+        260,
+        300
+      ],
+      "PortKnee": [
+        210,
+        330
+      ],
+      "StarboardFoot": [
+        260,
+        340
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    },
+    {
+      "name": "return",
+      "Chest": [
+        200,
+        200
+      ],
+      "Back": [
+        190,
+        200
+      ],
+      "Head": [
+        200,
+        120
+      ],
+      "HeadFacing": [
+        220,
+        120
+      ],
+      "StarboardShoulder": [
+        185,
+        210
+      ],
+      "PortShoulder": [
+        215,
+        210
+      ],
+      "StarboardElbow": [
+        180,
+        260
+      ],
+      "PortElbow": [
+        220,
+        260
+      ],
+      "StarboardHand": [
+        180,
+        300
+      ],
+      "PortHand": [
+        220,
+        300
+      ],
+      "StarboardHip": [
+        190,
+        280
+      ],
+      "PortHip": [
+        210,
+        280
+      ],
+      "StarboardKnee": [
+        190,
+        330
+      ],
+      "PortKnee": [
+        210,
+        330
+      ],
+      "StarboardFoot": [
+        190,
+        380
+      ],
+      "PortFoot": [
+        210,
+        380
+      ]
+    }
+  ]
+}
