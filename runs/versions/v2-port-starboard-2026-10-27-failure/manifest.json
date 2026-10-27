@@ -1,0 +1,8 @@
+{
+  "entity_language": "port-starboard",
+  "glossary_version": "v2",
+  "outcome": "failure",
+  "repo_commit": "ea424b7",
+  "rule": "A run lives in runs/current/ while it runs, then moves whole to its version folder. Historical runs are never edited.",
+  "audit": "Prompt v1.2: roles stable and correct in 20/20 runs after Lila glossary correction (PortHip roots kick, StarboardHip supports; original HipRight note meant image-right, not character starboard). SadPocky swap caught both runs for the right reason (DL 6.0, role substitutions). Facing still imperfect and, crucially, many within-pair facing changes are REAL per extraction (Lila 9 toward-camera -> 10 image-right, Raincoat 9 toward-camera -> 10 image-right), so DL 3.0 for a facing change alone false-positives PASS pairs at budget 2.00. M1 exit still blocked by DL calibration, not by proposer roles. Outcome=failure refers to M1 exit, not to the prompt tightening, which succeeded on roles."
+}

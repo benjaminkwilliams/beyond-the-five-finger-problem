@@ -1,0 +1,1098 @@
+{
+  "lila-v10-9->10-run1": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 3.0,
+    "dl_ops": [
+      "substitution: Facing[toward camera] -> Facing[image-right]"
+    ],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "lila-v10-9->10-run2": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 3.0,
+    "dl_ops": [
+      "substitution: Facing[toward camera] -> Facing[image-right]"
+    ],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "lila-v10-10->11-run1": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 3.0,
+    "dl_ops": [
+      "substitution: Facing[image-right] -> Facing[toward camera]"
+    ],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "lila-v10-10->11-run2": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "lila-v10-11->12-run1": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "lila-v10-11->12-run2": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "lila-v10-12->13-run1": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "lila-v10-12->13-run2": {
+    "kick_a": "PortHip",
+    "kick_b": "PortHip",
+    "expected": "StarboardHip",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 3.0,
+    "dl_ops": [
+      "substitution: Facing[image-right] -> Facing[toward camera]"
+    ],
+    "assignments_a": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortHip",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardHip",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v2-9->10-run1": {
+    "kick_a": "StarboardLeg",
+    "kick_b": "StarboardLeg",
+    "expected": "StarboardLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "StarboardLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "PortLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "StarboardLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "PortLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v2-9->10-run2": {
+    "kick_a": "StarboardLeg",
+    "kick_b": "StarboardLeg",
+    "expected": "StarboardLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "StarboardLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "PortLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "StarboardLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "PortLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v2-10->11-run1": {
+    "kick_a": "StarboardLeg",
+    "kick_b": "PortLeg",
+    "expected": "SWAP",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 6.0,
+    "dl_ops": [
+      "substitution: StarboardLeg[]@kick -> PortLeg[]@kick",
+      "substitution: PortLeg[]@support -> StarboardLeg[]@support"
+    ],
+    "assignments_a": [
+      [
+        "StarboardLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "PortLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v2-10->11-run2": {
+    "kick_a": "StarboardLeg",
+    "kick_b": "PortLeg",
+    "expected": "SWAP",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 6.0,
+    "dl_ops": [
+      "substitution: StarboardLeg[]@kick -> PortLeg[]@kick",
+      "substitution: PortLeg[]@support -> StarboardLeg[strap]@support"
+    ],
+    "assignments_a": [
+      [
+        "StarboardLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "PortLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v2-11->12-run1": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v2-11->12-run2": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v6-10->11-run1": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [
+          "decal"
+        ],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [
+          "decal"
+        ],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v6-10->11-run2": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [
+          "decal"
+        ],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [
+          "decal"
+        ],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v6-11->12-run1": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [
+          "decal"
+        ],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [
+          "decal"
+        ],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "sadpocky-green-v6-11->12-run2": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 0.0,
+    "dl_ops": [],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [
+          "strap"
+        ],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "generated-v2-9->10-run1": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 3.0,
+    "dl_ops": [
+      "substitution: Facing[toward camera] -> Facing[image-right]"
+    ],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  },
+  "generated-v2-9->10-run2": {
+    "kick_a": "PortLeg",
+    "kick_b": "PortLeg",
+    "expected": "PortLeg",
+    "depth_findings": "ignored-superseded",
+    "dl_cost": 3.0,
+    "dl_ops": [
+      "substitution: Facing[toward camera] -> Facing[image-right]"
+    ],
+    "assignments_a": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "toward camera"
+        ],
+        "",
+        2
+      ]
+    ],
+    "assignments_b": [
+      [
+        "PortLeg",
+        [],
+        "kick",
+        0
+      ],
+      [
+        "StarboardLeg",
+        [],
+        "support",
+        1
+      ],
+      [
+        "Facing",
+        [
+          "image-right"
+        ],
+        "",
+        2
+      ]
+    ]
+  }
+}
