@@ -187,3 +187,50 @@ assign Starboard/Port from the drawing alone —
 the Sensei GIF verdict is by human role reading,
 not by proposer assignment, until markers are
 in the drawing (character-data layer, deferred).
+
+Main-chat work, recorded here 2026-10-28 (this side chat stopped at
+113e0af; the work below happened in main chat, not here, and is
+recorded here so this thread does not redo or contradict it):
+
+- Remote tip moved 113e0af -> 8470f71, pushed from main chat on
+  the user's /push 2026-10-27 evening, byte-for-byte verified there:
+  2024f35 prompt_builder v2/v3, 8470f71 docs/submission refresh.
+  The SUBMISSION.md refresh is therefore no longer main chat's
+  uncommitted edit — it is committed. The old "do not commit/push
+  over it" note is superseded by that push.
+- prompt_builder v2 (2024f35): full phase "slight forward lean"
+  replaced by "torso moving backwards for balance", used live for
+  sensei-full-torso-back-v1.webp (Meta Image edit, 19.9s, 1600x1600,
+  labeled full sidecar + retry2 snap as previous frame).
+- prompt_builder v3 (same commit): NONE-kick branch for guard/return
+  — both feet planted, no kicking leg — used live for
+  sensei-guard-match-v1.webp and sensei-return-match-v1.webp
+  (12.9s / 12.6s, chamber / recoil-match as identity references).
+- Frame 5 regenerated as sensei-recoil-match-v1.webp (12.9s,
+  labeled recoil sidecar + torso-back full as previous frame;
+  character override was input-only at that time, not a builder
+  edit). User approved frame 5, then asked for frames 1 and 6 to
+  match frames 2-5 — that is the v11 lineup.
+- v11 lineup (filmstrip sensei-kick-filmstrip-v11.png, 2400x1180,
+  verified on disk): guard-match, chamber, retry2 snap,
+  torso-back full, recoil-match, return-match. Character look
+  (short spiky black hair, black gi, shod) is consistent across
+  v11 by the user's read — that is a look-consistency approval,
+  NOT a side-identity certification.
+- GIF: sensei-kick-v11-200ms-v1.gif, 6 frames, 200ms each,
+  1600x1600, looping, verified on disk. Loop seam still jumps:
+  guard-match and return-match are different drawings.
+- Hip zoom v2 (sensei-hip-zoom-v2.png, 1410x2484, Oct 28 07:44,
+  builder runs/current/build_hip_zoom_v2.py): chamber (known
+  Starboard-kick reference), retry2 snap (current frame 3),
+  torso-back v1 full (current frame 4), same crop box, labeled.
+  It shows, without certifying: in both snap and full the extended
+  leg is the front/upper leg, support behind and below, distinct
+  trouser seam, parallel to chamber's layout. That alone does not
+  settle hip chain.
+- STANDING STATUS, unchanged by the main-chat work: side identity
+  for frames 3 (snap) and 4 (full) is OPEN / UNVERIFIED pending the
+  user's hip-chain ruling. That is the one question blocking the
+  9:30 AM Oct 28 M3 gate. Do not record v11, the GIF, or hip zoom
+  v2 as a side certification, and do not build a checker encoding
+  or PASS filmstrip on them.
