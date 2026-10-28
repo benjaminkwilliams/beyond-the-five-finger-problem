@@ -16,7 +16,7 @@ change is visible in the record, not silent.
 """
 import os
 
-TEMPLATE_VERSION = "prompt-v3"  # v3: NONE-kick handling for guard/return (both feet planted); v2: full torso BACKWARDS
+TEMPLATE_VERSION = "prompt-v4"  # v4: generic character (no Sensei default, outfit_desc drives the previous-frame line); v3: NONE-kick handling for guard/return (both feet planted); v2: full torso BACKWARDS
 
 # Fixed phase wording per frame name. Written once, reused
 # verbatim; never reworded per call.
@@ -44,13 +44,37 @@ PHASE_TEXT = {
 
 
 def build_input(spec, frame_name, sidecar_path, previous_frame_path=None,
-                character_desc=("black gi, black hair, flat black "
-                                "background, single character")):
+                character_desc=None, outfit_desc="outfit", style_desc=None):
     """spec: {kick_side, support_side, facing}.
     Returns {"prompt": str, "images": [sidecar, previous?]}.
     Image order is fixed: sidecar first (pose + labels),
     previous frame second (identity continuity). The prompt
-    says so explicitly, in the same words, every time."""
+    says so explicitly, in the same words, every time.
+
+    Generic-character rule (prompt-v4): NOTHING in this
+    module names a character, an outfit, or a hairstyle.
+    character_desc and outfit_desc come from the caller's
+    character profile (see profiles/*.json, run by
+    run_kick.py). The old v3 default ("black gi, black
+    hair") and the hard-coded "same gi" previous-frame
+    line were Sensei leaking into the builder: a non-gi
+    character would have been told to keep a gi it does
+    not wear. With character_desc=None the default is
+    deliberately bare ("single character, flat black
+    background") — a profile must supply the rest.
+    Regression: build_input with character_desc set to
+    the old v3 default and outfit_desc="gi" reproduces
+    the v3 prompt exactly, except the version stamp.
+    Style is also a profile input, not a builder
+    default: style_desc=None adds no style line (the
+    v3 behaviour). A profile that needs a style must
+    name it — v11's anime look was never in the prompt
+    at all, it was carried implicitly by previous-frame
+    anime drawings, which is why a fresh guard with no
+    previous frame defaulted to photorealistic in the
+    generic v1 run. Sensei's profile therefore sets
+    style_desc="anime"; without it, "same output" is
+    unachievable from a cold start."""
     kick = spec["kick_side"]
     support = spec["support_side"]
     phase = PHASE_TEXT[frame_name]
@@ -74,13 +98,16 @@ def build_input(spec, frame_name, sidecar_path, previous_frame_path=None,
          "hip it hangs from, not where its foot lands on "
          "screen."),
     ]
+    if character_desc is None:
+        character_desc = "single character, flat black background"
     images = [sidecar_path]
     if previous_frame_path:
         lines.append(
             "2. Previous frame drawing: the SAME character, "
-            "same face, same hair, same gi, same background. "
-            "Keep this character exactly; do not change face, "
-            "hair, gi colour, or background.")
+            f"same face, same hair, same {outfit_desc}, same "
+            "background. Keep this character exactly; do not "
+            f"change face, hair, {outfit_desc} colour, or "
+            "background.")
         images.append(previous_frame_path)
     lines += [
         f"DRAW THIS FRAME: {phase}.",
@@ -90,6 +117,7 @@ def build_input(spec, frame_name, sidecar_path, previous_frame_path=None,
         "Kicking leg: none. Both feet planted on the ground.",
         f"Facing: {spec.get('facing', 'image-right')}.",
         f"Character: {character_desc}.",
+    ] + ([f"Style: {style_desc}."] if style_desc else []) + [
         "Drawing itself: no text, no labels, no symbols, "
         "no background other than flat black.",
     ]
@@ -98,11 +126,21 @@ def build_input(spec, frame_name, sidecar_path, previous_frame_path=None,
 
 if __name__ == "__main__":
     import json, sys
-    spec = json.load(open(sys.argv[1])) if len(sys.argv) > 1 else {
-        "kick_side": "Starboard", "support_side": "Port",
-        "facing": "image-right"}
-    out = build_input(spec, "snap",
-                      "runs/current/skeleton-labeled-snap-sidecar.png",
-                      "runs/current/media-generation-m2-7-sensei-chamber-drawing-0-59ee03eb-5082-4937-aeb9-f902d48c6d67.webp")
+    # Usage: prompt_builder.py [profile.json]
+    # A profile supplies spec/character_desc/outfit_desc;
+    # with no profile, prints a generic snap input (no
+    # character named, no previous frame). Sensei runs
+    # go through run_kick.py + profiles/sensei.json.
+    if len(sys.argv) > 1:
+        prof = json.load(open(sys.argv[1]))
+        spec = prof["spec"]
+        out = build_input(spec, "snap", "skeleton-labeled-snap-sidecar.png",
+                          character_desc=prof["character_desc"],
+                          outfit_desc=prof["outfit_desc"],
+                          style_desc=prof.get("style_desc"))
+    else:
+        out = build_input({"kick_side": "Starboard", "support_side": "Port",
+                           "facing": "image-right"}, "snap",
+                          "skeleton-labeled-snap-sidecar.png")
     print(out["prompt"])
     print("IMAGES:", out["images"])

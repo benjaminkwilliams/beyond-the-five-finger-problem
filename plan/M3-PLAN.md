@@ -234,3 +234,105 @@ recorded here so this thread does not redo or contradict it):
   9:30 AM Oct 28 M3 gate. Do not record v11, the GIF, or hip zoom
   v2 as a side certification, and do not build a checker encoding
   or PASS filmstrip on them.
+
+User ruling + verification, 2026-10-28 (v11, frames 2-5 Starboard):
+User, after seeing v11 in this chat, ruled frames 2 to 5 all show
+Starboard side movement. Verified here at full size (1600x1600 each)
+against the actual files, by front/back order, not foot position:
+- Frame 2 chamber: moving leg front/upper, knee right, foot tucked
+  centre; support leg behind, vertical, planted at bottom.
+- Frame 3 retry2 snap: moving leg front/upper, extended straight
+  right; support leg behind/below, knee slightly bent, planted.
+- Frame 4 torso-back full: same layout as snap, extended
+  front/upper, support behind/below, planted.
+- Frame 5 recoil-match: moving leg front/upper, folded, knee
+  right, foot tucked centre; support leg behind, planted.
+No frame switches front/back order across 2->5. Honest limit:
+drawings carry no side markers, so "Starboard" here rests on
+near-side = subject's right in a right-facing profile, continuity
+with the chamber reference (previously hip-agreed), and the user's
+eye ruling — not on a proposer assignment.
+Checker run on the v11 encoding (guard NONE, chamber/snap/full/
+recoil Starboard kick, return NONE): judged pairs chamber->snap
+PASS cost 0.0, snap->full PASS cost 0.0, full->recoil PASS cost 0.0;
+amender mismatches none. Raw guard->chamber and recoil->return
+are cost 3.0 (role support<->kick) and are excluded as action
+start/end anchors per the M2.6 anchor rule — that anchor
+exclusion is still provisional, not a new user certification.
+Frames 3 and 4 are therefore no longer UNVERIFIED: they are
+user-certified Starboard on v11. This supersedes the
+"frames 3/4 OPEN" status in the main-chat-work note above.
+
+Generic starboard-kick workflow, 2026-10-28 (prompt-v4 + run_kick.py):
+- prompt_builder prompt-v4: no Sensei default. character_desc
+  and outfit_desc come from the profile; generic default is
+  bare ("single character, flat black background"). Previous-
+  frame line uses outfit_desc, not hard-coded "gi".
+  Regression verified: with old v3 default + outfit="gi"
+  + style=None, v4 prompt == v3 prompt for all 6 frames
+  except the version stamp; image order identical.
+  Unit tests: test_generic_kick.py, all PASS, no API calls.
+- run_kick.py + profiles/sensei.json: profile supplies spec
+  (Starboard/Port, image-right), character_desc, outfit_desc
+  ("gi"), style_desc, skeleton_file, frame order. Runner
+  renders labeled sidecars, validates sidecar KICK == spec
+  kick (NONE for guard/return) before generating, builds
+  inputs sequentially (guard sidecar alone, each later
+  frame sidecar + previous generated frame), calls
+  meta_image.edit, writes manifest + filmstrip with pair
+  verdicts UNVERIFIED until eye-ruled. No per-character
+  code branches. Sizing is a profile input: a non-adult
+  character must supply its own scaled skeleton file;
+  the idle-measurement sizing layer is still not built.
+- Generic v1 run (runs/current/sensei-generic-v1, 75.7s):
+  FAILED the "same output" test in one visible way:
+  photorealistic man, not anime Sensei. Cause found:
+  style was never in prompt-v3 — v11's anime look came
+  only from previous-frame anime drawings, and a cold-
+  start guard with no previous frame defaulted to the
+  model's photorealistic bias. Leg order and identity
+  consistency in v1 were otherwise correct (front/upper
+  moving leg 2-5, support planted, same face/gi/hair).
+  v1 is retained as evidence of the gap, not a
+  deliverable.
+- Fix: style_desc added to prompt_builder (one "Style:
+  ..." line, only when a profile supplies it) and to
+  profiles/sensei.json ("anime"). v3 regression with
+  style=None still PASSes.
+- Generic v2 run (runs/current/sensei-generic-v2, 77.8s:
+  guard 12.2, chamber 12.8, snap 11.3, full 12.5, recoil
+  14.5, return 14.5): anime, black gi, short spiky black
+  hair, shod, flat black background, 1584x1616 frames.
+  Assistant full-size reading: guard/return both planted;
+  chamber/snap/full/recoil moving leg front/upper, support
+  behind/below and planted, no front/back order switch
+  across 2-5 — same class as v11. Differences from v11,
+  honestly: no yellow sleeve (v2 is all black gi, cleaner
+  against the profile), face is a fresh anime reading,
+  not a pixel copy — the image model is nondeterministic,
+  so "same output" means same sequence, same leg order,
+  same character class, not byte-identical drawings.
+  Checker on that reading: chamber->snap, snap->full,
+  full->recoil all PASS cost 0.0, amender empty (same
+  as v11 encoding). Filmstrip in v2 dir is UNVERIFIED:
+  v2 side identity is NOT user-certified yet — it
+  needs the user's hip-chain ruling from the v2
+  filmstrip, like v11 did. Do not cite v2 as certified
+  until he rules.
+
+User verification, 2026-10-28 — generic v2 VERIFIED:
+The user marked the generic v2 sequence as verified, after
+seeing its filmstrip and 200ms GIF in this chat. This
+supersedes the "v2 side identity is NOT user-certified
+yet" status in the generic-workflow note above.
+Frames 2-5 (chamber, snap, full, recoil) are now
+user-certified Starboard on the generic run, same as
+v11: moving leg front/upper, support behind/below and
+planted, no front/back order switch. Checker on that
+encoding (already run): chamber->snap, snap->full,
+full->recoil all PASS cost 0.0, amender empty.
+Guard/return remain NONE-kick anchors, excluded per
+the provisional M2.6 anchor rule, not newly certified
+as kick frames. The generic workflow (prompt-v4,
+run_kick.py, profiles/sensei.json, test_generic_kick.py)
+was pushed on this verification.
